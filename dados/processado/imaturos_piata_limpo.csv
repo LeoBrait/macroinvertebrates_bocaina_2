@@ -1,0 +1,715 @@
+class,order,family,genus,abundance,collected_by,date,method,locality_name,campanha,rio
+Insecta,Plecoptera,Perlidae,Anacraneuria,20,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,1,Cerqueiraetal,27.V.2024,Manual,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Plecoptera,Perlidae,Anacraneuria,6,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,1,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P3,campanha_2,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P3,campanha_2,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,2,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Philopotamidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,9,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Trichoptera,Ecnomidae,Austrotinodes,1,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P3,campanha_2,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,3,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,12,Cerqueiraetal,27.V.2024,Manual,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,1,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Trichoptera,Philopotamidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,2,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Megaloptera,Corydalidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Trichoptera,Polycentropodidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,,3,Cerqueiraetal,27.V.2024,Manual,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,3,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Trichoptera,Leptoceridae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Trichoptera,Polycentropodidae,,3,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,2,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Trichoptera,Hydropsychidae,,2,Cerqueiraetal,27.V.2024,D Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Trichoptera,Hydropsychidae,,4,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Trichoptera,Leptoceridae,,3,Cerqueiraetal,27.V.2024,Pool Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,1,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,4,Cerqueiraetal,27.VIII.2024,D Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Trichoptera,Hydropsychidae,,8,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,,2,Cerqueiraetal,27.V.2024,D Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Trichoptera,Polycentropodidae,,3,Cerqueiraetal,27.V.2024,Manual,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,1,Cerqueiraetal,27.VIII.2024,D Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,1,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,,3,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,1,Cerqueiraetal,26.VIII.2024,D Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,8,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Trichoptera,Hydroptilidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,1,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Trichoptera,Leptoceridae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,1,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,2,Cerqueiraetal,27.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,2,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,15,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,3,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Trichoptera,Polycentropodidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Trichoptera,Hydropsychidae,,1,Cerqueiraetal,26.V.2024,Sieve,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,10,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,,2,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,5,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,2,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,5,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,2,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Trichoptera,Polycentropodidae,,4,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Trichoptera,Odontoceridae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,13,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Ephemeroptera,Caenidae,,1,Cerqueiraetal,26.VIII.2024,D Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,4,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,10,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Ephemeroptera,Leptophlebiidae,,1,Cerqueiraetal,27.V.2024,Manual,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,1,Cerqueiraetal,27.V.2024,D Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Caenidae,,1,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,3,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,1,Cerqueiraetal,26.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,1,Cerqueiraetal,27.V.2024,Pool Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,1,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,1,Cerqueiraetal,24.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,1,Cerqueiraetal,24.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,2,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Ephemeroptera,Caenidae,,2,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,4,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,4,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,3,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Ephemeroptera,Leptophlebiidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Ephemeroptera,Leptophlebiidae,,21,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Ephemeroptera,Leptophlebiidae,,1,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,28,Cerqueiraetal,24.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,4,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,5,Cerqueiraetal,23.V.2024,D Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Odonata,Calopterygidae,,1,Cerqueiraetal,27.V.2024,D Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,24.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,23.V.2024,Pool Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,27.V.2024,Sieve,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Odonata,Gomphidae,,1,Cerqueiraetal,27.V.2024,Pool Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,24.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,3,Cerqueiraetal,27.V.2024,Pool Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,27.V.2024,Sieve,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,27.V.2024,Manual,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,3,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,12,Cerqueiraetal,23.V.2024,Pool Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Odonata,Libellulidae,,8,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,27.V.2024,Pool Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,5,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Odonata,Libellulidae,,4,Cerqueiraetal,23.V.2024,D Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,25.V.2024,Sieve,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,27.V.2024,D Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,5,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Odonata,Libellulidae,,6,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Libellulidae,,18,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Gomphidae,,15,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Odonata,Gomphidae,,3,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Libellulidae,,18,Cerqueiraetal,28.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Aeshnidae,,6,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P1,campanha_2,rio_bebedouro
+Insecta,Odonata,Libellulidae,,7,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Gomphidae,,3,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Odonata,Libellulidae,,4,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Odonata,Libellulidae,,9,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Gomphidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P3,campanha_2,rio_mutuca
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Odonata,Gomphidae,,4,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P3,campanha_2,rio_mutuca
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Odonata,Coenagrionidae,,3,Cerqueiraetal,26.VIII.2024,D Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Odonata,Libellulidae,,3,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Odonata,Aeshnidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,4,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Gomphidae,,4,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Calopterygidae,,1,Cerqueiraetal,26.VIII.2024,D Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Odonata,Libellulidae,,4,Cerqueiraetal,26.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Calopterygidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Odonata,Libellulidae,,6,Cerqueiraetal,27.VIII.2024,D Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Odonata,Calopterygidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Coenagrionidae,,5,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Calopterygidae,,2,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Odonata,Libellulidae,,8,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Calopterygidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,28.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Odonata,Calopterygidae,,2,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,10,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Calopterygidae,,10,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Odonata,Calopterygidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,4,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,5,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,28.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Odonata,Libellulidae,,17,Cerqueiraetal,28.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Gomphidae,,3,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Odonata,Calopterygidae,,1,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Odonata,Libellulidae,,5,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Odonata,Gomphidae,,11,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Coleoptera,Elmidae,,3,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Elmidae,,1,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,3,Cerqueiraetal,26.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,3,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,10,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,8,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,2,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,28.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Noteridae,,2,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Noteridae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,27.V.2024,D Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Elmidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Elmidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,11,Cerqueiraetal,25.V.2024,Pool Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,39,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,11,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Hydrochidae,,4,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Coleoptera,Hydrochidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,3,Cerqueiraetal,28.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,9,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,8,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,4,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Elmidae,,1,Cerqueiraetal,27.V.2024,Manual,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,2,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Elmidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P3,campanha_2,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal,26.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Coleoptera,Noteridae,,5,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,3,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,2,Cerqueiraetal,23.V.2024,D Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,3,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Elmidae,,5,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,3,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,5,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,5,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,4,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,7,Cerqueiraetal,25.V.2024,Pool Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,122,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,3,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,3,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Coleoptera,Hydrophilidae,,2,Cerqueiraetal,25.V.2024,Pool Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,5,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,6,Cerqueiraetal,26.VIII.2024,D Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,5,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,18,Cerqueiraetal,28.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,8,Cerqueiraetal,25.V.2024,Pool Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal,23.V.2024,Pool Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,5,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P3,campanha_2,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,4,Cerqueiraetal,24.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Noteridae,,9,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,11,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,2,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Noteridae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Coleoptera,Hydrophilidae,,3,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,4,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Trichoptera,Hydropsychidae,,2,Cerqueiraetal.,26.VIII.2024,Pool Net,RioBebedouro-P1,campanha_2,rio_bebedouro
+Insecta,Trichoptera,Leptoceridae,,1,Cerqueiraetal.,26.VIII.2024,Pool Net,RioBebedouro-P1,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal.,26.V.2024,Pool Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,6,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,3,Cerqueiraetal,25.V.2024,Pool Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,8,Cerqueiraetal,24.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,8,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Elmidae,,1,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,2,Cerqueiraetal,23.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,8,Cerqueriaetal,25.V.2024,Pool Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,6,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,34,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,43,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Lepidoptera,Pyralidae,,1,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Lepidoptera,Pyralidae,,1,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,3,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Hemiptera,Naucoridae,,2,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Crustacea,Amphipoda,Amphipoda,,22,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P3,campanha_2,rio_mutuca
+Gastropoda,Basommatophora,Physidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Gastropoda,Basommatophora,Planorbidae,,5,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Odonata,Coenagrionidae,,16,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Odonata,Aeshnidae,,2,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Lepidoptera,Pyralidae,,3,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Lepidoptera,Pyralidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Gastropoda,Basommatophora,Planorbidae,,4,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Gastropoda,Basommatophora,Planorbidae,,1,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,27.V.2024,D Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Gastropoda,Basommatophora,Physidae,,8,Cerqueiraetal,28.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Oligochaeta,Desc. O. Classe Oligochaeta,Desc. F. Oligochaeta,Desc. G. Oligochaeta,2,Cerqueiraeral,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Oligochaeta,Desc. O. Classe Oligochaeta,Desc. F. Oligochaeta,Desc. G. Oligochaeta,1,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Oligochaeta,Desc. O. Classe Oligochaeta,Desc. F. Oligochaeta,Desc. G. Oligochaeta,17,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Gastropoda,Basommatophora,Physidae,,1,Cerqueiraetal,28.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Bivalvia,Veneirodea,Sphaeridae,,4,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Gastropoda,Littorinimorpha,Hydrobiidae,,1,Cerqueiraetal,23.V.2024,Pool Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Gastropoda,Basommatophora,Physidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Turbellaria,Tricladida,Tricladida,,1,Cerqueiraetal,28.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Gastropoda,Basommatophora,Planorbidae,,3,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Bivalvia,Veneirodea,Sphaeridae,,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Gastropoda,Littorinimorpha,Hydrobiidae,,5,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Oligochaeta,Desc. O. Classe Oligochaeta,Desc. F. Oligochaeta,Desc. G. Oligochaeta,1,Cerqueiraetal,27.V.2024,Pool Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Crustacea,Amphipoda,Amphipoda,,38,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Gastropoda,Architaenioglossa,Ampullariidae,,1,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Turbellaria,Tricladida,Tricladida,,6,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Oligochaeta,Desc. O. Classe Oligochaeta,Desc. F. Oligochaeta,Desc. G. Oligochaeta,3,Cerqueiraetal,27.V.2024,D Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Gastropoda,Basommatophora,Planorbidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Crustacea,Amphipoda,Amphipoda,,22,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P2,campanha_2,rio_mutuca
+Turbellaria,Tricladida,Tricladida,,4,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P1,campanha_1,rio_bebedouro
+Crustacea,Amphipoda,Amphipoda,,12,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Bivalvia,Veneirodea,Sphaeridae,,4,Cerqueiraetal,28.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Crustacea,Amphipoda,Amphipoda,,5,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P1,campanha_2,rio_mutuca
+Turbellaria,Tricladida,Tricladida,,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Coleoptera,Hydroscaphidae,,2,Cerqueiraetal,27.VIII.2024,Sieve,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Turbellaria,Tricladida,Tricladida,,1,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Diptera,Chironomidae,,41,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Diptera,Culicidae,,3,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,24.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Diptera,Tipulidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Diptera,Culicidae,,1,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Diptera,Dixidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Diptera,Hydrophilidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Diptera,Chironomidae,,6,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Diptera,Chironomidae,,19,Cerqueiraetal,26.VIII.2024,D Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Diptera,Chaoboridae,,28,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Diptera,Chaoboridae,,8,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Diptera,Chaoboridae,,15,Cerqueiraetal,26.VIII.2024,D Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Diptera,Chironomidae,,9,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Diptera,Culicidae,,1,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Diptera,Chironomidae,,29,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Diptera,Chironomidae,,2,Cerqueiraetal,27.V.2024,Pool Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Diptera,Chironomidae,,3,Cerqueiraetal,23.V.2024,Pool Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Diptera,Chironomidae,,3,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Diptera,Chironomidae,,2,Cerqueiraetal,25.V.2024,D Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Diptera,Chaoboridae,,2,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Trichoptera,Hydrophilidae,,2,Cerqueiraetal,26.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Diptera,Simuliidae,,7,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Diptera,Chironomidae,,158,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Diptera,Tipulidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Diptera,Chironomidae,,1,Cerqueriaetal,28.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Diptera,Chironomidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Diptera,Culicidae,,4,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Diptera,Chironomidae,,4,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Diptera,Culicidae,,1,Cerqueiraetal,26.VIII.2024,D Net,RioMutuca-P3,campanha_2,rio_mutuca
+Insecta,Diptera,Tipulidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Diptera,Chironomidae,,5,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Diptera,Culicidae,,1,Cerqueiraetal,28.VIII.2024,Sieve,RioBebedouro-P1,campanha_2,rio_bebedouro
+Insecta,Diptera,Chironomidae,,5,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Diptera,Sciomyzidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Diptera,Dryopidae,,2,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Diptera,Tipulidae,,1,Cerqueiraetal,28.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Notonectidae,,1,Cerqueiraetal,24.V.2024,Sieve,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Hemiptera,Notonectidae,,2,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Hemiptera,Veliidae,,1,Cerqueiraetal,23.V.2024,Pool Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Gerridae,,1,Cerqueiraetal,28.VIII.2024,D Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Hemiptera,Notonectidae,,1,Cerqueiaretal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,3,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,4,Cerqueiraetal,28.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Gerridae,,11,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,2,Cerqueiraetal,27.VIII.2024,Sieve,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Hemiptera,Notonectidae,,6,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,2,Cerqueiraetal,24.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,26.VIII.2024,D Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,28.VIII.2024,D Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,7,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Hemiptera,Notonectidae,,1,Cerqueiraetal,24.V.2024,Sieve,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,23.V.2024,Pool Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Notonectidae,,3,Cerqueiraetal,25.V.2024,Pool Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Notonectidae,,5,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,2,Cerqueiraetal,27.V.2024,Pool Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Veliidae,,2,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Hemiptera,Notonectidae,,4,Cerqueiraetal,25.V.2024,Pool Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Notonectidae,,1,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,3,Cerqueiraetal,23.V.2024,D Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Veliidae,,1,Cerqueiraetal,23.V.2024,D Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,26.V.2024,Pool Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Mesoveliidae,,1,Cerqueiraetal,25.V.2024,Pool Net,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Veliidae,,1,Cerqueiraetal,25.V.2024,Pool Net,RioBebedouro-P2,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Gerridae,,1,Cerqueiraetal,26.V.2024,Pool Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Hemiptera,Notonectidae,,2,Cerqueiraetal,25.V.2024,Sieve,RioBebedouro-P3,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,28.VIII.2024,D Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Hemiptera,Belostomatidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,4,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Hemiptera,Notonectidae,,4,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,7,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,2,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Veliidae,,1,Cerqueiraetal,26.VIII.2024,D Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Hemiptera,Notonectidae,,3,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,7,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,3,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P1,campanha_2,rio_mutuca
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,26.VIII.2024,Sieve,RiodaBarra-P2,campanha_2,rio_da_barra
+Insecta,Hemiptera,Mesoveliidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Veliidae,,2,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Hemiptera,Notonectidae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RiodaBarra-P1/2,campanha_2,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,24.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,2,Cerqueiraetal,23.V.2024,Pool Net,RioBebedouro-P1,campanha_1,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P3,campanha_1,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,3,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,27.V.2024,D Net,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,27.VIII.2024,Sieve,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,26.VIII.2024,Pool Net,RiodaBarra-P3,campanha_2,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,27.VIII.2024,Pool Net,RioMutuca-P2,campanha_2,rio_mutuca
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,27.V.2024,Manual,RiodaBarra-P1/2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,5,Cerqueiraetal,27.VIII.2024,D Net,RioBebedouro-P3,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Veliidae,,1,Cerqueiraetal,26.V.2024,D Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,5,Cerqueiraetal,27.VIII.2024,Pool Net,RioBebedouro-P2,campanha_2,rio_bebedouro
+Insecta,Hemiptera,Notonectidae,,7,Cerqueiraetal,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Hemiptera,Notonectidae,,2,Cerqueiraetal,24.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,10,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,2,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P2,campanha_3,rio_bebedouro
+Gastropoda,Basommatophora,Physidae,,2,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P2,campanha_3,rio_bebedouro
+Oligochaeta,Desc. O. Classe Oligochaeta,Desc. F. Oligochaeta,Desc. G. Oligochaeta,3,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Diptera,Chironomidae,,2,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Trichoptera,Leptoceridae,,1,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,4,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,3,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P1,campanha_3,rio_bebedouro
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,1,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P1,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,7,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P1,campanha_3,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,15,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P1,campanha_3,rio_bebedouro
+Insecta,Trichoptera,Hydropsychidae,,2,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P1,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,14,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Gastropoda,Basommatophora,Physidae,,3,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,10,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,3,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P1,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P1,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Libellulidae,,2,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P1,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,14,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,5,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Gastropoda,Basommatophora,Physidae,,1,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Bivalvia,Veneirodea,Sphaeridae,,2,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,2,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Gastropoda,Basommatophora,Physidae,,2,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,6,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,10,Cerqueiraetal,20.II.2025,Pool Net,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,3,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Gastropoda,Basommatophora,Physidae,,1,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Bivalvia,Veneirodea,Sphaeridae,,2,Cerqueiraetal,20.II.2025,D Net,RioBebedouro-P2,campanha_3,rio_bebedouro
+Gastropoda,Basommatophora,Physidae,,1,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,10,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,20.II.2025,Sieve,RioBebedouro-P3,campanha_3,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P1,campanha_3,rio_mutuca
+Gastropoda,Basommatophora,Planorbidae,,17,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Gastropoda,Basommatophora,Planorbidae,,9,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,3,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P2,campanha_3,rio_mutuca
+Gastropoda,Basommatophora,Planorbidae,,30,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P2,campanha_3,rio_da_barra
+Gastropoda,Basommatophora,Planorbidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,2,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,5,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Odonata,Gomphidae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Oligochaeta,Desc. O. Classe Oligochaeta,Desc. F. Oligochaeta,Desc. G. Oligochaeta,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Diptera,Chironomidae,,4,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,14,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,2,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,11,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,4,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,3,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Coleoptera,Dryopidae,,17,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,2,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Trichoptera,Odontoceridae,,1,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Trichoptera,Helycopsichidae,,2,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Trichoptera,Odontoceridae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,3,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Trichoptera,Hydropsychidae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Trichoptera,Leptoceridae,,7,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Trichoptera,Odontoceridae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Hemiptera,Gerridae,,2,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,4,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Hemiptera,Gerridae,,2,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Coleoptera,Noteridae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Hemiptera,Veliidae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Odonata,Libellulidae,,6,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Odonata,Calopterygidae,,2,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Odonata,Calopterygidae,,2,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Odonata,Libellulidae,,2,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,5,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Ephemeroptera,Caenidae,,3,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,2,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Diptera,Tipulidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Diptera,Chironomidae,,3,Cerqueiraetal,12.II.2025,Pool Net,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Diptera,Tipulidae,,1,Cerqueiraetal,12.II.2025,D Net,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Diptera,Chironomidae,,4,Cerqueiraetal,12.II.2025,Sieve,RiodaBarra-P3,campanha_3,rio_da_barra
+Insecta,Odonata,Gomphidae,,7,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Odonata,Libellulidae,,16,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Odonata,Gomphidae,,50,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Odonata,Libellulidae,,15,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Odonata,Libellulidae,,21,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Odonata,Gomphidae,,7,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Hemiptera,Veliidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Odonata,Gomphidae,,6,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Odonata,Libellulidae,,4,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Odonata,Calopterygidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Crustacea,Amphipoda,Amphipoda,,2,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Odonata,Gomphidae,,5,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Odonata,Libellulidae,,7,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Odonata,Calopterygidae,,1,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Odonata,Gomphidae,,11,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Odonata,Libellulidae,,12,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Odonata,Gomphidae,,3,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Odonata,Libellulidae,,10,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Odonata,Gomphidae,,4,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Odonata,Gomphidae,,2,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Odonata,Libellulidae,,4,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Odonata,Calopterygidae,,5,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,,8,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Plecoptera,Perlidae,,1,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Plecoptera,Perlidae,,5,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Plecoptera,Perlidae,,1,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Plecoptera,Perlidae,,1,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Plecoptera,Perlidae,,5,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Plecoptera,Perlidae,,4,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Coleoptera,Naucoridae,,6,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Hemiptera,Veliidae,,2,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Hemiptera,Naucoridae,,2,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Hemiptera,Belostomatidae,,3,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Hemiptera,Veliidae,,3,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Hemiptera,Naucoridae,,2,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Hemiptera,Belostomatidae,,4,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Hemiptera,Naucoridae,,5,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P2,campanha_3,rio_mutuca
+Crustacea,Amphipoda,Amphipoda,,13,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Crustacea,Amphipoda,Amphipoda,,4,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Bivalvia,Veneirodea,Sphaeridae,,5,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Bivalvia,Veneirodea,Sphaeridae,,5,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Crustacea,Amphipoda,Amphipoda,,19,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Diptera,Tipulidae,,1,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,2,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,5,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,11,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,2,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,2,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,3,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Ephemeroptera,Leptophlebiidae,,5,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Ephemeroptera,Baetidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Ephemeroptera,Leptophlebiidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,1,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Diptera,Tabanidae,,2,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Oligochaeta,Desc. O. Classe Oligochaeta,Desc. F. Oligochaeta,Desc. G. Oligochaeta,9,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,,18,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,,1,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,,4,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,,1,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Coleoptera,Elmidae,,4,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,,2,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,,6,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,,4,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,,1,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,,5,Cerqueiraetal,13.II.2025,Pool Net,RioMutuca-P1,campanha_3,rio_mutuca
+Insecta,Diptera,Chironomidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,,3,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Trichoptera,Philopotamidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,,6,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,,3,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,,2,Cerqueiraetal,13.II.2025,D Net,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Trichoptera,Glossosomatidae,,1,Cerqueiraetal,13.II.2025,Sieve,RioMutuca-P3,campanha_3,rio_mutuca
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Aeshnidae,,38,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Libellulidae,,23,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Odonata,Gomphidae,,7,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Libellulidae,,9,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Aeshnidae,,2,Cerqueiraetal,12.VII.2025,Sieve,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Odonata,Gomphidae,,3,Cerqueiraetaç,12.VII.2025,Sieve,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Odonata,Libellulidae,,10,Cerqueiraetal,12.VII.2025,Sieve,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Odonata,Gomphidae,,9,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Libellulidae,,41,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Odonata,Libellulidae,,11,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Gomphidae,,1,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Gomphidae,,5,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Libellulidae,,3,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Aeshnidae,,1,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Odonata,Megapodagrionidae,,6,Cerqueiraetal,09.VII.2025,D Net,RiodaBarra-P1/2,campanha_4,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,09.VII.2025,D Net,RiodaBarra-P1/2,campanha_4,rio_da_barra
+Insecta,Odonata,Gomphidae,,4,Cerqueiraetal,09.VII.2025,D Net,RiodaBarra-P1/2,campanha_4,rio_da_barra
+Insecta,Odonata,Libellulidae,,7,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Odonata,Coenagrionidae,,1,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Odonata,Gomphidae,,19,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Odonata,Gomphidae,,19,Cerqueiraetal,12.VII.2025,Sieve,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Odonata,Libellulidae,,1,Cerqueiraetal,12.VII.2025,Sieve,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Odonata,Libellulidae,,4,Cerqueiraetal,12.VII.2025,Sieve,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Gomphidae,,3,Cerqueiraetal,12.VII.2025,Sieve,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,09.VII.2025,D Net,RiodaBarra-P3,campanha_4,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,2,Cerqueiraetal,09.VII.2025,D Net,RioBebedouro-P1,campanha_4,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P1,campanha_4,rio_mutuca
+Bivalvia,Veneirodea,Sphaeridae,,3,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Diptera,Chironomidae,,4,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,2,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Coleoptera,Dryopidae,,2,Cerqueiraetal,12.VII.2025,Sieve,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,2,Cerqueiraetal,12.VII.2025,Sieve,RioMutuca-P3,campanha_4,rio_mutuca
+Bivalvia,Veneirodea,Sphaeridae,,3,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,8,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Hemiptera,Belostomatidae,,5,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Hemiptera,Naucoridae,,3,Cerqueiraretal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Hemiptera,Veliidae,,1,Cerqueiraetal,12.VII.2025,Sieve,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Hemiptera,Belostomatidae,,2,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Hemiptera,Veliidae,,1,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Hemiptera,Gerridae,,1,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Diptera,Chironomidae,,2,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Coleoptera,Dysticidae,,3,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Hemiptera,Naucoridae,,1,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Crustacea,Amphipoda,Amphipoda,,11,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Diptera,Chironomidae,,23,Cerqueiraetal,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Diptera,Chironomidae,,58,Cerqueiraetal,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,Polyplectropus�,1,Cerqueira et al,13.II.2025,D Net,RioMutuca-P2,campanha_3,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,Macronema,1,Cerqueira et al,09.VII.2025,D Net,RiodaBarra-P1/2,campanha_4,rio_da_barra
+Insecta,Trichoptera,Odontoceridae,Marilia,1,Cerqueira et al,09.VII.2025,D Net,RiodaBarra-P1/2,campanha_4,rio_da_barra
+Insecta,Trichoptera,Hydropsychidae,Macrostemum,1,Cerqueira et al ,12.VII.2025,Pool Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,Smicridea,1,Cerqueira et al ,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,Notalina,15,Cerqueira et al ,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,Polyplectropus,1,Cerqueira et al ,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,Polyplectropus,13,Cerqueira et al ,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,1,Cerqueira et al,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,Notalina�,2,Cerqueira et al,12.VII.2025,Sieve,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,7,Cerqueira et al ,09.VII.2025,D Net,RioBebedouro-P1,campanha_4,rio_bebedouro
+Insecta,Trichoptera,Polycentropodidae,Polyplectropus,9,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P1,campanha_4,rio_bebedouro
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,8,Cerqueira et al ,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,Polyplectropus,1,Cerqueira et al,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,Notalina,4,Cerqueira et al,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Trichoptera,Hydropsychidae,Smicridea,1,Cerqueira et al ,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,Polyplectropus,8,Cerqueira et al ,12.VII.2025,Sieve,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Trichoptera,Polycentropodidae,Polyplectropus,1,Cerqueira et al ,09.VII.2025,D Net,RiodaBarra-P3,campanha_4,rio_da_barra
+Insecta,Trichoptera,Polycentropodidae,Polyplectropus,1,Cerqueira et al ,12.VII.2025,Sieve,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Trichoptera,Leptoceridae,Notalina,1,Cerqueira et al ,12.VII.2025,Sieve,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Trichoptera,Philopotamidae,Chimarra,1,Cerqueira et al ,12.VII.2025,D Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Trichoptera,Calamoceratidae,Phylloicus,2,Cerqueira et al ,12.VII.2025,D Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Ephemeroptera,Caenidae,,4,Cerqueira et al ,09.VII.2025,D Net,RioBebedouro-P1,campanha_4,rio_bebedouro
+Insecta,Ephemeroptera,Leptophlebiidae,,2,Cerqueira et al ,09.VII.2025,D Net,RiodaBarra-P1/2,campanha_4,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,2,Cerqueira et al ,12.VII.2025,Pool Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Ephemeroptera,Baetidae,,1,Cerqueira et al ,12.VII.2025,D Net,RiodaBarra-P3,campanha_4,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,5,Cerqueira et al ,12.II.2025,D Net,RiodaBarra-P1/2,campanha_3,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,2,Cerqueira et al ,12.II.2025,Sieve,RiodaBarra-P2,campanha_3,rio_da_barra
+Insecta,Ephemeroptera,Baetidae,,1,Cerqueira et al ,09.VII.2025,D Net,RiodaBarra-P3,campanha_4,rio_da_barra
+Insecta,Ephemeroptera,Leptophlebiidae,,1,Cerqueira et al ,12.VII.2025,D Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Ephemeroptera,Leptophlebiidae,,2,Cerqueira et al ,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,1,Cerqueira et al,12.VII.2025,Pool Net,RioMutuca-P1,campanha_4,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,2,Cerqueira et al,12.VII.2025,D Net,RioMutuca-P2,campanha_4,rio_mutuca
+Insecta,Plecoptera,Perlidae,Anacraneuria,1,Cerqueira et al,12.VII.2025,D Net,RioMutuca-P3,campanha_4,rio_mutuca
+Insecta,Coleoptera,Elmidae,,2,Cerqueira et al,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Coleoptera,Dysticidae,,1,Cerqueira et al,25.V.2024,Pool Net,RiodaBarra-P2,campanha_1,rio_da_barra
+Insecta,Odonata,Coenagrionidae,,1,Cerqueira et al ,08.VII.2025,D Net,RiodaBarra-P2,campanha_4,rio_da_barra
+Insecta,Hemiptera,Nepidae,,1,Cerqueira et al,08.VII.2025,D Net,RiodaBarra-P2,campanha_4,rio_da_barra
+Gastropoda,Basommatophora,Physidae,,22,Cerqueira et al,08.VII.2025,D Net,RiodaBarra-P2,campanha_4,rio_da_barra
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueira et al,08.VII.2025,D Net,RiodaBarra-P2,campanha_4,rio_da_barra
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueira et al ,09.VII.2025,D Net,RioBebedouro-P2,campanha_4,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,3,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P2,campanha_4,rio_bebedouro
+Insecta,Odonata,Libellulidae,,8,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P2,campanha_4,rio_bebedouro
+Insecta,Odonata,Libellulidae,,5,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P2,campanha_4,rio_bebedouro
+Insecta,Odonata,Libellulidae,,4,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P3,campanha_4,rio_bebedouro
+Insecta,Coleoptera,Dryopidae,,5,Cerqueira et al ,09.VII.2025,D Net,RioBebedouro-P3,campanha_4,rio_bebedouro
+Insecta,Coleoptera,Dysticidae,,2,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P3,campanha_4,rio_bebedouro
+Oligochaeta,Desc. O. Classe Oligochaeta,Desc. F. Oligochaeta,Desc. G. Oligochaeta,1,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P3,campanha_4,rio_bebedouro
+Bivalvia,Veneirodea,Sphaeridae,,5,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P3,campanha_4,rio_bebedouro
+Insecta,Coleoptera,Hydrophilidae,,1,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P3,campanha_4,rio_bebedouro
+Insecta,Odonata,Megapodagrionidae,,1,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P3,campanha_4,rio_bebedouro
+Insecta,Hemiptera,Belostomatidae,,1,Cerqueira et al,09.VII.2025,D Net,RioBebedouro-P3,campanha_4,rio_bebedouro

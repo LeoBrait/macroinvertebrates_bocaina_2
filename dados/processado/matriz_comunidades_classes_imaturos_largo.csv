@@ -1,0 +1,87 @@
+campanha,rio,locality_name,method,Insecta,Turbellaria,Bivalvia,Gastropoda,Oligochaeta,Crustacea
+campanha_1,rio_bebedouro,RioBebedouro-P1,D Net,17,0,0,0,0,0
+campanha_1,rio_bebedouro,RioBebedouro-P1,Pool Net,22,0,0,0,0,0
+campanha_1,rio_bebedouro,RioBebedouro-P1,Sieve,4,4,0,0,0,0
+campanha_1,rio_bebedouro,RioBebedouro-P2,D Net,15,0,1,0,0,0
+campanha_1,rio_bebedouro,RioBebedouro-P2,Pool Net,32,0,0,1,0,0
+campanha_1,rio_bebedouro,RioBebedouro-P2,Sieve,5,1,0,0,0,0
+campanha_1,rio_bebedouro,RioBebedouro-P3,D Net,9,1,0,0,0,0
+campanha_1,rio_bebedouro,RioBebedouro-P3,Pool Net,16,0,0,0,0,0
+campanha_1,rio_bebedouro,RioBebedouro-P3,Sieve,26,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P1/2,D Net,9,0,0,0,3,0
+campanha_1,rio_da_barra,RiodaBarra-P1/2,Manual,23,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P1/2,Pool Net,14,0,0,0,1,0
+campanha_1,rio_da_barra,RiodaBarra-P1/2,Sieve,3,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P2,D Net,29,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P2,Pool Net,101,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P2,Sieve,17,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P3,D Net,42,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P3,Pool Net,25,0,0,4,0,0
+campanha_1,rio_da_barra,RiodaBarra-P3,Sieve,3,0,0,0,0,0
+campanha_2,rio_bebedouro,RioBebedouro-P1,D Net,6,0,0,0,0,0
+campanha_2,rio_bebedouro,RioBebedouro-P1,Pool Net,3,0,0,0,0,0
+campanha_2,rio_bebedouro,RioBebedouro-P1,Sieve,1,0,0,0,0,0
+campanha_2,rio_bebedouro,RioBebedouro-P2,D Net,96,0,4,1,17,0
+campanha_2,rio_bebedouro,RioBebedouro-P2,Pool Net,122,7,0,8,0,0
+campanha_2,rio_bebedouro,RioBebedouro-P2,Sieve,74,0,4,6,2,0
+campanha_2,rio_bebedouro,RioBebedouro-P3,D Net,88,0,0,1,0,0
+campanha_2,rio_bebedouro,RioBebedouro-P3,Pool Net,180,0,0,2,0,0
+campanha_2,rio_bebedouro,RioBebedouro-P3,Sieve,25,0,0,0,0,0
+campanha_2,rio_da_barra,RiodaBarra-P1/2,D Net,20,0,0,0,0,0
+campanha_2,rio_da_barra,RiodaBarra-P1/2,Pool Net,45,0,0,0,0,0
+campanha_2,rio_da_barra,RiodaBarra-P1/2,Sieve,26,0,0,0,0,0
+campanha_2,rio_da_barra,RiodaBarra-P2,D Net,34,0,0,0,0,0
+campanha_2,rio_da_barra,RiodaBarra-P2,Pool Net,213,0,0,5,0,0
+campanha_2,rio_da_barra,RiodaBarra-P2,Sieve,65,0,0,1,0,0
+campanha_2,rio_da_barra,RiodaBarra-P3,D Net,16,0,0,0,0,0
+campanha_2,rio_da_barra,RiodaBarra-P3,Pool Net,39,0,0,1,1,0
+campanha_2,rio_da_barra,RiodaBarra-P3,Sieve,10,0,0,0,0,0
+campanha_2,rio_mutuca,RioMutuca-P1,D Net,14,0,0,0,0,5
+campanha_2,rio_mutuca,RioMutuca-P1,Pool Net,34,0,0,0,0,12
+campanha_2,rio_mutuca,RioMutuca-P1,Sieve,15,0,0,3,0,0
+campanha_2,rio_mutuca,RioMutuca-P2,D Net,71,0,0,0,0,0
+campanha_2,rio_mutuca,RioMutuca-P2,Pool Net,79,0,0,0,0,38
+campanha_2,rio_mutuca,RioMutuca-P2,Sieve,16,0,0,0,0,22
+campanha_2,rio_mutuca,RioMutuca-P3,D Net,14,0,0,0,0,22
+campanha_2,rio_mutuca,RioMutuca-P3,Sieve,2,0,0,0,0,0
+campanha_3,rio_bebedouro,RioBebedouro-P1,D Net,6,0,0,0,0,0
+campanha_3,rio_bebedouro,RioBebedouro-P1,Sieve,26,0,0,0,0,0
+campanha_3,rio_bebedouro,RioBebedouro-P2,D Net,5,0,2,1,0,0
+campanha_3,rio_bebedouro,RioBebedouro-P2,Pool Net,30,0,2,1,0,0
+campanha_3,rio_bebedouro,RioBebedouro-P2,Sieve,18,0,0,2,3,0
+campanha_3,rio_bebedouro,RioBebedouro-P3,D Net,25,0,0,3,0,0
+campanha_3,rio_bebedouro,RioBebedouro-P3,Pool Net,21,0,0,2,0,0
+campanha_3,rio_bebedouro,RioBebedouro-P3,Sieve,11,0,0,1,0,0
+campanha_3,rio_da_barra,RiodaBarra-P1/2,D Net,37,0,0,0,0,0
+campanha_3,rio_da_barra,RiodaBarra-P1/2,Pool Net,18,0,0,0,0,0
+campanha_3,rio_da_barra,RiodaBarra-P1/2,Sieve,9,0,0,0,0,0
+campanha_3,rio_da_barra,RiodaBarra-P2,D Net,5,0,0,17,0,0
+campanha_3,rio_da_barra,RiodaBarra-P2,Pool Net,14,0,0,30,0,0
+campanha_3,rio_da_barra,RiodaBarra-P2,Sieve,5,0,0,9,0,0
+campanha_3,rio_da_barra,RiodaBarra-P3,D Net,32,0,0,1,0,0
+campanha_3,rio_da_barra,RiodaBarra-P3,Pool Net,13,0,0,0,1,0
+campanha_3,rio_da_barra,RiodaBarra-P3,Sieve,27,0,0,0,0,0
+campanha_3,rio_mutuca,RioMutuca-P1,D Net,31,0,0,0,0,0
+campanha_3,rio_mutuca,RioMutuca-P1,Pool Net,29,0,0,0,0,0
+campanha_3,rio_mutuca,RioMutuca-P1,Sieve,49,0,0,0,0,0
+campanha_3,rio_mutuca,RioMutuca-P2,D Net,27,0,0,0,0,0
+campanha_3,rio_mutuca,RioMutuca-P2,Pool Net,44,0,0,0,0,0
+campanha_3,rio_mutuca,RioMutuca-P2,Sieve,99,0,0,0,9,0
+campanha_3,rio_mutuca,RioMutuca-P3,D Net,11,0,0,0,0,19
+campanha_3,rio_mutuca,RioMutuca-P3,Pool Net,36,0,5,0,0,4
+campanha_3,rio_mutuca,RioMutuca-P3,Sieve,34,0,5,0,0,15
+campanha_4,rio_bebedouro,RioBebedouro-P1,D Net,22,0,0,0,0,0
+campanha_4,rio_bebedouro,RioBebedouro-P2,D Net,17,0,0,0,0,0
+campanha_4,rio_bebedouro,RioBebedouro-P3,D Net,14,0,5,0,1,0
+campanha_4,rio_da_barra,RiodaBarra-P1/2,D Net,16,0,0,0,0,0
+campanha_4,rio_da_barra,RiodaBarra-P2,D Net,3,0,0,22,0,0
+campanha_4,rio_da_barra,RiodaBarra-P3,D Net,5,0,0,0,0,0
+campanha_4,rio_mutuca,RioMutuca-P1,D Net,13,0,0,0,0,0
+campanha_4,rio_mutuca,RioMutuca-P1,Pool Net,88,0,3,0,0,0
+campanha_4,rio_mutuca,RioMutuca-P1,Sieve,8,0,0,0,0,0
+campanha_4,rio_mutuca,RioMutuca-P2,D Net,75,0,0,0,0,11
+campanha_4,rio_mutuca,RioMutuca-P2,Pool Net,63,0,3,0,0,0
+campanha_4,rio_mutuca,RioMutuca-P2,Sieve,10,0,0,0,0,0
+campanha_4,rio_mutuca,RioMutuca-P3,D Net,1,0,0,0,0,0
+campanha_4,rio_mutuca,RioMutuca-P3,Pool Net,112,0,0,0,0,0
+campanha_4,rio_mutuca,RioMutuca-P3,Sieve,41,0,0,0,0,0
