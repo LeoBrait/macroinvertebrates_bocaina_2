@@ -22,7 +22,6 @@ matriz_total <- data.frame(
   method = df_classes$method
 )
 
-
 # Riqueza ----------------------------------------------------------------------
 riqueza_classes <- df_total %>%
   group_by(rio, campanha, locality_name, method) %>%
@@ -57,8 +56,72 @@ matriz_total$shannon_familias <-
 
 rm(classes_numericos, ordens_numericos, familias_numericos)
 
+# ---------------------------- Pielou's Evenness -------------------------------
 
+# Cálculo da equabilidade de Pielou (J = H / ln(S))
+matriz_total$pielou_classes <- 
+  matriz_total$shannon_classes / log(matriz_total$riqueza_classes)
+matriz_total$pielou_ordens <- 
+  matriz_total$shannon_ordens / log(matriz_total$riqueza_ordens)
+matriz_total$pielou_familias <- 
+  matriz_total$shannon_familias / log(matriz_total$riqueza_familias)
 
+# Substituir valores infinitos ou NaN por NA (casos com riqueza = 0 ou 1)
+matriz_total <- matriz_total %>%
+  mutate(
+    across(
+      starts_with("pielou_"), 
+      ~ ifelse(is.infinite(.x) | is.nan(.x), NA, .x)
+    )
+  )
+
+#------------------------------ Riqueza de taxa in taxa ------------------------
+ephemeroptera_riqueza <- df_total %>%
+  filter(order == "Ephemeroptera") %>%
+  group_by(rio, campanha, locality_name, method) %>%
+  summarise(riqueza_familias_ephemeroptera = n_distinct(family))
+
+trichoptera_riqueza <- df_total %>%
+  filter(order == "Trichoptera") %>%
+  group_by(rio, campanha, locality_name, method) %>%
+  summarise(riqueza_familias_trichoptera = n_distinct(family))
+
+plecoptera_riqueza <- df_total %>%
+  filter(order == "Plecoptera") %>%
+  group_by(rio, campanha, locality_name, method) %>%
+  summarise(riqueza_familias_plecoptera = n_distinct(family)) 
+
+coleoptera_riqueza <- df_total %>%
+  filter(order == "Coleoptera") %>%
+  group_by(rio, campanha, locality_name, method) %>%
+  summarise(riqueza_familias_coleoptera = n_distinct(family)) 
+
+matriz_total <- left_join(matriz_total, ephemeroptera_riqueza)
+matriz_total <- left_join(matriz_total, trichoptera_riqueza)
+matriz_total <- left_join(matriz_total, plecoptera_riqueza)
+matriz_total <- left_join(matriz_total, coleoptera_riqueza)
+
+# remover Na's
+matriz_total <- matriz_total %>%
+  mutate(
+    riqueza_familias_ephemeroptera = replace_na(riqueza_familias_ephemeroptera, 0),
+    riqueza_familias_trichoptera = replace_na(riqueza_familias_trichoptera, 0),
+    riqueza_familias_plecoptera = replace_na(riqueza_familias_plecoptera, 0),
+    riqueza_familias_coleoptera = replace_na(riqueza_familias_coleoptera, 0)
+  )
+
+# EPT
+matriz_total <- matriz_total %>%
+  mutate(
+    ept_riqueza = riqueza_familias_ephemeroptera
+         + riqueza_familias_trichoptera
+         +riqueza_familias_plecoptera
+  )
+
+rm(
+  ephemeroptera_riqueza, trichoptera_riqueza, 
+  plecoptera_riqueza, coleoptera_riqueza
+)
 
 
 # 1. Calcular metricas
@@ -96,8 +159,9 @@ rm(classes_numericos, ordens_numericos, familias_numericos)
 #   1.07. Ephemeroptera taxa
 #       Quantidade de táxons diferentes dentro da ordem ephemeroptera
 #
-#   1.08. Plecoptera taxa
+#   1.08. Plecoptera taxa 
 #       Quantidade de táxons diferentes dentro da ordem Plecoptera
+#        NAO UTILIZADO
 #
 #   1.09. Trichoptera taxa
 #       Quantidade de táxons diferentes dentro da ordem
