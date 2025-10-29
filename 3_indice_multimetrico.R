@@ -1,15 +1,14 @@
 library(tidyverse)
 library(vegan)
-
-setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
+#setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
 
 
 ################################### Carregar Dados #############################
-df_total <- 
+df_total <-
   read_csv("dados/processado/imaturos_piata_limpo.csv")
-df_classes <- 
+df_classes <-
   read_csv("dados/processado/matriz_comunidades_classes_imaturos_largo.csv")
-df_ordens <- 
+df_ordens <-
   read_csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
 df_familias <-
   read_csv("dados/processado/matriz_comunidades_familias_imaturos_largo.csv")
@@ -47,11 +46,11 @@ classes_numericos <- df_classes[, 5:ncol(df_classes)]
 ordens_numericos <- df_ordens[, 5:ncol(df_ordens)]
 familias_numericos <- df_familias[, 5:ncol(df_familias)]
 
-matriz_total$shannon_classes <- 
+matriz_total$shannon_classes <-
   diversity(classes_numericos, index = "shannon")
-matriz_total$shannon_ordens <- 
+matriz_total$shannon_ordens <-
   diversity(ordens_numericos, index = "shannon")
-matriz_total$shannon_familias <- 
+matriz_total$shannon_familias <-
   diversity(familias_numericos, index = "shannon")
 
 rm(classes_numericos, ordens_numericos, familias_numericos)
@@ -70,7 +69,7 @@ matriz_total$pielou_familias <-
 matriz_total <- matriz_total %>%
   mutate(
     across(
-      starts_with("pielou_"), 
+      starts_with("pielou_"),
       ~ ifelse(is.infinite(.x) | is.nan(.x), NA, .x)
     )
   )
@@ -89,12 +88,12 @@ trichoptera_riqueza <- df_total %>%
 plecoptera_riqueza <- df_total %>%
   filter(order == "Plecoptera") %>%
   group_by(rio, campanha, locality_name, method) %>%
-  summarise(riqueza_familias_plecoptera = n_distinct(family)) 
+  summarise(riqueza_familias_plecoptera = n_distinct(family))
 
 coleoptera_riqueza <- df_total %>%
   filter(order == "Coleoptera") %>%
   group_by(rio, campanha, locality_name, method) %>%
-  summarise(riqueza_familias_coleoptera = n_distinct(family)) 
+  summarise(riqueza_familias_coleoptera = n_distinct(family))
 
 matriz_total <- left_join(matriz_total, ephemeroptera_riqueza)
 matriz_total <- left_join(matriz_total, trichoptera_riqueza)
@@ -115,11 +114,11 @@ matriz_total <- matriz_total %>%
   mutate(
     ept_riqueza = riqueza_familias_ephemeroptera
          + riqueza_familias_trichoptera
-         +riqueza_familias_plecoptera
+         + riqueza_familias_plecoptera
   )
 
 rm(
-  ephemeroptera_riqueza, trichoptera_riqueza, 
+  ephemeroptera_riqueza, trichoptera_riqueza,
   plecoptera_riqueza, coleoptera_riqueza
 )
 
