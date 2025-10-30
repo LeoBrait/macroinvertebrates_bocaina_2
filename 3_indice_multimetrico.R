@@ -1,6 +1,7 @@
 library(tidyverse)
 library(vegan)
 #setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
+# Para os casos de razoes por zero, colocamos o valor do numerador
 
 
 ################################### Carregar Dados #############################
@@ -18,6 +19,11 @@ df_familias <-
 # Bmwp
 bmwp_dicionario_df <-
   read_csv("dados/20250406_referencia_bmwp.csv")
+
+# Metadado
+metadado_df <- df_classes %>%
+  select(c(campanha, rio, locality_name, method))
+
 
 ################################### Processamento ##############################
 matriz_total <- data.frame(
@@ -129,7 +135,7 @@ rm(
   plecoptera_riqueza, coleoptera_riqueza
 )
 
-# ------------------------ Abundancia Relativa ---------------------------------
+# ------------------ Abundancia Relativa e Razões ------------------------------
 total_macroinvertebrados_vetor <- df_familias %>%
   select(-c(rio, campanha, locality_name, method)) %>%
   rowSums()
@@ -141,7 +147,8 @@ relativo_macroinvertebrados_classes <- df_classes %>%
     relativo_oligochaeta = (Oligochaeta / total_macroinvertebrados),
     relativo_gastropoda = (Gastropoda / total_macroinvertebrados),
     relativo_crustacea = (Crustacea / total_macroinvertebrados)
-   )
+   ) %>%
+   select(c(colnames(metadado_df), starts_with("relativo_")))
 
 relativo_macroinvertebrados_ordens <- df_ordens %>%
    mutate(total_macroinvertebrados = total_macroinvertebrados_vetor) %>%
@@ -152,39 +159,76 @@ relativo_macroinvertebrados_ordens <- df_ordens %>%
     relativo_coleoptera = (Coleoptera / total_macroinvertebrados),
     relativo_diptera = (Diptera / total_macroinvertebrados),
     relativo_odonata = (Odonata / total_macroinvertebrados)
-   )
+   ) %>%
+    select(c(colnames(metadado_df), starts_with("relativo_")))
 
 relativo_macroinvertebrados_familias <- df_familias %>%
-   mutate(total_macroinvertebrados = total_macroinvertebrados_vetor) %>%
-   mutate(
+  mutate(total_macroinvertebrados = total_macroinvertebrados_vetor) %>%
+  mutate(
     relativo_chironomidae = (Chironomidae / total_macroinvertebrados),
-   )
+  ) %>%
+  select(c(colnames(metadado_df), relativo_chironomidae))
 
-relativo_chol <- data.frame(
-  rio = df_classes$rio,
-  campanha = df_classes$campanha,
-  locality_name = df_classes$locality_name,
-  method = df_classes$method,
-  oligochaeta = df_classes$Oligochaeta,
-  chironomidae = df_familias$Chironomidae
+relativo_chol <- metadado_df %>%
+  mutate(
+    oligochaeta = df_classes$Oligochaeta,
+    chironomidae = df_familias$Chironomidae
   ) %>%
   mutate(
-    relativo_chol = 
+    relativo_chol =
     (oligochaeta + chironomidae) / total_macroinvertebrados_vetor
   ) %>%
-  select(-c(oligochaeta, chironomidae))
+  select(c(colnames(metadado_df), relativo_chol))
+
+razao_ept_chironomidae <- metadado_df %>%
+  mutate(
+    ept_abundancia =
+      df_ordens$Ephemeroptera +
+      df_ordens$Plecoptera +
+      df_ordens$Trichoptera,
+    chironomidae_abundancia = df_familias$Chironomidae
+  ) %>%
+  mutate(
+    razao_ept_chironomidae =
+      ifelse(
+        chironomidae_abundancia == 0,
+        ept_abundancia,
+        ept_abundancia / chironomidae_abundancia
+      )
+  ) %>%
+  select(c(colnames(metadado_df), razao_ept_chironomidae))
+
+razao_baetidae_ephemeroptera <- metadado_df %>%
+  mutate(
+    baetidae_abundancia = df_familias$Baetidae,
+    ephemeroptera_abundancia = df_ordens$Ephemeroptera
+  ) %>%
+  mutate(
+    razao_baetidae_ephemeroptera =
+      ifelse(
+        ephemeroptera_abundancia == 0,
+        baetidae_abundancia,
+        baetidae_abundancia / ephemeroptera_abundancia
+      )
+  ) %>%
+  select(c(colnames(metadado_df), razao_baetidae_ephemeroptera))
+
 
 matriz_total <- merge(relativo_macroinvertebrados_classes, matriz_total)
 matriz_total <- merge(relativo_macroinvertebrados_ordens, matriz_total)
 matriz_total <- merge(relativo_macroinvertebrados_familias, matriz_total)
 matriz_total <- merge(relativo_chol, matriz_total)
+matriz_total <- merge(razao_ept_chironomidae, matriz_total)
+matriz_total <- merge(razao_baetidae_ephemeroptera, matriz_total)
 
 rm(
   relativo_macroinvertebrados_classes,
   relativo_macroinvertebrados_ordens,
   relativo_macroinvertebrados_familias,
   relativo_chol,
-  total_macroinvertebrados_vetor
+  total_macroinvertebrados_vetor,
+  razao_ept_chironomidae,
+  razao_baetidae_ephemeroptera
 )
 
 
@@ -202,9 +246,6 @@ matriz_total <- matriz_total %>%
   )
 
 rm(bmwp_df)
-
-# razao EPT/Chironomidae
-
 
 #################################### Gerais ####################################
 #
@@ -294,7 +335,7 @@ rm(bmwp_df)
 #
 #
 ############################### Grupos Funcionais ##############################
-#   
+#
 #   5.01 %Colletor-filtrador
 #        n total de %Coletor-filtrador/n total de macroinvertebrad
 #   5.02 %Coletor-gatheres
