@@ -247,6 +247,31 @@ matriz_total <- matriz_total %>%
 
 rm(bmwp_df)
 
+
+###############################     boxplot    #################################
+# indices (y) ~ campanha + rio + locality_name + method (x)
+
+matriz_total <- matriz_total %>%
+  mutate(
+    impacto = case_when(
+      locality_name == "RiodaBarra-P2" ~ "impacted",
+      TRUE ~ "non-impacted"
+    )
+  )
+plot <- ggplot(
+  matriz_total %>% filter(method == "D Net" | method == "Pool Net"),
+  aes(
+    x = impacto,
+    y = shannon_familias,
+    fill = impacto
+    )) +
+  geom_boxplot() +
+  theme_minimal() +
+  geom_jitter()
+
+# permutational anova (adonis)
+
+
 #################################### Gerais ####################################
 #
 #   1.01.  [ok]
@@ -346,6 +371,8 @@ rm(bmwp_df)
 #      n total de Scrapers/n total de macroinvertebrad
 #   5.05 %Predadores
 #      n total de Predadores/n total de macroinvertebrad
+
+
 
 
 
