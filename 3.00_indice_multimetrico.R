@@ -78,14 +78,14 @@ matriz_total$pielou_ordens <-
 matriz_total$pielou_familias <- 
   matriz_total$shannon_familias / log(matriz_total$riqueza_familias)
 
-# Substituir valores infinitos ou NaN por NA (casos com riqueza = 0 ou 1)
+# Substituir valores infinitos por 0.5
 matriz_total <- matriz_total %>%
   mutate(
-    across(
-      starts_with("pielou_"),
-      ~ ifelse(is.infinite(.x) | is.nan(.x), NA, .x)
-    )
+    pielou_classes = ifelse(is.infinite(pielou_classes), 0.5, pielou_classes),
+    pielou_ordens = ifelse(is.infinite(pielou_ordens), 0.5, pielou_ordens),
+    pielou_familias = ifelse(is.infinite(pielou_familias), 0.5, pielou_familias)
   )
+
 
 # --------------------------- Riqueza Taxa in Taxa -----------------------------
 ephemeroptera_riqueza <- df_total %>%
