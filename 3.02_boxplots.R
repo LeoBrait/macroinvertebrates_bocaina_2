@@ -11,10 +11,58 @@ vetor_respostas <- indices_df %>%
 indices_df <- indices_df %>%
   mutate(
     impacto = case_when(
-      locality_name == "RiodaBarra-P2" ~ "impacted",
-      TRUE ~ "non-impacted"
+      locality_name == "RiodaBarra-P1/2" ~ "referencia",
+      locality_name == "RiodaBarra-P2" ~ "impactado",
+      TRUE ~ "desconsiderado"
     )
+  ) 
+  
+dados_filtrados <- indices_df %>%
+  filter(impacto != "desconsiderado") %>%
+  filter(method %in% c("D Net"))
+
+################################### Scores #####################################
+lista_plots <- list()
+
+
+for (i in vetor_respostas) {
+
+  # filtra dados válidos
+  # Teste de Mann-Whitney
+  p_value <- wilcox.test(
+    formula = as.formula(paste(i, "~ impacto")),
+    data = dados_filtrados
+  )$p.value
+
+  # Criação do gráfico
+  plot <- ggplot(
+    dados_filtrados,
+    aes_string(
+      x = "impacto",
+      y = i,
+      fill = "impacto"
+    )
+  ) +
+    geom_boxplot() +
+    geom_jitter(aes(shape = method), width = 0.2, alpha = 0.6) +
+    scale_shape_manual(values = c(1, 2)) +
+    theme_minimal() +
+    labs(title = i, subtitle = paste0("p = ", round(p_value, 4))) 
+  
+  # salva o gráfico na lista
+  lista_plots[[i]] <- plot
+}
+
+# salvar todos os gráficos
+for (i in vetor_respostas) {
+  ggsave(
+    filename = paste0("figuras/indice_multimetrico_1_rede/boxplot_", i, ".png"),
+    plot = lista_plots[[i]],
+    width = 8,
+    height = 6
   )
+}
+
 
 ############################## spearman correlations ###########################
 
@@ -36,47 +84,6 @@ write_csv(
 )
 
 
-
-################################### Scores #####################################
-
-
-
-
-
-
-
-
-
-
-
-#list to store plots
-lista_plotas <- list()
-
-for (i in vetor_respostas) {
-  p <- ggplot(
-    indices_df %>% filter(method == "D Net" | method == "Pool Net"),
-    aes_string(
-      x = "impacto",
-      y = i,
-      fill = "impacto"
-    )) +
-    labs(title = i) +
-    geom_boxplot() +
-    theme_minimal() +
-    geom_jitter()
-  
-  lista_plotas[[i]] <- p
-}
-
-# save all plots
-for (i in vetor_respostas) {
-  ggsave(
-    filename = paste0("figuras/indice_multimetrico/boxplot_", i, ".png"),
-    plot = lista_plotas[[i]],
-    width = 8,
-    height = 6
-  )
-}
 
 
 
