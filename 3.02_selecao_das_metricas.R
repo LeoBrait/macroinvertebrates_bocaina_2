@@ -19,7 +19,7 @@ indices_df <- indices_df %>%
   
 dados_filtrados <- indices_df %>%
   filter(impacto != "desconsiderado") %>%
-  filter(method %in% c("D Net"))
+  filter(method %in% c("D Net", "Pool Net"))
 
 ################################### Scores #####################################
 lista_plots <- list()
@@ -56,7 +56,7 @@ for (i in vetor_respostas) {
 # salvar todos os gráficos
 for (i in vetor_respostas) {
   ggsave(
-    filename = paste0("figuras/indice_multimetrico_1_rede/boxplot_", i, ".png"),
+    filename = paste0("figuras/indice_multimetrico_2_rede/boxplot_", i, ".png"),
     plot = lista_plots[[i]],
     width = 8,
     height = 6
@@ -82,10 +82,5 @@ write_csv(
     rownames_to_column(var = "indice_vs_indice"),
   "correlacoes_spearman_indices_imaturos_piata.csv"
 )
-
-
-
-
-
 
 ################################################################################
