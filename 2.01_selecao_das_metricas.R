@@ -44,12 +44,13 @@ dados_filtrados <- indices_df %>%
   filter(impacto != "desconsiderado") %>%
   filter(method %in% metodos_de_amostragem)
 
+str(dados_filtrados)
 ################################### Scores #####################################
 lista_p_values <- list()
 
 
 for (i in vetor_respostas) {
-
+  print(paste("Analisando índice:", i))
   # Teste de Mann-Whitney
   p_value <- wilcox.test(
     formula = as.formula(paste(i, "~ impacto")),
@@ -65,11 +66,12 @@ for (i in vetor_respostas) {
       fill = "impacto"
     )
   ) +
-    geom_boxplot() +
-    geom_jitter(aes(shape = method), width = 0.2, alpha = 0.6) +
-    scale_shape_manual(values = c(1, 2)) +
     theme_minimal() +
-    labs(title = i, subtitle = paste0("p = ", round(p_value, 4)))
+    geom_boxplot() +
+    geom_jitter(aes(shape = method), width = 0.2, height = 0, alpha = 0.6) +
+    scale_shape_manual(values = c(1, 2)) +
+    
+    labs(title = i, subtitle = paste0("p = ", round(p_value, 4))) 
 
   # Salvar o gráfico
   ggsave(
