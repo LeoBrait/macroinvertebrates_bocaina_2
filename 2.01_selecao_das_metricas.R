@@ -6,7 +6,7 @@ set.seed(1994)
 pontos_referencia <- c("RiodaBarra-P1/2")
 pontos_impactado <- c("RiodaBarra-P2")
 
-metodos_de_amostragem <- c("D Net", "Pool Net")
+metodos_de_amostragem <- c("D Net")
 
 # Pastas de figuras
 pasta_figuras <- "figuras/indice_multimetrico"
@@ -44,12 +44,14 @@ indices_df <- indices_df %>%
 # Filtrar dados para análise baseado em rede-D e rede de piscina.
 dados_filtrados <- indices_df %>%
   filter(impacto != "desconsiderado") %>%
-  filter(method %in% metodos_de_amostragem)
+  filter(method %in% metodos_de_amostragem) %>%
+  mutate(
+    impacto = as.factor(impacto),
+    method = as.factor(method)
+  )
 
 str(dados_filtrados)
 ################################### Scores #####################################
-lista_p_values <- list()
-
 
 for (i in vetor_respostas) {
   print(paste("Analisando índice:", i))
@@ -83,7 +85,6 @@ for (i in vetor_respostas) {
     height = 6
   )
 
-  lista_p_values[[i]] <- p_value
 }
 
 
