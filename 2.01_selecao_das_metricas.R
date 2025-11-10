@@ -1,3 +1,4 @@
+
 library(tidyverse)
 
 ################################## Configurações ###############################
@@ -87,11 +88,6 @@ for (i in vetor_respostas) {
 
 
 ############################## spearman correlations ###########################
-
-# Filtra e seleciona as variáveis desejadas
-dados_filtrados <- indices_df %>%
-  filter(method %in% c("D Net", "Pool Net")) %>%
-  select(all_of(vetor_respostas))
 
 # Função para criar matriz de p-valores
 pval_spearman <- function(df) {
