@@ -1,1 +1,2 @@
-metrica,expectativa_relativa_ao_impacto,observado_relativo_ao_impacto,sensibilidade,p_valor,metricas_redundantes,decisao,justificativa,data
+"metrica","expectativa_relativa_ao_impacto","observado_relativo_ao_impacto","sensibilidade","p_valor","metricas_redundantes","decisao","justificativa","data"
+"aspt","decrescimento","decrescimento",3,".002","não tem","manter","passou em tudo","11denovembro"

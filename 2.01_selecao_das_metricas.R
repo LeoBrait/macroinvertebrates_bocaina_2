@@ -56,7 +56,7 @@ for (i in vetor_respostas) {
     formula = as.formula(paste(i, "~ impacto")),
     data = dados_filtrados
   )$p.value
-    
+
   # Criação do gráfico
   plot <- ggplot(
     dados_filtrados,
@@ -70,7 +70,7 @@ for (i in vetor_respostas) {
     geom_boxplot() +
     geom_jitter(aes(shape = method), width = 0.2, height = 0, alpha = 0.6) +
     scale_shape_manual(values = c(1, 2)) +
-    
+
     labs(title = i, subtitle = paste0("p = ", round(p_value, 4))) 
 
   # Salvar o gráfico
@@ -100,14 +100,14 @@ pval_spearman <- function(df) {
   p_mat <- matrix(NA, n, n)
   colnames(p_mat) <- vars
   rownames(p_mat) <- vars
-  
+
   # Loop pelos pares de variáveis
   for (i in 1:n) {
     for (j in 1:n) {
       if (i == j) {
         p_mat[i, j] <- 0
       } else {
-        teste <- suppressWarnings(cor.test(df[[i]], df[[j]], method = "spearman"))
+        teste <- cor.test(df[[i]], df[[j]], method = "spearman")
         p_mat[i, j] <- teste$p.value
       }
     }
