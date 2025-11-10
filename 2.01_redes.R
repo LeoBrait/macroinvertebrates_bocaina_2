@@ -1,7 +1,7 @@
 library(tidyverse)
 
 ################################## Configurações ###############################
-
+set.seed(1994)
 metodos_de_amostragem <- c("D Net", "Pool Net")
 
 # Pastas de figuras
