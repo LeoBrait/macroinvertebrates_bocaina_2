@@ -88,13 +88,37 @@ for (i in vetor_respostas) {
 
 ############################## spearman correlations ###########################
 
+# Filtra e seleciona as variáveis desejadas
+dados_filtrados <- indices_df %>%
+  filter(method %in% c("D Net", "Pool Net")) %>%
+  select(all_of(vetor_respostas))
 
-correlations <- cor(
-  indices_df %>%
-    filter(method %in% metodos_de_amostragem) %>%
-    select(all_of(vetor_respostas)),
-  method = "spearman"
-)
+# Função para criar matriz de p-valores
+pval_spearman <- function(df) {
+  vars <- names(df)
+  n <- length(vars)
+  p_mat <- matrix(NA, n, n)
+  colnames(p_mat) <- vars
+  rownames(p_mat) <- vars
+  
+  # Loop pelos pares de variáveis
+  for (i in 1:n) {
+    for (j in 1:n) {
+      if (i == j) {
+        p_mat[i, j] <- 0
+      } else {
+        teste <- suppressWarnings(cor.test(df[[i]], df[[j]], method = "spearman"))
+        p_mat[i, j] <- teste$p.value
+      }
+    }
+  }
+  return(p_mat)
+}
+
+# Cria as matrizes
+correlations <- cor(dados_filtrados, method = "spearman")
+p_values <- pval_spearman(dados_filtrados)
+
 
 # salvar tabela de correlações (apenas a parte inferior da matriz)
 correlations_lower <- correlations
@@ -105,4 +129,13 @@ write_csv(
   file.path(pasta_tabelas, "correlacoes_spearman_indices_imaturos_piata.csv")
 )
 
+
+# salvar tabela de p-values (apenas a parte inferior da matriz)
+p_values_lower <- p_values
+p_values_lower[upper.tri(p_values_lower)] <- ""
+write_csv(
+  as.data.frame(p_values_lower) %>%
+    rownames_to_column(var = "indice_vs_indice"),
+  file.path(pasta_tabelas, "p_values_spearman_indices_imaturos_piata.csv")
+)
 ################################################################################
