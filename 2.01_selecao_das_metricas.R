@@ -2,6 +2,7 @@
 library(tidyverse)
 
 ################################## Configurações ###############################
+set.seed(1994)
 pontos_referencia <- c("RiodaBarra-P1/2")
 pontos_impactado <- c("RiodaBarra-P2")
 
@@ -88,6 +89,8 @@ for (i in vetor_respostas) {
 
 
 ############################## spearman correlations ###########################
+dados_filtrados_numerico <- dados_filtrados %>%
+  select(all_of(vetor_respostas))
 
 # Função para criar matriz de p-valores
 pval_spearman <- function(df) {
@@ -112,8 +115,8 @@ pval_spearman <- function(df) {
 }
 
 # Cria as matrizes
-correlations <- cor(dados_filtrados, method = "spearman")
-p_values <- pval_spearman(dados_filtrados)
+correlations <- cor(dados_filtrados_numerico, method = "spearman")
+p_values <- pval_spearman(dados_filtrados_numerico)
 
 
 # salvar tabela de correlações (apenas a parte inferior da matriz)
