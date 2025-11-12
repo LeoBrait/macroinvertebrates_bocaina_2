@@ -1,0 +1,28 @@
+metrica,expectativa_relativa_ao_impacto,observado_relativo_ao_impacto,sensibilidade,p_valor,metricas_redundantes,decisao,justificativa,data
+aspt,decrescimento,decrescimento,3,"0,002",não tem,manter,passou em tudo,11denovembro
+bmwp,decrescimento,decrescimento,3,"0,0286",não tem,,,12denovembro
+ept_riqueza,decrescimento,decrescimento,3,"0,0177",shannon classes,,,12denovembro
+razao_baetidae_ephemeroptera,decrescimento,decrescimento,0,"0,4533",,,,
+razao_ept_chironomidae,decrescimento,decrescimento,3,"0,1832",,,,
+relativo_chironomidae,crescimento,crescimento,0,"0,1859",,,,
+relativo_chol. ,decrescimento,crescimento,0,"0,6198",,,,
+relativo_coleoptera ,decrescimento,crescimento,0,"0,4084",,,,
+relativo_crustacea ,decrescimento,NaN,0,NaN,,,,
+relativo_diptera ,crescimento,crescimento,0,"0,1859",,,,
+relativo_ephemeroptera ,decrescimento,decrescimento,3,"0,3005",,,,
+relativo_gastropoda ,decrescimento,crescimento,0,"0,1859",,,,
+relativo_insecta ,decrescimento,crescimento,0,"0,4084",,,,
+relativo_odonata ,decrescimento,decrescimento,3,"0,0571",não tem,,,
+relativo_oligochaeta ,crescimento,decrescimento,0,"0,4533",,,,
+relativo_plecoptera ,decrescimento,NaN,0,NaN,,,,
+relativo_trichoptera,decrescimento,decrescimento,3,"0,0211",não tem,,,
+relativo_classes,decrescimento,crescimento,0,"0,6084",,,,
+riqueza_familias,decrescimento,decrescimento,2,"0,3807",,,,
+riqueza_familias_coleoptera,decrescimento,crescimento,2,"0,505",,,,
+riqueza_familias_ephemeroptera,decrescimento,crescimento,3,"0,006",não tem,,,
+riqueza_familias_plecoptera,decrescimento,NaN,0,NaN,,,,
+riqueza_familias_trichoptera,decrescimento,decrescimento,3,"0,0131",não tem ,,,
+riqueza_ordens,decrescimento,decrescimento,3,"0,02784",não tem,,,
+shannon_classes ,decrescimento,crescimento,0,"0,8687",,,,
+shannon_familias,decrescimento,decrescimento,3,"0,1143",,,,
+shannon_ordens ,decrescimento,decrescimento,3,"0,1143",,,,
