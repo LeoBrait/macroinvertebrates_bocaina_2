@@ -34,8 +34,7 @@ str(indices_df)
 
 ################################################################################
 
-
-
+i <- "bmwp"
 for (i in vetor_respostas) {
   print(paste("Analisando redes (pareado) para índice:", i))
 
