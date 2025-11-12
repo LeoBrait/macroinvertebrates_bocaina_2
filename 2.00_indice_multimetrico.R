@@ -234,10 +234,12 @@ rm(
 
 # ------------------------ Indices de Qualidade -------------------------------
 bmwp_df <- df_total %>%
-  left_join(bmwp_dicionario_df, by = "family") %>% 
+  left_join(bmwp_dicionario_df, by = "family") %>%
   mutate(bmwp_score = ifelse(is.na(bmwp_score), 0, bmwp_score)) %>%
+  group_by(rio, campanha, locality_name, method, family) %>%
+  summarise(bmwp_found = mean(bmwp_score)) %>%
   group_by(rio, campanha, locality_name, method) %>%
-  summarise(bmwp = sum(bmwp_score))
+  summarise(bmwp = sum(bmwp_found))
 
 matriz_total <- merge(matriz_total, bmwp_df)
 matriz_total <- matriz_total %>%
