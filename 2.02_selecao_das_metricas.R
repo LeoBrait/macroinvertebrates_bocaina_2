@@ -3,8 +3,8 @@ library(tidyverse)
 
 ################################## Configurações ###############################
 set.seed(1994)
-pontos_referencia <- c("RiodaBarra-P1/2")
-pontos_impactado <- c("RiodaBarra-P2")
+pontos_referencia <- c("RiodaBarra-P1/2", "RioMutuca-P1")
+pontos_impactado <- c("RiodaBarra-P2", "RioMutuca-P3")
 
 metodos_de_amostragem <- c("D Net")
 
@@ -35,8 +35,8 @@ vetor_respostas <- indices_df %>%
 indices_df <- indices_df %>%
   mutate(
     impacto = case_when(
-      locality_name == pontos_referencia ~ "referencia",
-      locality_name == pontos_impactado ~ "impactado",
+      locality_name %in% pontos_referencia ~ "referencia",
+      locality_name %in% pontos_impactado ~ "impactado",
       TRUE ~ "desconsiderado"
     )
   ) 
