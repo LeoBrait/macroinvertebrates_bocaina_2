@@ -63,11 +63,11 @@ for (i in vetor_respostas) {
     select(all_of(c("campanha", "impacto", "method", i))) %>%
     pivot_wider(names_from = impacto, values_from = all_of(i)) %>%
     mutate(coluna_id = paste0(campanha, "_", method))
-  
+
   # Garantir que temos pares válidos (sem NA)
   pares_validos <- pares %>%
     filter(!is.na("D Net") & !is.na("Pool Net") & !is.na("Sieve"))
-  
+
 
   # Teste de Wilcoxon pareado
   p_value <- wilcox.test(

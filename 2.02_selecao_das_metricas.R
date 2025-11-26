@@ -55,11 +55,26 @@ str(dados_filtrados)
 
 for (i in vetor_respostas) {
   print(paste("Analisando índice:", i))
+  
   # Teste de Mann-Whitney
-  p_value <- wilcox.test(
+  teste <- wilcox.test(
     formula = as.formula(paste(i, "~ impacto")),
     data = dados_filtrados
-  )$p.value
+  )
+ 
+  p_value = teste$p.value
+  w <- teste$statistic
+
+  # Tamanhos das amostras
+  n1 <- dados_filtrados %>%
+    filter(impacto == levels(dados_filtrados$impacto)[1]) %>% 
+    nrow()
+  n2 <- dados_filtrados %>% 
+    filter(impacto == levels(dados_filtrados$impacto)[2]) %>% 
+    nrow()
+
+  # Cálculo do U
+  u <- w - n1 * (n1 + 1) / 2
 
   # Criação do gráfico
   plot <- ggplot(
@@ -75,7 +90,13 @@ for (i in vetor_respostas) {
     geom_jitter(aes(shape = method), width = 0.2, height = 0, alpha = 0.6) +
     scale_shape_manual(values = c(1, 2)) +
 
-    labs(title = i, subtitle = paste0("p = ", round(p_value, 4))) 
+    labs(
+      title = i,
+      subtitle = paste0(
+        "p-value = ", round(p_value, 4),
+        ", U-test = ", round(u, 4)
+      )
+    )
 
   # Salvar o gráfico
   ggsave(
