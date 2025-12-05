@@ -115,9 +115,9 @@ str(giovanas_index)
 
 
 giovanas_index %>% 
-  ggplot(aes(x = locality_name, y = giovanas_index_relative, fill = rio)) +
-  geom_col() +
-  facet_wrap(~ campanha, scales = "free_x") +
+  ggplot(aes(x = campanha, y = giovanas_index_relative, fill = campanha)) +
+  geom_line(aes(group = 1)) +
+  facet_wrap(~ interaction(rio, locality_name), scales = "free_x") +
   labs(
     x = "Localidade",
     y = "Índice Giovanas",
@@ -126,7 +126,8 @@ giovanas_index %>%
   theme_bw() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1)
-  )
+  ) +
+  ylim(0, NA)
 
 
 
