@@ -20,6 +20,10 @@ df_familias <-
 bmwp_dicionario_df <-
   read_csv("dados/20250406_referencia_bmwp.csv")
 
+# Funcional
+funcional_dicionario_df <-
+  read_csv("dados/grupos_funcionais.csv")
+
 # Metadado
 metadado_df <- df_classes %>%
   select(c(campanha, rio, locality_name, method))
@@ -226,7 +230,6 @@ rm(
   relativo_macroinvertebrados_ordens,
   relativo_macroinvertebrados_familias,
   relativo_chol,
-  total_macroinvertebrados_vetor,
   razao_ept_chironomidae,
   razao_baetidae_ephemeroptera
 )
@@ -249,33 +252,61 @@ matriz_total <- matriz_total %>%
 
 rm(bmwp_df)
 
+
+################################# Funcional ####################################
+funcional_long_df <- df_total %>%
+  left_join(funcional_dicionario_df, by = c("family" = "familias")) %>%
+  # remover linhas com NA nas colunas "filtrador", "predador", etc.
+  drop_na(
+    filtrador, predador, perfuradores, fragmentadores, 
+    raspadores, detritivoros, herbivoros
+  ) %>%
+  filter(
+    if_all(
+      c(filtrador, predador, perfuradores,
+        fragmentadores, raspadores, detritivoros,
+        herbivoros),
+      ~ . != "?"
+    )
+  )
+
+functional_summary_df <- funcional_long_df %>%
+  group_by(rio, campanha, locality_name, method) %>%
+  summarise(
+    coletor_recolhedor = sum("coletor_recolhedor" == "sim"),
+    filtrador = sum(filtrador == "sim"),
+    predador = sum(predador == "sim"),
+    perfuradores = sum(perfuradores == "sim"),
+    fragmentadores = sum(fragmentadores == "sim"),
+    raspadores = sum(raspadores == "sim"),
+    detritivoros = sum(detritivoros == "sim"),
+    herbivoros = sum(herbivoros == "sim")
+  ) %>%
+  ungroup() %>%
+  mutate(
+    coletor_recolhedor_proporcao = coletor_recolhedor / total_macroinvertebrados_vetor,
+    filtrador_proporcao = filtrador / total_macroinvertebrados_vetor,
+    predador_proporcao = predador / total_macroinvertebrados_vetor,
+    perfuradores_proporcao = perfuradores / total_macroinvertebrados_vetor,
+    fragmentadores_proporcao = fragmentadores / total_macroinvertebrados_vetor,
+    raspadores_proporcao = raspadores / total_macroinvertebrados_vetor,
+    detritivoros_proporcao = detritivoros / total_macroinvertebrados_vetor,
+    herbivoros_proporcao = herbivoros / total_macroinvertebrados_vetor
+  ) %>%
+  select(-c(
+    coletor_recolhedor, filtrador, predador,
+    perfuradores, fragmentadores, raspadores,
+    detritivoros, herbivoros
+  ))
+
+matriz_total <- merge(matriz_total, functional_summary_df)
+
 write_csv(
   matriz_total,
   "dados/processado/matriz_indices_imaturos_piata.csv"
 )
 
-###############################     boxplot    #################################
-# indices (y) ~ campanha + rio + locality_name + method (x)
 
-matriz_total <- matriz_total %>%
-  mutate(
-    impacto = case_when(
-      locality_name == "RiodaBarra-P2" ~ "impacted",
-      TRUE ~ "non-impacted"
-    )
-  )
-plot <- ggplot(
-  matriz_total %>% filter(method == "D Net" | method == "Pool Net"),
-  aes(
-    x = impacto,
-    y = shannon_familias,
-    fill = impacto
-    )) +
-  geom_boxplot() +
-  theme_minimal() +
-  geom_jitter()
-
-# permutational anova (adonis)
 
 
 #################################### Gerais ####################################
