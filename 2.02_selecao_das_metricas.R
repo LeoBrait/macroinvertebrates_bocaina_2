@@ -27,7 +27,6 @@ indices_df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv")
 ############################## Pre-processamento ###############################
 # Remover índice de Pielou por ser muito problemático.
 vetor_respostas <- indices_df %>%
-  select(-pielou_classes, -pielou_ordens, -pielou_familias) %>%
   select(-(campanha:method)) %>%
   names()
 

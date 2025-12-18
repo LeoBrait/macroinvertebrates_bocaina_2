@@ -82,14 +82,6 @@ matriz_total$pielou_ordens <-
 matriz_total$pielou_familias <- 
   matriz_total$shannon_familias / log(matriz_total$riqueza_familias)
 
-# Substituir valores infinitos por 0.5
-matriz_total <- matriz_total %>%
-  mutate(
-    pielou_classes = ifelse(is.infinite(pielou_classes), 0.5, pielou_classes),
-    pielou_ordens = ifelse(is.infinite(pielou_ordens), 0.5, pielou_ordens),
-    pielou_familias = ifelse(is.infinite(pielou_familias), 0.5, pielou_familias)
-  )
-
 
 # --------------------------- Riqueza Taxa in Taxa -----------------------------
 ephemeroptera_riqueza <- df_total %>%
@@ -258,12 +250,12 @@ funcional_long_df <- df_total %>%
   left_join(funcional_dicionario_df, by = c("family" = "familias")) %>%
   # remover linhas com NA nas colunas "filtrador", "predador", etc.
   drop_na(
-    filtrador, predador, perfuradores, fragmentadores, 
+    coletor_recolhedor, filtrador, predador, perfuradores, fragmentadores, 
     raspadores, detritivoros, herbivoros
   ) %>%
   filter(
     if_all(
-      c(filtrador, predador, perfuradores,
+      c(coletor_recolhedor, filtrador, predador, perfuradores,
         fragmentadores, raspadores, detritivoros,
         herbivoros),
       ~ . != "?"
@@ -273,7 +265,7 @@ funcional_long_df <- df_total %>%
 functional_summary_df <- funcional_long_df %>%
   group_by(rio, campanha, locality_name, method) %>%
   summarise(
-    coletor_recolhedor = sum("coletor_recolhedor" == "sim"),
+    coletor_recolhedor = sum(coletor_recolhedor == "sim"),
     filtrador = sum(filtrador == "sim"),
     predador = sum(predador == "sim"),
     perfuradores = sum(perfuradores == "sim"),
@@ -284,7 +276,7 @@ functional_summary_df <- funcional_long_df %>%
   ) %>%
   ungroup() %>%
   mutate(
-    coletor_recolhedor_proporcao = coletor_recolhedor / total_macroinvertebrados_vetor,
+    coletor_recolhedor_proporcao = (coletor_recolhedor) / total_macroinvertebrados_vetor,
     filtrador_proporcao = filtrador / total_macroinvertebrados_vetor,
     predador_proporcao = predador / total_macroinvertebrados_vetor,
     perfuradores_proporcao = perfuradores / total_macroinvertebrados_vetor,
