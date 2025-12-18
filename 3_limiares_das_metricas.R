@@ -14,7 +14,7 @@ vetor_respostas <- c(
   "riqueza_familias_ephemeroptera", 
   "riqueza_familias_trichoptera", "shannon_familias")
 
-nota_maxima <- 45
+nota_maxima <- length(vetor_respostas) * 5
 
 # Pastas de figuras
 pasta_figuras <- "figuras/indice_multimetrico"
