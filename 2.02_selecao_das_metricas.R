@@ -1,5 +1,7 @@
 
 library(tidyverse)
+library(ggpubr)
+install.packages("ggpubr")
 
 ################################## Configurações ###############################
 set.seed(1994)
@@ -7,6 +9,52 @@ pontos_referencia <- c("RiodaBarra-P1/2", "RioMutuca-P1")
 pontos_impactado <- c("RiodaBarra-P2", "RioMutuca-P3")
 
 metodos_de_amostragem <- c("D Net")
+
+vetor_estetica_indice <- c(
+  "razao_baetidae_ephemeroptera" = "Razão Baetidae/Ephemeroptera",
+  "razao_ept_chironomidae" = "Razão EPT/Chironomidae",
+  "relativo_chol" = "(%) CHOL",
+  "relativo_chironomidae" = "(%) Chironomidae",
+  "relativo_ephemeroptera" = "(%) Ephemeroptera",
+  "relativo_plecoptera" = "(%) Plecoptera",
+  "relativo_trichoptera" = "(%) Trichoptera",
+  "relativo_coleoptera" = "(%) Coleoptera",
+  "relativo_diptera" = "(%) Diptera",
+  "relativo_odonata" = "(%) Odonata",
+  "relativo_insecta" = "(%) Insecta",
+  "relativo_oligochaeta" = "(%) Oligochaeta",
+  "relativo_gastropoda" = "(%) Gastropoda",
+  "relativo_crustacea" = "(%) Crustacea",
+  "riqueza_classes" = "Classes Taxa",
+  "riqueza_ordens" = "Ordens Taxa",
+  "riqueza_familias" = "Famílias Taxa",
+  "shannon_classes" = "Classes Taxa",
+  "shannon_ordens" = "Shannon de Ordens",
+  "shannon_familias" = "Shannon de Famílias",
+  "pielou_classes" = "Pielou de Classes",
+  "pielou_ordens" = "Pielou de Ordens",
+  "pielou_familias" = "Pielou de Famílias",
+  "riqueza_familias_ephemeroptera" = "Ephemeroptera Taxa",
+  "riqueza_familias_trichoptera" = "Trichoptera Taxa",
+  "riqueza_familias_plecoptera" = "Plecoptera Taxa",
+  "riqueza_familias_coleoptera" = "Coleoptera Taxa",
+  "ept_riqueza" = "EPT Taxa",
+  "bmwp" = "BMWP",
+  "aspt" = "ASPT",
+  "coletor_recolhedor_proporcao" = "(%) Coletor-Recolhedor",
+  "filtrador_proporcao" = "(%) Filtradores",
+  "predador_proporcao" = "(%) Predadores",
+  "perfuradores_proporcao" = "(%) Perfuradores",
+  "fragmentadores_proporcao" = "(%) Fragmentadores",
+  "raspadores_proporcao" = "(%) Raspadores",
+  "detritivoros_proporcao" = "(%) Detritívoros",
+  "herbivoros_proporcao" = "(%) Herbívoros"
+)
+
+vetor_estetica_impacto <- c(
+  "referencia" = "Referência",
+  "impactado" = "Impactado"
+)
 
 # Pastas de figuras
 pasta_figuras <- "figuras/indice_multimetrico"
@@ -25,7 +73,6 @@ indices_df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv")
 
 
 ############################## Pre-processamento ###############################
-# Remover índice de Pielou por ser muito problemático.
 vetor_respostas <- indices_df %>%
   select(-(campanha:method)) %>%
   names()
@@ -40,14 +87,11 @@ indices_df <- indices_df %>%
     )
   ) 
 
-# Filtrar dados para análise baseado em rede-D e rede de piscina.
+# Filtrar dados para análise baseado em rede-D.
 dados_filtrados <- indices_df %>%
   filter(impacto != "desconsiderado") %>%
   filter(method %in% metodos_de_amostragem) %>%
-  mutate(
-    impacto = as.factor(impacto),
-    method = as.factor(method)
-  )
+  mutate(impacto = as.factor(impacto), method = as.factor(method))
 
 str(dados_filtrados)
 ################################### Scores #####################################
@@ -55,6 +99,10 @@ str(dados_filtrados)
 for (i in vetor_respostas) {
   print(paste("Analisando índice:", i))
   
+  test <- dados_filtrados %>%
+    select(c("impacto", i))
+
+
   # Teste de Mann-Whitney
   teste <- wilcox.test(
     formula = as.formula(paste(i, "~ impacto")),
@@ -74,35 +122,44 @@ for (i in vetor_respostas) {
 
   # Cálculo do U
   u <- w - n1 * (n1 + 1) / 2
-
+  
+  
   # Criação do gráfico
+  nome_indice <- vetor_estetica_indice[[i]]
+
   plot <- ggplot(
     dados_filtrados,
     aes_string(
       x = "impacto",
-      y = i,
-      fill = "impacto"
+      y = i
     )
   ) +
     theme_minimal() +
     geom_boxplot() +
-    geom_jitter(aes(shape = method), width = 0.2, height = 0, alpha = 0.6) +
-    scale_shape_manual(values = c(1, 2)) +
-
+    geom_jitter(width = 0.2, height = 0, alpha = 1) +
+    scale_x_discrete(labels = vetor_estetica_impacto) +
+    theme(
+      text = element_text(size = unit(12, "pt")),
+      axis.title = element_text(size = unit(12, "pt"), face = "bold"),
+      plot.title = element_text(size = unit(14, "pt"), face = "bold"),
+      plot.subtitle = element_text(size = unit(10, "pt"))
+    ) +
+  # Adicionar títulos e legendas
     labs(
-      title = i,
+      x = "Impacto",
+      y = nome_indice,
       subtitle = paste0(
         "p-value = ", round(p_value, 4),
         ", U-test = ", round(u, 4)
       )
-    )
+    ) 
 
   # Salvar o gráfico
   ggsave(
     plot,
     filename = paste0(pasta_figuras, "/boxplot_", i, ".png"),
     width = 8,
-    height = 6
+    height = 8
   )
 
 }
