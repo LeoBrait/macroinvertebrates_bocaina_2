@@ -1,7 +1,5 @@
 
 library(tidyverse)
-library(ggpubr)
-install.packages("ggpubr")
 
 ################################## Configurações ###############################
 set.seed(1994)
@@ -161,7 +159,6 @@ for (i in vetor_respostas) {
     width = 8,
     height = 8
   )
-
 }
 
 
