@@ -10,9 +10,9 @@ pontos_impactado <- c("RiodaBarra-P2", "RioMutuca-P3")
 metodos_de_amostragem <- c("D Net")
 vetor_respostas <- c(
   "aspt", "bmwp", "ept_riqueza", "relativo_odonata", 
-  "relativo_trichoptera", "riqueza_familias", 
+  "relativo_trichoptera", 
   "riqueza_familias_ephemeroptera", 
-  "riqueza_familias_trichoptera", "shannon_familias")
+  "riqueza_familias_trichoptera")
 
 nota_maxima <- length(vetor_respostas) * 5
 
