@@ -137,10 +137,10 @@ for (i in vetor_respostas) {
     geom_jitter(width = 0.2, height = 0, alpha = 1) +
     scale_x_discrete(labels = vetor_estetica_impacto) +
     theme(
-      text = element_text(size = unit(12, "pt")),
-      axis.title = element_text(size = unit(12, "pt"), face = "bold"),
-      plot.title = element_text(size = unit(14, "pt"), face = "bold"),
-      plot.subtitle = element_text(size = unit(10, "pt"))
+      text = element_text(size = unit(25, "pt")),
+      axis.title = element_text(size = unit(25, "pt"), face = "bold"),
+      plot.title = element_text(size = unit(25, "pt"), face = "bold"),
+      plot.subtitle = element_text(size = unit(25, "pt"), face = "bold")
     ) +
   # Adicionar títulos e legendas
     labs(
@@ -156,6 +156,13 @@ for (i in vetor_respostas) {
   ggsave(
     plot,
     filename = paste0(pasta_figuras, "/boxplot_", i, ".png"),
+    width = 8,
+    height = 8
+  )
+
+    ggsave(
+    plot,
+    filename = paste0(pasta_figuras, "/boxplot_", i, ".svg"),
     width = 8,
     height = 8
   )
