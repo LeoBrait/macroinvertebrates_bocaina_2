@@ -85,8 +85,11 @@ write_csv(
   file.path(pasta_tabelas, "limiares_indices_imaturos_piata.csv")
 )
 ############################### Aplicando a taela completa #####################
+ad_hoc_variaveis <- c("riqueza_familias_trichoptera")
+
 statisticas_df_limpa <- estatisticas_df %>%
-  select(metrica, quartil_25, metade)
+  select(metrica, quartil_25, metade) %>%
+  filter(!(metrica %in% ad_hoc_variaveis))
 
 indices_rebalanceados_df <- indices_df %>%
   filter(method %in% metodos_de_amostragem) %>%
