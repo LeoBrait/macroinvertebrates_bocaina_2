@@ -9,7 +9,7 @@ pontos_impactado <- c("RiodaBarra-P2", "RioMutuca-P3")
 
 metodos_de_amostragem <- c("D Net")
 vetor_respostas <- c(
-  "aspt", "bmwp", "ept_riqueza", "relativo_odonata", 
+  "aspt", "bmwp", "razao_ept_chironomidae", "relativo_odonata", 
   "relativo_trichoptera", 
   "riqueza_familias_ephemeroptera", 
   "riqueza_familias_trichoptera")
@@ -56,6 +56,7 @@ dados_filtrados <- indices_df %>%
 ############################### Detectando limiares ############################
 estatisticas_df <- data.frame()
 
+
 for (i in vetor_respostas) {
   print(paste("Analisando índice:", i))
   
@@ -70,13 +71,19 @@ for (i in vetor_respostas) {
       metade = quartil_25 / 2
       ) %>%
     mutate(metrica = i) %>%
-    select(metrica, quartil_25, quartil_50, quartil_75, maximo, metade) %>%
+    select(
+      metrica, quartil_25, quartil_50, quartil_75, maximo, minimo, metade
+    ) %>%
     group_by(metrica) %>%
     summarise_if(is.numeric, mean, na.rm = TRUE)
 
   estatisticas_df <- rbind(estatisticas_df, estatisticas)
 }
 
+write_csv(
+  estatisticas_df,
+  file.path(pasta_tabelas, "limiares_indices_imaturos_piata.csv")
+)
 ############################### Aplicando a taela completa #####################
 statisticas_df_limpa <- estatisticas_df %>%
   select(metrica, quartil_25, metade)
@@ -102,7 +109,7 @@ indices_rebalanceados_df <- indices_df %>%
 
 
 giovanas_index <- indices_rebalanceados_df %>%
-  group_by (campanha, rio, locality_name) %>%
+  group_by(campanha, rio, locality_name) %>%
   summarise(giovanas_index = sum(nota)) %>%
   ungroup() %>%
   mutate(giovanas_index_relative = giovanas_index / nota_maxima * 100)
@@ -120,7 +127,7 @@ giovanas_index %>%
   facet_wrap(~ interaction(rio, locality_name), scales = "free_x") +
   labs(
     x = "Localidade",
-    y = "Índice Giovanas",
+    y = "Índice Bocaina",
     fill = "Rio"
   ) +
   theme_bw() +
@@ -130,5 +137,11 @@ giovanas_index %>%
   ylim(0, NA)
 
 
-
-write_csv(estatisticas_df, "dados/processado/multimetrico_bocaina_limiares.csv")
+ggsave(
+  filename = file.path(
+    pasta_figuras,
+    "indice_giovana_imaturos_piata.png"
+  ),
+  width = 10,
+  height = 6
+)
