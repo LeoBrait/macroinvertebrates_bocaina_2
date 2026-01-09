@@ -117,7 +117,10 @@ giovanas_index <- indices_rebalanceados_df %>%
   ungroup() %>%
   mutate(giovanas_index_relative = giovanas_index / nota_maxima * 100)
 
-
+write_csv(
+  giovanas_index,
+  file.path(pasta_tabelas, "indice_bocaina_imaturos_piata.csv")
+)
 
 str(giovanas_index)
 
