@@ -88,8 +88,7 @@ write_csv(
 ad_hoc_variaveis <- c("riqueza_familias_trichoptera")
 
 statisticas_df_limpa <- estatisticas_df %>%
-  select(metrica, quartil_25, metade) %>%
-  filter(!(metrica %in% ad_hoc_variaveis))
+  select(metrica, quartil_25, metade)
 
 indices_rebalanceados_df <- indices_df %>%
   filter(method %in% metodos_de_amostragem) %>%
