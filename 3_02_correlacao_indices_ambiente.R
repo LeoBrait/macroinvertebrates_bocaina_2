@@ -8,7 +8,7 @@ vetor_respostas <- c(
   "riqueza_familias_trichoptera")
 
 
-sonda_df <- read_csv("dados/dado_sonda_bocaina.csv")
+sonda_df <- read_csv("dados/dados_sonda_bocaina.csv")
 indices_df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
   filter(method %in% metodos_de_amostragem) %>%
   select(-method)
@@ -17,8 +17,51 @@ merged_df <- indices_df %>%
   inner_join(sonda_df, by = c("campanha", "rio", "locality_name"))
 # spearman correlation ph e riqueza ephemeroptera
 
-cor.test(
-  sonda_df$ph,
-  indices_df$riqueza_familias_ephemeroptera,
-  method = "spearman"
-)
+
+for (resposta in vetor_respostas) {
+  cat("Correlacao Spearman entre pH e", resposta, ":\n")
+  print(
+    cor.test(
+      merged_df$ph,
+      merged_df[[resposta]],
+      method = "spearman"
+    )
+  )
+  cat("\n")
+}
+
+for (resposta in vetor_respostas) {
+  cat("Correlacao Spearman entre tds e", resposta, ":\n")
+  print(
+    cor.test(
+      merged_df$tds,
+      merged_df[[resposta]],
+      method = "spearman"
+    )
+  )
+  cat("\n")
+}
+
+for (resposta in vetor_respostas) {
+  cat("Correlacao Spearman entre condutividade e", resposta, ":\n")
+  print(
+    cor.test(
+      merged_df$condutividade,
+      merged_df[[resposta]],
+      method = "spearman"
+    )
+  )
+  cat("\n")
+}
+
+for (resposta in vetor_respostas) {
+  cat("Correlacao Spearman entre o2 e", resposta, ":\n")
+  print(
+    cor.test(
+      merged_df[["o2 total"]],
+      merged_df[[resposta]],
+      method = "spearman"
+    )
+  )
+  cat("\n")
+}
