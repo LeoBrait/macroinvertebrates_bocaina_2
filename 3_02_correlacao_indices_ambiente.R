@@ -90,3 +90,8 @@ for (ambiental in vetor_variaveis_ambiente) {
       )
     }
 }
+
+write_csv(
+  response_df,
+  file.path("tabelas/correlacao_indices_vs_sonda.csv")
+)
