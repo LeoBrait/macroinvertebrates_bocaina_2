@@ -6,9 +6,6 @@
 
 
 library(tidyverse)
-
-
-
 df <- read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
 colnames(df)
 taxa <- colnames(df)[-(1:4)]
@@ -21,10 +18,39 @@ df_long <- df %>%
   ) %>%
   filter(method == "D Net") %>%
   group_by(campanha, rio, locality_name) %>%
+  # Abundancias relativa 
   mutate(
     abundancia_total = sum(Abundancia),
     abundancia_relativa = Abundancia / abundancia_total * 100
+  ) %>% 
+  #Criação das etiquetas
+  mutate(
+    local = case_when(
+      locality_name == "RioBebedouro-P1" ~ "P1",
+      locality_name == "RioBebedouro-P2" ~ "P2",
+      locality_name == "RioBebedouro-P3" ~ "P3",
+      locality_name == "RiodaBarra-P1/2" ~ "P1",
+      locality_name == "RiodaBarra-P2" ~ "P2",
+      locality_name == "RiodaBarra-P3" ~ "P3",
+      locality_name == "RioMutuca-P1" ~ "P1",
+      locality_name == "RioMutuca-P2" ~ "P2",
+      locality_name == "RioMutuca-P3" ~ "P3"
+    ),
+    campanha = case_when(
+      campanha == "campanha_1" ~ "C1",
+      campanha == "campanha_2" ~ "C2",
+      campanha == "campanha_3" ~ "C3",
+      campanha == "campanha_4" ~ "C4"
+    ),
+    etiqueta = paste(campanha, local, sep = ""),
+    #Ordem = as.factor(Ordem),
+    Ordem = fct_recode(
+      Ordem, 
+      "Oligochaeta" =  "Desc..O..Classe.Oligochaeta"
+    )
   )
+    
+
 
 
 
@@ -75,7 +101,7 @@ plot <-
   ggplot(
     df_long, 
     aes(
-      x = interaction(campanha, locality_name, sep = "_"),
+      x = etiqueta,
       y = abundancia_relativa, fill = Ordem
     )
   ) +
