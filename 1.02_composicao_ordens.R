@@ -1,5 +1,12 @@
+# Próximos passos
+## 1. Fazer gráfico de abundância relativa por ordem
+## 2. Fazer gráfico de abundância relativa por família
+## 3. Renomear as campanhas e o nome dos pontos 
+##### Ex.Rio Bebedouro - RBE - Campanha 1 - C1 
+
+
 library(tidyverse)
-library(ggpubr)
+
 
 
 df <- read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
@@ -11,7 +18,17 @@ df_long <- df %>%
     cols = taxa,
     names_to = "Ordem",
     values_to = "Abundancia"
-  ) #%>%
+  ) %>%
+  filter(method == "D Net") %>%
+  group_by(campanha, rio, locality_name) %>%
+  mutate(
+    abundancia_total = sum(Abundancia),
+    abundancia_relativa = Abundancia / abundancia_total * 100
+  )
+
+
+
+   #%>%
   # mutate(
   #   estrato = fct_relevel(
   #     estrato,
@@ -58,12 +75,12 @@ plot <-
   ggplot(
     df_long, 
     aes(
-      x = interaction(campanha, rio, locality_name, sep = "_"),
-      y = Abundancia, fill = Ordem
+      x = interaction(campanha, locality_name, sep = "_"),
+      y = abundancia_relativa, fill = Ordem
     )
   ) +
   geom_bar(stat = "identity", position = "stack") +
-  facet_wrap(~campanha, scales = "free_x") +
+  facet_wrap(~rio, scales = "free_x") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
   # scale_x_discrete(labels = function(x) df_long$label[match(x, df_long$eixo)]) +
