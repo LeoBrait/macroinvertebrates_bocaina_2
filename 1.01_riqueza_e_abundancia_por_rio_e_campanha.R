@@ -20,7 +20,6 @@ cores_contraste_escuro <- c(
   "#377EB8", # Azul forte
   "#4DAF4A", # Verde forte
   "#984EA3", # Roxo
-#cores_fortes <- intenso
   "#FF7F00", # Laranja vivo
   "#FFD92F", # Amarelo vibrante
   "#A65628", # Marrom avermelhado
