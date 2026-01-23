@@ -1,5 +1,6 @@
 
 library(tidyverse)
+library(ggpubr)
 
 ################################## Configurações ###############################
 set.seed(1994)
@@ -93,7 +94,7 @@ dados_filtrados <- indices_df %>%
 
 str(dados_filtrados)
 ################################### Scores #####################################
-
+plot_list <- list()
 for (i in vetor_respostas) {
   print(paste("Analisando índice:", i))
   
@@ -151,7 +152,6 @@ for (i in vetor_respostas) {
         ", U-test = ", round(u, 4)
       )
     ) 
-
   # Salvar o gráfico
   ggsave(
     plot,
@@ -160,12 +160,7 @@ for (i in vetor_respostas) {
     height = 8
   )
 
-    ggsave(
-    plot,
-    filename = paste0(pasta_figuras, "/boxplot_", i, ".svg"),
-    width = 8,
-    height = 8
-  )
+
 }
 
 
@@ -219,4 +214,100 @@ write_csv(
     rownames_to_column(var = "indice_vs_indice"),
   file.path(pasta_tabelas, "p_values_spearman_indices_imaturos_piata.csv")
 )
-################################################################################
+################################### Painel #####################################
+
+
+painel_vetor <- c(
+  "aspt", "bmwp", "ept_riqueza", "filtrador_proporcao",
+  "raspadores_proporcao", "razao_ept_chironomidae", 
+  "relativo_odonata", "relativo_trichoptera", "riqueza_familias_ephemeroptera",
+  "riqueza_familias_trichoptera", "shannon_ordens"
+)
+
+painel_plots <- list()
+for (i in painel_vetor) {
+  print(paste("Analisando índice:", i))
+  
+  test <- dados_filtrados %>%
+    select(c("impacto", i))
+
+  # Teste de Mann-Whitney
+  teste <- wilcox.test(
+    formula = as.formula(paste(i, "~ impacto")),
+    data = dados_filtrados
+  )
+ 
+  p_value = teste$p.value
+  w <- teste$statistic
+
+  # Tamanhos das amostras
+  n1 <- dados_filtrados %>%
+    filter(impacto == levels(dados_filtrados$impacto)[1]) %>% 
+    nrow()
+  n2 <- dados_filtrados %>% 
+    filter(impacto == levels(dados_filtrados$impacto)[2]) %>% 
+    nrow()
+
+  # Cálculo do U
+  u <- w - n1 * (n1 + 1) / 2
+  
+  
+  # Criação do gráfico
+  nome_indice <- vetor_estetica_indice[[i]]
+
+  plot <- ggplot(
+    dados_filtrados,
+    aes_string(
+      x = "impacto",
+      y = i,
+      fill = "impacto"
+    )
+  ) +
+    theme_pubr() +
+    geom_boxplot() +
+    geom_jitter(width = 0.2, height = 0, alpha = 1) +
+    scale_x_discrete(labels = vetor_estetica_impacto) +
+    theme(
+      text = element_text(size = unit(18, "pt"), face = "bold"),
+      axis.title = element_blank(),
+      plot.title = element_blank(),
+      axis.text.x = element_blank(),
+      plot.subtitle = element_text(size = unit(18, "pt"), face = "bold", hjust = 0.5)
+    ) +
+  # Adicionar títulos e legendas
+    labs(
+      x = "Impacto",
+      y = nome_indice,
+      subtitle = paste0(
+        "p-value = ", round(p_value, 4),
+        ", U-test = ", round(u, 4)
+      )
+    ) 
+  painel_plots[[i]] <- plot
+
+}
+
+
+painel <- ggarrange(
+  plotlist = painel_plots,
+  ncol = 3,
+  nrow = 4,
+  labels = "AUTO",
+  common.legend = TRUE,
+  legend = "bottom"
+)
+
+
+formats <- c("png", "svg")
+
+for (fmt in formats) {
+  ggsave(
+    filename = file.path(
+      pasta_figuras,
+      paste0("painel_indices_imaturos_piata.", fmt)
+    ),
+    plot = painel,
+    width = 15,
+    height = 18
+  )
+}
