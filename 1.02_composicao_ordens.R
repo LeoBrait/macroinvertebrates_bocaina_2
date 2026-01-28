@@ -9,22 +9,22 @@ library(tidyverse)
 
 
 cores <- c(
- "Odonata" = "#E41A1C", # Vermelho forte
-  "Hemiptera" = "#377EB8", # Azul forte
-  "Coleoptera" = "#4DAF4A", # Verde forte
-  "Diptera" = "#984EA3", # Roxo
-  "Ephemeroptera" = "#FF7F00", # Laranja vivo
-  "Veneirodea" = "#FFD92F", # Amarelo vibrante
+ "Odonata" = "#6c292bff", # Vermelho forte
+  "Hemiptera" = "#1b4e78", # Azul forte
+  "Coleoptera" = "#2f7e2c", # Verde forte
+  "Diptera" = "#9122a2", # Roxo
+  "Ephemeroptera" = "#cd7218", # Laranja vivo
+  "Veneirodea" = "#efc611", # Amarelo vibrante
   "Basommatophora" = "#A65628", # Marrom avermelhado
-  "Oligochaeta" = "#F781BF", # Rosa choque
-  "Plecoptera" = "#999999", # Cinza escuro
-  "Amphipoda" = "#66C2A5", # Verde-água forte
-  "Megaloptera" = "#FC8D62", # Laranja avermelhado
-  "Architaenioglossa" = "#8DA0CB", # Azul lavanda
-  "Lepidoptera" = "#E78AC3", # Rosa magenta
-  "Littorinimorpha" = "#A6D854", # Verde limão forte
+  "Oligochaeta" = "#bd0467", # Rosa choque
+  "Plecoptera" = "#7e7575", # Cinza escuro
+  "Amphipoda" = "#17795a", # Verde-água forte
+  "Megaloptera" = "#792301", # Laranja avermelhado
+  "Architaenioglossa" = "#607199", # Azul lavanda
+  "Lepidoptera" = "#de7fba", # Rosa magenta
+  "Littorinimorpha" = "#2d2e2b", # Verde limão forte
   "Tricladida" = "#0e3a62",  # Amarelo ouro
-  "Trichoptera" = "#E5C494"  # Bege
+  "Trichoptera" = "#d1b58b"  # Bege
 )
 
 
@@ -35,14 +35,14 @@ df <- read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
 colnames(df)
 taxa <- colnames(df)[-(1:4)]
 
-df_long <- df %>%
+df_long <- df %>% 
   pivot_longer(
     cols = taxa,
     names_to = "Ordem",
     values_to = "Abundancia"
   ) %>%
   filter(method == "D Net") %>%
-  group_by(campanha, rio, locality_name) %>%
+  group_by(campanha, locality_name) %>%
   # Abundancias relativa 
   mutate(
     abundancia_total = sum(Abundancia),
@@ -51,25 +51,30 @@ df_long <- df %>%
   ungroup() %>%
   #Criação das etiquetas
   mutate(
-    local = case_when(
-      locality_name == "RioBebedouro-P1" ~ "P1",
-      locality_name == "RioBebedouro-P2" ~ "P2",
-      locality_name == "RioBebedouro-P3" ~ "P3",
-      locality_name == "RiodaBarra-P1/2" ~ "P1",
-      locality_name == "RiodaBarra-P2" ~ "P2",
-      locality_name == "RiodaBarra-P3" ~ "P3",
-      locality_name == "RioMutuca-P1" ~ "P1",
-      locality_name == "RioMutuca-P2" ~ "P2",
-      locality_name == "RioMutuca-P3" ~ "P3"
-    ),
     campanha = case_when(
       campanha == "campanha_1" ~ "C1",
       campanha == "campanha_2" ~ "C2",
       campanha == "campanha_3" ~ "C3",
       campanha == "campanha_4" ~ "C4"
     ),
-    etiqueta = paste(local, campanha,  sep = ""),
-    #Ordem = as.factor(Ordem),
+    rio = case_when(
+    rio == "rio_bebedouro" ~ "Rio Bebedouro",
+    rio == "rio_da_barra" ~ "Rio da Barra",
+    rio == "rio_mutuca" ~ "Rio Mutuca"
+    ),
+    locality_name = case_when(
+    locality_name == "RioBebedouro-P1" ~ "P1",
+    locality_name == "RioBebedouro-P2" ~ "P2",
+    locality_name == "RioBebedouro-P3" ~ "P3",
+    locality_name == "RiodaBarra-P1/2" ~ "P1",
+    locality_name == "RiodaBarra-P2" ~ "P2",
+    locality_name == "RiodaBarra-P3" ~ "P3",
+    locality_name == "RioMutuca-P1" ~ "P1",
+    locality_name == "RioMutuca-P2" ~ "P2",
+    locality_name == "RioMutuca-P3" ~ "P3"
+    ),
+    etiqueta = paste(campanha,  sep = ""),
+    Ordem = as.factor(Ordem),
     Ordem = fct_recode(
       Ordem, 
       "Oligochaeta" =  "Desc..O..Classe.Oligochaeta"
@@ -81,17 +86,9 @@ df_long <- df %>%
     Ordem = fct_relevel(
       Ordem, 
       c(
-      
-      
-
       "Littorinimorpha",
-      
-
       "Lepidoptera",
-     
       "Architaenioglossa",
-     
-      
       "Plecoptera",
       "Amphipoda",
       "Megaloptera",
@@ -110,25 +107,24 @@ df_long <- df %>%
   )
 
 
-    
-
 
 
 
 
 plot <-
   ggplot(
-    df_long,
+    df_long, 
     aes(
       x = etiqueta,
-      y = abundancia_relativa, fill = Ordem
+      y = abundancia_relativa, 
+      fill = Ordem
     )
   ) +
   geom_bar(stat = "identity", position = "stack") +
-  facet_wrap(~rio, scales = "free_x") +
+  facet_wrap(~ interaction(rio, locality_name),  scales = "free_x") +
   theme_classic() +
   scale_fill_manual(values = cores) +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 0, vjust = 1, hjust = 1)) +
   # scale_x_discrete(labels = function(x) df_long$label[match(x, df_long$eixo)]) +
   # Colocar legenda em negrito
   theme(
@@ -137,13 +133,13 @@ plot <-
     text = element_text(size = 16)
   ) +
   labs(
-    x = "Rio_Localidade_Campanha",
-    y = "Abundância",
-    fill = "Espécie"
+    x = "Pontos e campanhas de amostragem",
+    y = "Abundância relativa (%)",
+    fill = "Taxons"
   )
 
 ggsave(
-  "figuras/abundancia_ouricos_estratos.png",
+  "figuras/abundancia_insetos.png",
   plot,
   width = 10,
   height = 6
