@@ -292,6 +292,10 @@ functional_summary_df <- funcional_long_df %>%
   ))
 
 matriz_total <- merge(matriz_total, functional_summary_df)
+matriz_total <- matriz_total %>%
+  mutate(
+    total_macroinvertebrados = total_macroinvertebrados_vetor
+  )
 
 write_csv(
   matriz_total,

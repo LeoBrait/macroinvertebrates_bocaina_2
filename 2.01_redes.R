@@ -2,10 +2,10 @@ library(tidyverse)
 
 ################################## Configurações ###############################
 set.seed(1994)
-metodos_de_amostragem <- c("D Net", "Pool Net")
+metodos_de_amostragem <- c("D Net", "Pool Net", "Sieve")
 
 # Pastas de figuras
-pasta_figuras <- "figuras/redes/"
+pasta_figuras <- "figuras/redes/comparacao_3_redes/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
@@ -17,71 +17,90 @@ if (!dir.exists(pasta_tabelas)) {
 }
 
 ################################## Carregar dados ##############################
-indices_df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv")
+indices_df_raw <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv")
 
 ############################## Pre-processamento ###############################
-# Remover índice de Pielou por ser muito problemático.
-vetor_respostas <- indices_df %>%
-  select(-pielou_classes, -pielou_ordens, -pielou_familias) %>%
+vetor_respostas <- indices_df_raw %>%
   select(-(campanha:method)) %>%
   names()
 
-dados_filtrados <- indices_df %>%
+indices_df <- indices_df_raw %>%
   filter(method %in% metodos_de_amostragem) %>%
-  mutate("coluna_id" = paste0(rio, "_", locality_name, "_", campanha))
+  mutate("coluna_id" = paste0(rio, "_", locality_name, "_", campanha)) %>%
+  filter(!coletor_recolhedor_proporcao > 0.4)
 
-str(indices_df)
-
-################################################################################
-
-i <- "bmwp"
+################################ Processamento #################################
+list_of_plots <- list()
 for (i in vetor_respostas) {
-  print(paste("Analisando redes (pareado) para índice:", i))
+  print(paste("Analisando redes para índice:", i))
 
-  # Pivotar dados para formato largo — uma coluna para cada método
-  pares <- dados_filtrados %>%
-    select(all_of(c("coluna_id", "method", i))) %>%
-    pivot_wider(names_from = method, values_from = all_of(i))
-
-  # Garantir que temos pares válidos (sem NA)
-  pares_validos <- pares %>%
-    filter(!is.na("D Net") & !is.na("Pool Net"))
-
-  ids_validos <- pares_validos$coluna_id
-  dados_filtrados <- dados_filtrados %>%
-    filter(coluna_id %in% ids_validos)
-
-  # Teste de Wilcoxon pareado
-  p_value <- wilcox.test(
-    pares_validos[["D Net"]],
-    pares_validos[["Pool Net"]],
-    paired = TRUE
-  )$p.value
-
-  # Criação do gráfico (continua igual, formato longo)
-  plot <- ggplot(
-    dados_filtrados,
-    aes_string(
-      x = "method",
-      y = i,
-      fill = "method"
+  dados_filtrados <- indices_df %>%
+    select(coluna_id, method, i) %>%
+    pivot_wider(names_from = method, values_from = i) %>%
+    filter(`D Net` >= 0 & `Pool Net` >= 0 & `Sieve` >= 0)
+  
+  dados_filtrados_long <- dados_filtrados %>%
+    pivot_longer(
+      cols = c("D Net", "Pool Net", "Sieve"),
+      names_to = "method",
+      values_to = i
     )
+
+  # Friedman test
+  friedman_test_result <- friedman.test(
+    as.formula(paste(i, "~ method | coluna_id")),
+    data = dados_filtrados_long
+  )
+
+
+  plot <- ggplot(
+    dados_filtrados_long,
+    aes(x = method, y = !!sym(i), fill = method)
   ) +
     theme_minimal() +
     geom_boxplot() +
     geom_point(alpha = 0.7) +
+    geom_line(aes(group = coluna_id), color = "gray", alpha = 0.5) +
     labs(
       title = i,
-      subtitle = paste0("Teste de Wilcoxon pareado: p = ", round(p_value, 4))
-    ) +
-    geom_line(aes_string(group = "coluna_id"), color = "gray", alpha = 0.5)
-
-
-  # Salvar o gráfico
+      subtitle = paste0(
+        "Friedman test p-value: ", round(friedman_test_result$p.value, 4)
+      )
+    ) 
+  
   ggsave(
-    plot,
-    filename = paste0(pasta_figuras, "/boxplot_", i, ".png"),
+    filename = paste0(pasta_figuras, i, ".png"),
+    plot = plot,
     width = 8,
     height = 6
   )
+
+}
+
+################################### Post roc ###################################
+
+vetor_post_roc <- c("total_macroinvertebrados", "aspt", "riqueza_familias")
+
+for (i in vetor_post_roc) {
+  print(paste("Analisando redes (post-hoc) para índice:", i))
+  
+  dados_filtrados <- indices_df %>%
+    select(coluna_id, method, i) %>%
+    pivot_wider(names_from = method, values_from = i) %>%
+    filter(`D Net` >= 0 & `Pool Net` >= 0 & `Sieve` >= 0)
+  
+  dados_filtrados_long <- dados_filtrados %>%
+    pivot_longer(
+      cols = c("D Net", "Pool Net", "Sieve"),
+      names_to = "method",
+      values_to = i
+    )
+  
+  pairwise.wilcox.test(
+    dados_filtrados_long[[i]],
+    dados_filtrados_long$method,
+    p.adjust.method = "bonferroni",
+    paired = TRUE
+  ) %>%
+    print()
 }
