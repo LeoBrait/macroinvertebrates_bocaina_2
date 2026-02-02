@@ -4,14 +4,25 @@ library(tidyverse)
 set.seed(1994)
 metodos_de_amostragem <- c("D Net", "Pool Net", "Sieve")
 
+
+
+if (length(metodos_de_amostragem) == 3) {
+  pasta_figuras <- "figuras/redes/comparacao_3_redes/"
+  pasta_tabelas <- "tabelas/redes/3_redes/"
+} else if (length(metodos_de_amostragem) == 2) {
+  pasta_figuras <- "figuras/redes/comparacao_2_redes/"
+  pasta_tabelas <- "tabelas/redes/2_redes/"
+} else {
+  pasta_figuras <- "figuras/redes/rede_unica/"
+  pasta_tabelas <- "tabelas/redes/rede_unica/"
+}
+
 # Pastas de figuras
-pasta_figuras <- "figuras/redes/comparacao_3_redes/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
 
 # Pasta de tabelas
-pasta_tabelas <- "tabelas/redes/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
@@ -79,9 +90,7 @@ for (i in vetor_respostas) {
 
 ################################### Post roc ###################################
 
-vetor_post_roc <- c("total_macroinvertebrados", "aspt", "riqueza_familias")
-
-for (i in vetor_post_roc) {
+for (i in vetor_respostas) {
   print(paste("Analisando redes (post-hoc) para índice:", i))
   
   dados_filtrados <- indices_df %>%
@@ -96,11 +105,15 @@ for (i in vetor_post_roc) {
       values_to = i
     )
   
-  pairwise.wilcox.test(
+  tabela_post_hoc <- pairwise.wilcox.test(
     dados_filtrados_long[[i]],
     dados_filtrados_long$method,
     p.adjust.method = "bonferroni",
     paired = TRUE
-  ) %>%
-    print()
+  )
+  write_csv(
+    as.data.frame(tabela_post_hoc$p.value) %>%
+      rownames_to_column(var = "method1"),
+    paste0(pasta_tabelas,  "wilxox_matrix_", i, ".csv")
+  )
 }

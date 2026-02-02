@@ -47,7 +47,8 @@ vetor_estetica_indice <- c(
   "fragmentadores_proporcao" = "(%) Fragmentadores",
   "raspadores_proporcao" = "(%) Raspadores",
   "detritivoros_proporcao" = "(%) Detritívoros",
-  "herbivoros_proporcao" = "(%) Herbívoros"
+  "herbivoros_proporcao" = "(%) Herbívoros",
+  "total_macroinvertebrados" = "Abundância Total"
 )
 
 vetor_estetica_impacto <- c(
@@ -55,14 +56,23 @@ vetor_estetica_impacto <- c(
   "impactado" = "Impactado"
 )
 
-# Pastas de figuras
-pasta_figuras <- "figuras/indice_multimetrico"
+# Pastas 
+if (length(metodos_de_amostragem) == 3) {
+  pasta_figuras <- "figuras/indice_multimetrico/3_redes/"
+  pasta_tabelas <- "tabelas/indice_multimetrico/3_redes/"
+} else if (length(metodos_de_amostragem) == 2) {
+  pasta_figuras <- "figuras/indice_multimetrico/2_redes/"
+  pasta_tabelas <- "tabelas/indice_multimetrico/2_redes/"
+} else {
+  pasta_figuras <- "figuras/indice_multimetrico/rede_unica/"
+  pasta_tabelas <- "tabelas/indice_multimetrico/rede_unica/"
+}
+
+
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
 
-# Pasta de tabelas
-pasta_tabelas <- "tabelas/indice_multimetrico"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
