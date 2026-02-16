@@ -54,63 +54,45 @@ amostras_descartadas_vetor <- c(
 ############################### pre-Processamento ##############################
 
 # limpar
-dados_df <- filter(
-  dados_df,
+dados_df_limpo <- filter(
+  dados_df, 
   !(LocalityName %in% amostras_descartadas_vetor)
 )
 
-# Corrigir o nome "Rede Piscina" para "Rede de Piscina"
-dados_df <- mutate(
-  dados_df,
-  Method = ifelse(Method == "RedePiscina", "Rede de Piscina", Method)
-)
+# versão com pipe
+#dados_df_limpo <- dados_df_limpo %>%
+  #filter(!(LocalityName %in% amostras_descartadas_vetor))
 
-# Corrigir o nome "Rede Piscina" para "Rede de Piscina"
-dados_df <- mutate(
-  dados_df,
-  Method = ifelse(Method == "RededePiscina", "Rede de Piscina", Method)
-)
-# Corrigir o nome "Rede Piscina" para "Rede de Piscina"
-dados_df <- mutate(
-  dados_df,
-  Method = ifelse(Method == "Rede de Piscina", "Pool Net", Method)
-)
 
-# Corrigir o nome "Rede D" para "D net"
-dados_df <- mutate(
-  dados_df,
-  Method = ifelse(Method == "RedeD", "D Net", Method)
-)
-
-# Corrigir o nome "Rede D" para "D net"
-dados_df <- mutate(
-  dados_df,
-  Method = ifelse(Method == "Peneira", "Sieve", Method)
-)
-
-# criar coluna de campanha
-dados_df <- mutate(                       # funcao que cria/mod colunas
-  dados_df,                               # tabela
-  campanha = case_when(                         # nova coluna
-    Date %in% campanha1_vetor ~ "campanha_1",   # condiçao e resultado
-    Date %in% campanha2_vetor ~ "campanha_2",   # condiçao e resultado
-    Date %in% campanha3_vetor ~ "campanha_3",    # condiçao e resultado
-    Date %in% campanha4_vetor ~ "campanha_4"
-  )   
-)
-
-# criar coluna de rio
-dados_df <- mutate(
-  dados_df,
-  rio = case_when(
-    LocalityName %in% riobebedouro_vetor ~ "rio_bebedouro",
-    LocalityName %in% rio_da_barra_vetor ~ "rio_da_barra",
-    LocalityName %in% rio_mutuca_vetor ~ "rio_mutuca",
+# Corrigir o nome das redes
+dados_df_limpo <- dados_df_limpo  %>%
+  mutate(
+    Method = ifelse(Method == "RedePiscina", "Rede de Piscina", Method),
+    Method = ifelse(Method == "RededePiscina", "Rede de Piscina", Method), 
+    Method = ifelse(Method == "Rede de Piscina", "Pool Net", Method), 
+    Method = ifelse(Method == "RedeD", "D Net", Method), 
+    Method = ifelse(Method == "Peneira", "Sieve", Method)
   )
-)
+
+# Criar colunas de rio e  campanha
+dados_df_limpo <- dados_df_limpo %>%
+  mutate(
+    campanha = case_when(
+      Date %in% campanha1_vetor ~ "campanha_1",   
+      Date %in% campanha2_vetor ~ "campanha_2",   
+      Date %in% campanha3_vetor ~ "campanha_3",    
+      Date %in% campanha4_vetor ~ "campanha_4"
+    ),
+    rio = case_when(
+      LocalityName %in% riobebedouro_vetor ~ "rio_bebedouro",
+      LocalityName %in% rio_da_barra_vetor ~ "rio_da_barra",
+      LocalityName %in% rio_mutuca_vetor ~ "rio_mutuca"
+    )
+  )
+
 
 # renomear e colocar em minusculo
-dados_df <- dados_df %>%
+dados_df_limpo <- dados_df_limpo %>%
   rename(
     class = Class,
     order = Order,
@@ -126,14 +108,14 @@ dados_df <- dados_df %>%
 
 
 write_csv(
-  dados_df,
+  dados_df_limpo,
   "dados/processado/imaturos_piata_limpo.csv"
 )
 
 ################################## Processamento ###############################
 
 # Classes ----------------------------------------------------------------------
-dados_classes_df <- dados_df %>%
+dados_classes_df <- dados_df_limpo %>%
   select(campanha, rio, locality_name, method, class, abundance) %>%
   group_by(campanha, rio, locality_name, method, class) %>%
   summarise(abundance = sum(abundance))
@@ -153,7 +135,7 @@ write_csv(
 )
 
 # Ordens -----------------------------------------------------------------------
-dados_ordens_df <- dados_df %>%
+dados_ordens_df <- dados_df_limpo %>%
   select(campanha, rio, locality_name, method, order, abundance) %>%
   group_by(campanha, rio, locality_name, method, order) %>%
   summarise(abundance = sum(abundance))
@@ -177,7 +159,7 @@ write_csv(
 )
 
 # Famílias-----------------------------------------------------------------------
-dados_familia_df <- dados_df %>%
+dados_familia_df <- dados_df_limpo %>%
   select(campanha, rio, locality_name, method, family, abundance) %>%
   group_by(campanha, rio, locality_name, method, family) %>%
   summarise(abundance = sum(abundance))
