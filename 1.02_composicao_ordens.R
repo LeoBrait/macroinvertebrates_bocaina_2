@@ -4,9 +4,11 @@
 ## 3. Renomear as campanhas e o nome dos pontos 
 ##### Ex.Rio Bebedouro - RBE - Campanha 1 - C1 
 
+##############################Processamento#####################################
 
 library(tidyverse)
 
+df <- read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
 
 cores <- c(
  "Odonata" = "#6c292bff", # Vermelho forte
@@ -27,14 +29,14 @@ cores <- c(
   "Trichoptera" = "#d1b58b"  # Bege
 )
 
+################################################################################
 
-
-
-
-df <- read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
+# Nome dos táxons
 colnames(df)
+
 taxa <- colnames(df)[-(1:4)]
 
+# Transformar tabela larga em longa
 df_long <- df %>% 
   pivot_longer(
     cols = taxa,
@@ -43,12 +45,14 @@ df_long <- df %>%
   ) %>%
   filter(method == "D Net") %>%
   group_by(campanha, locality_name) %>%
+
   # Abundancias relativa 
   mutate(
     abundancia_total = sum(Abundancia),
     abundancia_relativa = Abundancia / abundancia_total * 100
   ) %>% 
   ungroup() %>%
+
   #Criação das etiquetas
   mutate(
     campanha = case_when(
@@ -106,11 +110,7 @@ df_long <- df %>%
    )
   )
 
-
-
-
-
-
+# Criar gráfico
 plot <-
   ggplot(
     df_long, 
@@ -125,6 +125,7 @@ plot <-
   theme_classic() +
   scale_fill_manual(values = cores) +
   theme(axis.text.x = element_text(angle = 0, vjust = 1, hjust = 1)) +
+  
   # scale_x_discrete(labels = function(x) df_long$label[match(x, df_long$eixo)]) +
   # Colocar legenda em negrito
   theme(
@@ -145,73 +146,3 @@ ggsave(
   height = 6
 )
 
-# somar bichos
-df_summarised <- df_long %>%
-  group_by(Especie) %>%
-  summarise(
-    abundancia_individual = sum(Abundancia)) %>%
-  ungroup() %>%
-  mutate(
-    abundancia_total = sum(abundancia_individual),
-    abundancia_relativa = abundancia_individual / abundancia_total
-  )
-
-df_summarised <- df_long %>%
-  group_by(estrato) %>%
-  summarise(
-    abundancia_individual = sum(Abundancia)) %>%
-  ungroup() %>%
-  mutate(
-    abundancia_total = sum(abundancia_individual),
-    abundancia_relativa = abundancia_individual / abundancia_total
-  )
-
-
-
-
-
-
-
-
-
-   #%>%
-  # mutate(
-  #   estrato = fct_relevel(
-  #     estrato,
-  #     c("praia_superior", "meio", "oceano_inferior")
-  #   ),
-  #   Especie = fct_relevel(
-  #     Especie,
-  #     c("ourico", "ofiuridio", "pepino", "satelite" )
-  #   ),
-    # eixo = interaction(estrato, ponto, replica, sep = "_"),
-    # ponto = fct_relevel(
-    #   ponto,
-    #   c("direita", "esquerda")
-    # )
-  # ) %>%
-  # mutate(
-  #   eixo = factor(eixo, levels = unique(eixo)
-  #   )
-  # ) %>% 
-  # mutate(
-  #   estrato = fct_recode(
-  #     estrato,
-  #     "Superior" = "praia_superior",
-  #     "Intermediário" = "meio",
-  #     "Inferior" = "oceano_inferior",
-  #   ),
-  #   ponto = fct_recode(
-  #     ponto,
-  #     "Leste" = "direita",
-  #     "Oeste" = "esquerda"
-  #   ),
-  #   Especie = fct_recode(
-  #     Especie,
-  #     "Eucidaris tribuloides" = "satelite",
-  #     "Echinometra lucunter" = "ourico",
-  #     "Desc. em Ophiuroidea" = "ofiuridio",
-  #     "Holothuria grisea" = "pepino"
-  #   ),
-  #   label = interaction(ponto, replica, sep = " ")
-  # )

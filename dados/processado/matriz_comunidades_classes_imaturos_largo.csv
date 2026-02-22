@@ -8,6 +8,9 @@ campanha_1,rio_bebedouro,RioBebedouro-P2,Sieve,5,1,0,0,0,0
 campanha_1,rio_bebedouro,RioBebedouro-P3,D Net,9,1,0,0,0,0
 campanha_1,rio_bebedouro,RioBebedouro-P3,Pool Net,16,0,0,0,0,0
 campanha_1,rio_bebedouro,RioBebedouro-P3,Sieve,26,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P1,D Net,7,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P1,Pool Net,10,0,0,0,0,0
+campanha_1,rio_da_barra,RiodaBarra-P1,Sieve,3,0,0,0,0,0
 campanha_1,rio_da_barra,RiodaBarra-P1/2,D Net,9,0,0,0,3,0
 campanha_1,rio_da_barra,RiodaBarra-P1/2,Manual,23,0,0,0,0,0
 campanha_1,rio_da_barra,RiodaBarra-P1/2,Pool Net,14,0,0,0,1,0
@@ -18,6 +21,9 @@ campanha_1,rio_da_barra,RiodaBarra-P2,Sieve,17,0,0,0,0,0
 campanha_1,rio_da_barra,RiodaBarra-P3,D Net,42,0,0,0,0,0
 campanha_1,rio_da_barra,RiodaBarra-P3,Pool Net,25,0,0,4,0,0
 campanha_1,rio_da_barra,RiodaBarra-P3,Sieve,3,0,0,0,0,0
+campanha_1,rio_da_serra,RiodaSerra-P3,D Net,14,0,0,0,0,0
+campanha_1,rio_da_serra,RiodaSerra-P3,Pool Net,44,0,0,0,0,0
+campanha_1,rio_da_serra,RiodaSerra-P3,Sieve,40,0,0,0,0,0
 campanha_2,rio_bebedouro,RioBebedouro-P1,D Net,6,0,0,0,0,0
 campanha_2,rio_bebedouro,RioBebedouro-P1,Pool Net,3,0,0,0,0,0
 campanha_2,rio_bebedouro,RioBebedouro-P1,Sieve,1,0,0,0,0,0
@@ -27,6 +33,9 @@ campanha_2,rio_bebedouro,RioBebedouro-P2,Sieve,74,0,4,6,2,0
 campanha_2,rio_bebedouro,RioBebedouro-P3,D Net,88,0,0,1,0,0
 campanha_2,rio_bebedouro,RioBebedouro-P3,Pool Net,180,0,0,2,0,0
 campanha_2,rio_bebedouro,RioBebedouro-P3,Sieve,25,0,0,0,0,0
+campanha_2,rio_da_barra,RiodaBarra-P1,D Net,10,0,8,0,0,0
+campanha_2,rio_da_barra,RiodaBarra-P1,Pool Net,15,0,0,0,0,0
+campanha_2,rio_da_barra,RiodaBarra-P1,Sieve,1,0,0,0,0,0
 campanha_2,rio_da_barra,RiodaBarra-P1/2,D Net,20,0,0,0,0,0
 campanha_2,rio_da_barra,RiodaBarra-P1/2,Pool Net,45,0,0,0,0,0
 campanha_2,rio_da_barra,RiodaBarra-P1/2,Sieve,26,0,0,0,0,0
@@ -52,6 +61,9 @@ campanha_3,rio_bebedouro,RioBebedouro-P2,Sieve,18,0,0,2,3,0
 campanha_3,rio_bebedouro,RioBebedouro-P3,D Net,25,0,0,3,0,0
 campanha_3,rio_bebedouro,RioBebedouro-P3,Pool Net,21,0,0,2,0,0
 campanha_3,rio_bebedouro,RioBebedouro-P3,Sieve,11,0,0,1,0,0
+campanha_3,rio_carrapicho,RioCarrapicho-P1,D Net,48,0,0,87,0,0
+campanha_3,rio_carrapicho,RioCarrapicho-P2,D Net,8,0,0,69,0,0
+campanha_3,rio_carrapicho,RioCarrapicho-P3,D Net,7,0,0,37,0,0
 campanha_3,rio_da_barra,RiodaBarra-P1/2,D Net,37,0,0,0,0,0
 campanha_3,rio_da_barra,RiodaBarra-P1/2,Pool Net,18,0,0,0,0,0
 campanha_3,rio_da_barra,RiodaBarra-P1/2,Sieve,9,0,0,0,0,0
@@ -61,6 +73,8 @@ campanha_3,rio_da_barra,RiodaBarra-P2,Sieve,5,0,0,9,0,0
 campanha_3,rio_da_barra,RiodaBarra-P3,D Net,32,0,0,1,0,0
 campanha_3,rio_da_barra,RiodaBarra-P3,Pool Net,13,0,0,0,1,0
 campanha_3,rio_da_barra,RiodaBarra-P3,Sieve,27,0,0,0,0,0
+campanha_3,rio_da_serra,RiodaSerra-P2,D Net,28,0,0,0,0,0
+campanha_3,rio_da_serra,RiodaSerra-P3,D Net,46,0,0,0,0,0
 campanha_3,rio_mutuca,RioMutuca-P1,D Net,31,0,0,0,0,0
 campanha_3,rio_mutuca,RioMutuca-P1,Pool Net,29,0,0,0,0,0
 campanha_3,rio_mutuca,RioMutuca-P1,Sieve,49,0,0,0,0,0

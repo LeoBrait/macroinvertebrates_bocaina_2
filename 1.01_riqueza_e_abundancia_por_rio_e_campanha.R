@@ -5,8 +5,11 @@
 ############################### Ambiente #######################################
 library(tidyverse)
 library(RColorBrewer)
-setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
+# setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
 
+
+############################## Processamento ###################################
+df <- read_csv("dados/processado/imaturos_piata_limpo.csv")
 
 cores_contraste_escuro <- c(
   "#1B9E77", "#D95F02", "#7570B3", "#E7298A",
@@ -15,43 +18,7 @@ cores_contraste_escuro <- c(
   "#B3DE69", "#FCCDE5", "#BC80BD", "#CCEBC5"
 )
 
- c(
-  "#E41A1C", # Vermelho forte
-  "#377EB8", # Azul forte
-  "#4DAF4A", # Verde forte
-  "#984EA3", # Roxo
-  "#FF7F00", # Laranja vivo
-  "#FFD92F", # Amarelo vibrante
-  "#A65628", # Marrom avermelhado
-  "#F781BF", # Rosa choque
-  "#999999", # Cinza escuro
-  "#66C2A5", # Verde-água forte
-  "#FC8D62", # Laranja avermelhado
-  "#8DA0CB", # Azul lavanda
-  "#E78AC3", # Rosa magenta
-  "#A6D854", # Verde limão forte
-  "black", # Amarelo ouro
-  "#E5C494"  # Bege amarelado intenso
-)
-#cores_ordens <- c(
-#  "#A6CEE3", 
-#  "#1F78B4",
-#  "#B2DF8A", 
-#  "#33B00C",
-  "#FB9A99",
-  "#E31A1C",
-  "#FDBF6F",
-  "#FF7F00",
-  "#CAB2D6",
-  "#6A3D9A",
-  "#FFFF99",
-  "#B15928",
-  "black",
-  "white",
-  "darkgreen",
-  "yellow"
-)
-
+ 
 df <- read_csv("dados/processado/imaturos_piata_limpo.csv")
 
 ############################## Processamento ###################################
@@ -65,8 +32,6 @@ sumario_abundancia_especimes <- df %>%
   mutate(abundancia_total = sum(abundancia_especimes)) %>%
   mutate(abundancia_relativa = abundancia_especimes / abundancia_total)
 
-
-
 sumario_abundancia_ordens_por_rio_e_campanha <- df %>%
   group_by(rio, campanha, order) %>% 
   summarise(abundancia_ordens = sum(abundance)) %>%
@@ -78,14 +43,14 @@ sumario_abundancia_ordens_por_rio_e_campanha <- df %>%
 
 
 # Transformar abaixo de 1% em outros
-#sumario_abundancia_ordens_por_rio_e_campanha <-
-  #sumario_abundancia_ordens_por_rio_e_campanha %>%
-  #mutate(order = ifelse(abundancia_relativa < 0.01, "outros", order)) %>%
-  #group_by(rio, campanha, order) %>%
-  #summarise(abundancia_relativa = sum(abundancia_relativa))
+sumario_abundancia_ordens_por_rio_e_campanha <-
+sumario_abundancia_ordens_por_rio_e_campanha %>%
+mutate(order = ifelse(abundancia_relativa < 0.05, "outros", order)) %>%
+group_by(rio, campanha, order) %>%
+summarise(abundancia_relativa = sum(abundancia_relativa))
   
 # Plot -------------------------------------------------------------------------
-# garantir que a ordem das campanhas fique correta
+# Garantir que a ordem das campanhas fique correta
 
 sumario_abundancia_ordens_por_rio_e_campanha <- 
   sumario_abundancia_ordens_por_rio_e_campanha %>%
@@ -102,16 +67,13 @@ ggplot(sumario_abundancia_ordens_por_rio_e_campanha,
        aes(x = campanha, y = abundancia_relativa, fill = order)) +
   geom_bar(stat = "identity") +
   facet_wrap(~ rio) +
-  scale_fill_manual(values = cores_escuras) +
+  scale_fill_manual(values = cores_contraste_escuro) +
   labs(x = "Campanha", 
        y = "Abundância relativa",
        fill = "Ordem") +
   theme_minimal(base_size = 8) +
   theme(axis.text.x = element_text(angle = 90, hjust = 0.5))
-
-
-
-
+plot
 
 # Riqueza ----------------------------------------------------------------------
 

@@ -2,7 +2,7 @@ library(tidyverse)
 
 
 ################################# Carregar Dados ###############################
-setwd(dir = "C:/Users/Giovana/Desktop/mestrado_giovana/")
+# setwd(dir = "C:/Users/Giovana/Desktop/mestrado_giovana/")
 dados_df <- read.csv(file = "dados/imaturos_piata _22_08_2025.csv", sep = ",")
 
 ################################# Vetores ######################################
@@ -11,13 +11,10 @@ campanha1_vetor <- c(
   "26.V.2024", "27.V.2024"
 )
 
-campanha2_vetor <- c(
-  "26.VIII.2024", "27.VIII.2024", "28.VIII.2024"
-) 
+campanha2_vetor <- c("26.VIII.2024", "27.VIII.2024", "28.VIII.2024") 
 
 campanha3_vetor <- c(
-  "12.II.2025", "13.II.2025", "15.II.2025",
-  "19.II.2025", "20.II.2025"
+  "12.II.2025", "13.II.2025", "15.II.2025", "19.II.2025", "20.II.2025"
 )
 
 campanha4_vetor <- c("09.VII.2025", "12.VII.2025", "08.VII.2025")
@@ -26,21 +23,17 @@ riobebedouro_vetor <- c (
   "RioBebedouro-P1", "RioBebedouro-P2", "RioBebedouro-P3"
 )
 
-rio_da_barra_vetor <- c (
-  "RiodaBarra-P1/2", "RiodaBarra-P2", "RiodaBarra-P3"
+rio_da_barra_vetor <- c ("RiodaBarra-P1","RiodaBarra-P1/2", "RiodaBarra-P2", 
+"RiodaBarra-P3"
 )
 
-rio_mutuca_vetor <- c (
-  "RioMutuca-P1", "RioMutuca-P2", "RioMutuca-P3"
-)
+rio_mutuca_vetor <- c ("RioMutuca-P1", "RioMutuca-P2", "RioMutuca-P3")
 
 rio_carrapicho_vetor <- c (
   "RioCarrapicho-P1", "RioCarrapicho-P2", "RioCarrapicho-P3"
 )
 
-rio_serra_vetor <- c (
-  "RiodaSerra-P2", "RiodaSerra-P3"
-)  
+rio_serra_vetor <- c ("RiodaSerra-P2", "RiodaSerra-P3")  
 
 amostras_descartadas_vetor <- c(
   "RiodaBarra-P1",
@@ -52,12 +45,14 @@ amostras_descartadas_vetor <- c(
 )
 
 ############################### pre-Processamento ##############################
+dados_df_limpo <- dados_df
+
 
 # limpar
-dados_df_limpo <- filter(
-  dados_df, 
-  !(LocalityName %in% amostras_descartadas_vetor)
-)
+# dados_df_limpo <- filter(
+#   dados_df, 
+#   !(LocalityName %in% amostras_descartadas_vetor)
+# )
 
 # versão com pipe
 #dados_df_limpo <- dados_df_limpo %>%
@@ -86,7 +81,9 @@ dados_df_limpo <- dados_df_limpo %>%
     rio = case_when(
       LocalityName %in% riobebedouro_vetor ~ "rio_bebedouro",
       LocalityName %in% rio_da_barra_vetor ~ "rio_da_barra",
-      LocalityName %in% rio_mutuca_vetor ~ "rio_mutuca"
+      LocalityName %in% rio_mutuca_vetor ~ "rio_mutuca",
+      LocalityName %in% rio_carrapicho_vetor ~ "rio_carrapicho",
+      LocalityName %in% rio_serra_vetor ~ "rio_da_serra"
     )
   )
 
@@ -177,6 +174,10 @@ write_csv(
   dados_familia_df_largo,
   "dados/processado/matriz_comunidades_familias_imaturos_largo.csv"
 )
+
+
+
+
 
 
 
