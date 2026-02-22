@@ -5,7 +5,6 @@
 
 
 library(tidyverse)
-install.packages("colorspace")
 library(colorspace)
 
 
@@ -23,7 +22,7 @@ cores_50_cb <- c(
 )
 
 
-df <- read.csv("dados/processado/matriz_comunidades_familia_imaturo_largo.csv")
+df <- read.csv("dados/processado/matriz_comunidades_familias_imaturos_largo.csv")
 
 taxa <- colnames(df)[-(1:4)]
 
@@ -33,14 +32,14 @@ df_long <- df %>%
     names_to = "familia",
     values_to = "Abundancia"
   ) %>%
-  filter(metodo == "D Net") %>%
-  group_by(campanha, rio, trecho) %>%   # ← rio precisa estar aqui
+  filter(method == "D Net") %>%
+  group_by(campanha, rio, locality_name) %>%   # ← rio precisa estar aqui
   mutate(
     abundancia_total = sum(Abundancia),
     abundancia_relativa = Abundancia / abundancia_total * 100,
     familia = if_else(abundancia_relativa <= 5, "Outros", familia)
   ) %>%
-  group_by(campanha, rio, trecho, familia) %>%
+  group_by(campanha, rio, locality_name, familia) %>%
   summarise(
     abundancia_relativa = sum(abundancia_relativa),
     .groups = "drop"
@@ -55,22 +54,31 @@ df_long <- df %>%
     rio = case_when(
       rio == "rio_bebedouro" ~ "Rio Bebedouro",
       rio == "rio_da_barra" ~ "Rio da Barra",
-      rio == "rio_mutuca" ~ "Rio Mutuca"
+      rio == "rio_mutuca" ~ "Rio Mutuca",
+      rio == "rio_da-serra" ~ "Rio da Serra",
+      rio == "rio_carrapicho" ~ "Rio Carrapicho"
     ),
-    trecho = case_when(
-      trecho == "RioBebedouro-P1" ~ "P1",
-      trecho == "RioBebedouro-P2" ~ "P2",
-      trecho == "RioBebedouro-P3" ~ "P3",
-      trecho == "RiodaBarra-P1/2" ~ "P1",
-      trecho == "RiodaBarra-P2" ~ "P2",
-      trecho == "RiodaBarra-P3" ~ "P3",
-      trecho == "RioMutuca-P1" ~ "P1",
-      trecho == "RioMutuca-P2" ~ "P2",
-      trecho == "RioMutuca-P3" ~ "P3"
-    ),
+    locality_name = case_when(
+    locality_name == "RioBebedouro-P1" ~ "P1",
+    locality_name == "RioBebedouro-P2" ~ "P2",
+    locality_name == "RioBebedouro-P3" ~ "P3",
+    locality_name == "RiodaBarra-P1" ~ "P1",
+    locality_name == "RiodaBarra-P1/2" ~ "P1/2",
+    locality_name == "RiodaBarra-P2" ~ "P2",
+    locality_name == "RiodaBarra-P3" ~ "P3",
+    locality_name == "RioMutuca-P1" ~ "P1",
+    locality_name == "RioMutuca-P2" ~ "P2",
+    locality_name == "RioMutuca-P3" ~ "P3"
+    locality_name == "RioCarrapicho-P1" ~ "P1",
+    locality_name == "RioCarrapicho-P2" ~ "P2",
+    locality_name == "RioCarrapicho-P3" ~ "P3",
+    locality_name == "RiodaSerra-P2" ~ "P2",
+    locality_name == "RiodaSerra-P3" ~ "P3"
+          ),
     rio = fct_relevel(
       rio,
-      c("Rio Bebedouro", "Rio da Barra", "Rio Mutuca")
+      c("Rio Bebedouro", "Rio da Barra", "Rio Mutuca", "Rio Carrapicho", 
+      "Rio da Serra")
     ),
     etiqueta = campanha,
     familia = as.factor(familia)
