@@ -42,7 +42,7 @@ write_csv(
   file.path(pasta_tabelas, "sumario_classes.csv")
 )
 
-# abundancia por ordem -------------
+# abundancia por ordem ---------------------------------------------------------
 sumario_ordens <- df %>% 
   group_by(order) %>%
   summarise(

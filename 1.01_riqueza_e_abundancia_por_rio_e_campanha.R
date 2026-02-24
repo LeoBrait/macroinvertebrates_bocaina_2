@@ -1,13 +1,33 @@
 # Resumo da base de dados. Agora considerando rio e campanha
 # Quantos insetos foram coletados? (Por rio e campanha)
 # Qual a riqueza de classes, ordens e familias? (Por rio e campanha)
-# Quais táxons mais e menos representativos? (Por rio e campanha) SERÁ??
 
 
 ############################### Ambiente #######################################
 library(tidyverse)
-library(RColorBrewer)
+library(ggpubr)
+
 # setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
+
+# Pasta de tabelas
+pasta_tabelas <- "tabelas/dados_descritivos/"
+if (!dir.exists(pasta_tabelas)) {
+  dir.create(pasta_tabelas, recursive = TRUE)
+}
+
+# Pasta de tabelas
+pasta_figuras <- "figuras/dados_descritivos/"
+if (!dir.exists(pasta_figuras)) {
+  dir.create(pasta_figuras, recursive = TRUE)
+}
+
+cores <- c(
+  "rio_bebedouro" = "#1B9E77",
+  "rio_da_barra" = "#D95F02",
+  "rio_mutuca" = "#7570B3",
+  "rio_carrapicho" = "#E7298A",
+  "rio_da_serra" = "#66A61E"
+)
 
 
 ############################## Processamento ###################################
@@ -24,8 +44,14 @@ sumario_especimes <- df %>%
   ungroup() %>%
   mutate(abundancia_relativa = abundancia_especimes / abundancia_total_campanha)
 
+write_csv(
+  sumario_especimes,
+  file.path(pasta_tabelas, "sumario_abundancia_POR_rio_campanha.csv")
+)
+
+
 # Pie chart por rio
-plot <- 
+plot_especimes <- 
   ggplot(
     sumario_especimes, aes(x = "", y = abundancia_relativa, fill = rio)
   ) +
@@ -33,8 +59,76 @@ plot <-
   coord_polar(theta = "y") +
   facet_wrap(~ campanha) +
   labs(x = NULL, y = NULL, fill = "Campanha") +
+  geom_text(aes(
+    label = paste0(round(abundancia_relativa, 2) * 100, "%")),
+    position = position_stack(vjust = 0.5), 
+    size = 3
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = cores) +
+  theme(legend.position = "right") +
+    theme(
+    legend.position = "right",
+    axis.text = element_blank(),     # remove números
+    axis.ticks = element_blank(),    # remove ticks
+    panel.grid = element_blank()     # remove linhas de grade
+  ) 
+
+ggsave(
+  file.path(pasta_figuras, "piechart_abundancia_POR_rio_campanha.png"),
+  plot_especimes,
+  width = 10,
+  height = 6
+)
+
+# Riqueza ----------------------------------------------------------------------
+
+# Ordem---------------------------------
+sumario_riqueza_ordens <- df %>%
+  group_by(rio, campanha) %>% 
+  summarise(
+    riqueza_ordem = n_distinct(order)
+  ) %>%
+  ungroup() %>%
+  group_by(campanha) %>%
+  mutate(riqueza_total = sum(riqueza_ordem)) %>%
+  mutate(riqueza_relativa = riqueza_ordem/ riqueza_total)
+
+plot <- 
+  ggplot(
+    sumario_riqueza_ordens, aes(x = "", y = riqueza_relativa, fill = rio)
+  ) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  facet_wrap(~ campanha) +
+  labs(x = NULL, y = NULL, fill = "Campanha") +
   theme_void() +
   theme(legend.position = "right")
+
+# riqueza_familia------------
+sumario_riqueza_familia <- df %>%
+  group_by(rio, campanha) %>% 
+  summarise(
+    riqueza_familia = n_distinct(family)
+  ) %>%
+  ungroup() %>%
+  group_by(campanha) %>%
+  mutate(riqueza_total = sum(riqueza_familia)) %>%
+  mutate(riqueza_relativa = riqueza_familia/ riqueza_total)
+
+# Pie chart por rio
+plot <- 
+  ggplot(
+    sumario_riqueza_familia, aes(x = "", y = riqueza_relativa, fill = rio)
+  ) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  facet_wrap(~ campanha) +
+  labs(x = NULL, y = NULL, fill = "Campanha") +
+  theme_void() +
+  theme(legend.position = "right")
+
+
 
 
 
@@ -98,11 +192,3 @@ sumario_riqueza_rio_campanha <- df %>%
   summarise(riqueza = n_distinct(family))
 
 
-
-################################### Descarte ###################################
-cores_contraste_escuro <- c(
-  "#1B9E77", "#D95F02", "#7570B3", "#E7298A",
-  "#66A61E", "#E6AB02", "#A6761D", "#666666",
-  "#8DD3C7", "#FB8072", "#80B1D3", "#FDB462",
-  "#B3DE69", "#FCCDE5", "#BC80BD", "#CCEBC5", "#219107"
-)
