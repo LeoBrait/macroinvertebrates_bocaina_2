@@ -1,3 +1,7 @@
+# Gera as matrizes que serão utilizadas ao longo do trabalho. Cria colunas de
+# rio e campanha e corrige nomes.
+
+################################# Ambiente #####################################
 library(tidyverse)
 
 

@@ -8,7 +8,7 @@
 
 library(tidyverse)
 
-df <- read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
+df <- read.csv("dados/processado/imaturos_piata_limpo.csv")
 
 cores <- c(
  "Odonata" = "#6c292bff", # Vermelho forte
@@ -39,17 +39,17 @@ taxa <- colnames(df)[-(1:4)]
 # Transformar tabela larga em longa
 df_long <- df %>% 
   pivot_longer(
-    cols = taxa,
-    names_to = "Ordem",
-    values_to = "Abundancia"
+    cols = "class"
+    names_to = "order",
+    values_to = "abundance"
   ) %>%
   filter(method == "D Net") %>%
   group_by(campanha, locality_name) %>%
 
   # Abundancias relativa 
   mutate(
-    abundancia_total = sum(Abundancia),
-    abundancia_relativa = Abundancia / abundancia_total * 100
+    abundancia_total = sum(abundance),
+    abundancia_relativa = abundance / abundancia_total * 100
   ) %>% 
   ungroup() %>%
 
@@ -78,17 +78,17 @@ df_long <- df %>%
     locality_name == "RioMutuca-P3" ~ "P3"
     ),
     etiqueta = paste(campanha,  sep = ""),
-    Ordem = as.factor(Ordem),
-    Ordem = fct_recode(
-      Ordem, 
+   order = as.factor(Ordem),
+   order = fct_recode(
+      order, 
       "Oligochaeta" =  "Desc..O..Classe.Oligochaeta"
     )
   ) %>%
   ungroup() %>%
   mutate(
-    Ordem = as.factor(Ordem),
-    Ordem = fct_relevel(
-      Ordem, 
+    order = as.factor(order),
+    order = fct_relevel(
+      order, 
       c(
       "Littorinimorpha",
       "Lepidoptera",
@@ -117,7 +117,7 @@ plot <-
     aes(
       x = etiqueta,
       y = abundancia_relativa, 
-      fill = Ordem
+      fill = order
     )
   ) +
   geom_bar(stat = "identity", position = "stack") +
@@ -146,3 +146,4 @@ ggsave(
   height = 6
 )
 
+df %>% select(where(is.numeric)) %>% names()

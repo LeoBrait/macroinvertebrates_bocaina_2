@@ -1,6 +1,8 @@
-# 1. Qual a riqueza e abundancia de cada classe por rio em cada campanha
-# 2. Qual a riqueza e abundancia de cada ordem por rio em cada campanha
-# 3. Qual a composição relativa de familias por rio em cada campanha
+# Resumo da base de dados. Agora considerando rio e campanha
+# Quantos insetos foram coletados? (Por rio e campanha)
+# Qual a riqueza de classes, ordens e familias? (Por rio e campanha)
+# Quais táxons mais e menos representativos? (Por rio e campanha) SERÁ??
+
 
 ############################### Ambiente #######################################
 library(tidyverse)
@@ -11,28 +13,32 @@ library(RColorBrewer)
 ############################## Processamento ###################################
 df <- read_csv("dados/processado/imaturos_piata_limpo.csv")
 
-cores_contraste_escuro <- c(
-  "#1B9E77", "#D95F02", "#7570B3", "#E7298A",
-  "#66A61E", "#E6AB02", "#A6761D", "#666666",
-  "#8DD3C7", "#FB8072", "#80B1D3", "#FDB462",
-  "#B3DE69", "#FCCDE5", "#BC80BD", "#CCEBC5"
-)
-
- 
-df <- read_csv("dados/processado/imaturos_piata_limpo.csv")
-
-############################## Processamento ###################################
-
 
 # Abundancia -------------------------------------------------------------------
-sumario_abundancia_especimes <- df %>%
+sumario_especimes <- df %>%
   group_by(rio, campanha) %>% 
   summarise(abundancia_especimes = sum(abundance)) %>%
   ungroup() %>%
-  mutate(abundancia_total = sum(abundancia_especimes)) %>%
-  mutate(abundancia_relativa = abundancia_especimes / abundancia_total)
+  group_by(campanha) %>%
+  mutate(abundancia_total_campanha = sum(abundancia_especimes)) %>%
+  ungroup() %>%
+  mutate(abundancia_relativa = abundancia_especimes / abundancia_total_campanha)
 
-sumario_abundancia_ordens_por_rio_e_campanha <- df %>%
+# Pie chart por rio
+plot <- 
+  ggplot(
+    sumario_especimes, aes(x = "", y = abundancia_relativa, fill = rio)
+  ) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  facet_wrap(~ campanha) +
+  labs(x = NULL, y = NULL, fill = "Campanha") +
+  theme_void() +
+  theme(legend.position = "right")
+
+
+
+sumario_abundancia_ordens <- df %>%
   group_by(rio, campanha, order) %>% 
   summarise(abundancia_ordens = sum(abundance)) %>%
   ungroup() %>%
@@ -43,17 +49,17 @@ sumario_abundancia_ordens_por_rio_e_campanha <- df %>%
 
 
 # Transformar abaixo de 1% em outros
-sumario_abundancia_ordens_por_rio_e_campanha <-
-sumario_abundancia_ordens_por_rio_e_campanha %>%
-mutate(order = ifelse(abundancia_relativa < 0.05, "outros", order)) %>%
+sumario_abundancia_ordens <-
+sumario_abundancia_ordens %>%
+mutate(order = ifelse(abundancia_relativa < 0.02, "outros", order)) %>%
 group_by(rio, campanha, order) %>%
 summarise(abundancia_relativa = sum(abundancia_relativa))
   
 # Plot -------------------------------------------------------------------------
 # Garantir que a ordem das campanhas fique correta
 
-sumario_abundancia_ordens_por_rio_e_campanha <- 
-  sumario_abundancia_ordens_por_rio_e_campanha %>%
+sumario_abundancia_ordens <- 
+  sumario_abundancia_ordens %>%
   mutate(
     campanha = factor(
       campanha, 
@@ -61,9 +67,8 @@ sumario_abundancia_ordens_por_rio_e_campanha <-
     )
   )
 
-
 # gráfico de barras empilhadas
-ggplot(sumario_abundancia_ordens_por_rio_e_campanha,
+plot <- ggplot(sumario_abundancia_ordens,
        aes(x = campanha, y = abundancia_relativa, fill = order)) +
   geom_bar(stat = "identity") +
   facet_wrap(~ rio) +
@@ -91,3 +96,13 @@ sumario_riqueza_ordem <- df %>%
 sumario_riqueza_rio_campanha <- df %>%
   group_by(rio, campanha) %>%
   summarise(riqueza = n_distinct(family))
+
+
+
+################################### Descarte ###################################
+cores_contraste_escuro <- c(
+  "#1B9E77", "#D95F02", "#7570B3", "#E7298A",
+  "#66A61E", "#E6AB02", "#A6761D", "#666666",
+  "#8DD3C7", "#FB8072", "#80B1D3", "#FDB462",
+  "#B3DE69", "#FCCDE5", "#BC80BD", "#CCEBC5", "#219107"
+)
