@@ -34,15 +34,18 @@ cores <- c(
 df <- read_csv("dados/processado/imaturos_piata_limpo.csv")
 
 
-# Abundancia -------------------------------------------------------------------
+#---------------------------------- Abundancia ---------------------------------
 sumario_especimes <- df %>%
   group_by(rio, campanha) %>% 
   summarise(abundancia_especimes = sum(abundance)) %>%
   ungroup() %>%
   group_by(campanha) %>%
-  mutate(abundancia_total_campanha = sum(abundancia_especimes)) %>%
+  mutate(abundancia_total_da_campanha = sum(abundancia_especimes)) %>%
   ungroup() %>%
-  mutate(abundancia_relativa = abundancia_especimes / abundancia_total_campanha)
+  mutate(
+    abundancia_relativa_a_campanha = 
+      abundancia_especimes / abundancia_total_da_campanha
+  )
 
 write_csv(
   sumario_especimes,
@@ -50,17 +53,17 @@ write_csv(
 )
 
 
-# Pie chart por rio
 plot_especimes <- 
   ggplot(
-    sumario_especimes, aes(x = "", y = abundancia_relativa, fill = rio)
+    sumario_especimes, 
+    aes(x = "", y = abundancia_relativa_a_campanha, fill = rio)
   ) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar(theta = "y") +
   facet_wrap(~ campanha) +
   labs(x = NULL, y = NULL, fill = "Campanha") +
-  geom_text(aes(
-    label = paste0(round(abundancia_relativa, 2) * 100, "%")),
+  geom_text(
+    aes(label = paste0(round(abundancia_relativa_a_campanha, 2) * 100, "%")),
     position = position_stack(vjust = 0.5), 
     size = 3
   ) +
@@ -69,9 +72,9 @@ plot_especimes <-
   theme(legend.position = "right") +
     theme(
     legend.position = "right",
-    axis.text = element_blank(),     # remove números
-    axis.ticks = element_blank(),    # remove ticks
-    panel.grid = element_blank()     # remove linhas de grade
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
   ) 
 
 ggsave(
@@ -81,9 +84,8 @@ ggsave(
   height = 6
 )
 
-# Riqueza ----------------------------------------------------------------------
+#--------------------------------- Riqueza Ordens ------------------------------
 
-# Ordem---------------------------------
 sumario_riqueza_ordens <- df %>%
   group_by(rio, campanha) %>% 
   summarise(
@@ -91,104 +93,95 @@ sumario_riqueza_ordens <- df %>%
   ) %>%
   ungroup() %>%
   group_by(campanha) %>%
-  mutate(riqueza_total = sum(riqueza_ordem)) %>%
-  mutate(riqueza_relativa = riqueza_ordem/ riqueza_total)
+  mutate(riqueza_total_da_campanha = sum(riqueza_ordem)) %>%
+  ungroup() %>%
+  mutate(riqueza_relativa_a_campanha = riqueza_ordem/ riqueza_total_da_campanha)
 
-plot <- 
+write_csv(
+  sumario_riqueza_ordens,
+  file.path(pasta_tabelas, "sumario_riqueza_ordens_POR_rio_campanha.csv")
+)
+
+plot_riqueza_ordens <- 
   ggplot(
-    sumario_riqueza_ordens, aes(x = "", y = riqueza_relativa, fill = rio)
+    sumario_riqueza_ordens, 
+    aes(x = "", y = riqueza_relativa_a_campanha, fill = rio)
   ) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar(theta = "y") +
   facet_wrap(~ campanha) +
   labs(x = NULL, y = NULL, fill = "Campanha") +
-  theme_void() +
-  theme(legend.position = "right")
+  geom_text(
+    aes(label = paste0(round(riqueza_relativa_a_campanha, 2) * 100, "%")),
+    position = position_stack(vjust = 0.5), 
+    size = 3
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = cores) +
+  theme(legend.position = "right") +
+    theme(
+    legend.position = "right",
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  ) 
 
-# riqueza_familia------------
+ggsave(
+  file.path(pasta_figuras, "piechart_riqueza_ordens_POR_rio_campanha.png"),
+  plot_riqueza_ordens,
+  width = 10,
+  height = 6
+)
+
+
+
+#------------------------------ Riqueza Familias -------------------------------
 sumario_riqueza_familia <- df %>%
   group_by(rio, campanha) %>% 
-  summarise(
-    riqueza_familia = n_distinct(family)
-  ) %>%
+  summarise(riqueza_familia = n_distinct(family)) %>%
   ungroup() %>%
   group_by(campanha) %>%
-  mutate(riqueza_total = sum(riqueza_familia)) %>%
-  mutate(riqueza_relativa = riqueza_familia/ riqueza_total)
+  mutate(riqueza_total_da_campanha = sum(riqueza_familia)) %>%
+  ungroup() %>%
+  mutate(
+    riqueza_relativa_a_campanha = riqueza_familia / riqueza_total_da_campanha
+  )
 
-# Pie chart por rio
-plot <- 
+write_csv(
+  sumario_riqueza_familia,
+  file.path(pasta_tabelas, "sumario_riqueza_familias_POR_rio_campanha.csv")
+)
+
+
+plot_riqueza_familias <- 
   ggplot(
-    sumario_riqueza_familia, aes(x = "", y = riqueza_relativa, fill = rio)
+    sumario_riqueza_familia, 
+    aes(x = "", y = riqueza_relativa_a_campanha, fill = rio)
   ) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar(theta = "y") +
   facet_wrap(~ campanha) +
   labs(x = NULL, y = NULL, fill = "Campanha") +
-  theme_void() +
-  theme(legend.position = "right")
-
-
-
-
-
-sumario_abundancia_ordens <- df %>%
-  group_by(rio, campanha, order) %>% 
-  summarise(abundancia_ordens = sum(abundance)) %>%
-  ungroup() %>%
-  group_by(rio, campanha) %>%
-  mutate(total_tratamento = sum(abundancia_ordens))%>%
-  ungroup() %>%
-  mutate(abundancia_relativa = abundancia_ordens / total_tratamento) 
-
-
-# Transformar abaixo de 1% em outros
-sumario_abundancia_ordens <-
-sumario_abundancia_ordens %>%
-mutate(order = ifelse(abundancia_relativa < 0.02, "outros", order)) %>%
-group_by(rio, campanha, order) %>%
-summarise(abundancia_relativa = sum(abundancia_relativa))
-  
-# Plot -------------------------------------------------------------------------
-# Garantir que a ordem das campanhas fique correta
-
-sumario_abundancia_ordens <- 
-  sumario_abundancia_ordens %>%
-  mutate(
-    campanha = factor(
-      campanha, 
-      levels = c("campanha_1", "campanha_2", "campanha_3", "campanha_4")
-    )
+  geom_text(
+    aes(label = paste0(round(riqueza_relativa_a_campanha, 2) * 100, "%")),
+    position = position_stack(vjust = 0.5), 
+    size = 3
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = cores) +
+  theme(legend.position = "right") +
+    theme(
+    legend.position = "right",
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
   )
 
-# gráfico de barras empilhadas
-plot <- ggplot(sumario_abundancia_ordens,
-       aes(x = campanha, y = abundancia_relativa, fill = order)) +
-  geom_bar(stat = "identity") +
-  facet_wrap(~ rio) +
-  scale_fill_manual(values = cores_contraste_escuro) +
-  labs(x = "Campanha", 
-       y = "Abundância relativa",
-       fill = "Ordem") +
-  theme_minimal(base_size = 8) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 0.5))
-plot
-
-# Riqueza ----------------------------------------------------------------------
-
-# riqueza por classe ---
-sumario_riqueza_classe <- df %>%
-  group_by(rio, campanha, class) %>%
-  summarise(riqueza = n_distinct(family))
-
-# riqueza por ordem ---
-sumario_riqueza_ordem <- df %>%
-  group_by(rio, campanha, order) %>%
-  summarise(riqueza = n_distinct(family))
-
-# riqueza por rio e campanha ---
-sumario_riqueza_rio_campanha <- df %>%
-  group_by(rio, campanha) %>%
-  summarise(riqueza = n_distinct(family))
+ggsave(
+  file.path(pasta_figuras, "piechart_riqueza_familias_POR_rio_campanha.png"),
+  plot_riqueza_familias,
+  width = 10,
+  height = 6
+)
 
 
