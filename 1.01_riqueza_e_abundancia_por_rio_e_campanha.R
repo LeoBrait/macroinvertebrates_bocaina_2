@@ -15,7 +15,7 @@ if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
 
-# Pasta de tabelas
+# Pasta de figuras
 pasta_figuras <- "figuras/dados_descritivos/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
