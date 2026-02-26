@@ -86,11 +86,13 @@ df_long <- df %>%
     names_to = "order",
     values_to = "abundance"
   ) %>%
+  group_by(campanha, rio, locality_name, method, order) %>%
+  summarise(abundance = sum(abundance)) %>%
+  ungroup() %>%
   group_by(campanha, rio, locality_name) %>%
-  mutate(
-    abundancia_total = sum(abundance),
-    abundancia_relativa = abundance / abundancia_total * 100
-  ) %>% 
+  mutate(abundancia_total = sum(abundance)) %>%
+  ungroup() %>%
+  mutate(abundancia_relativa = abundance / abundancia_total * 100) %>%
   ungroup() %>%
   #Criação das etiquetas
   mutate(

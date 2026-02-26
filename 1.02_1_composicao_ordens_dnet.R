@@ -88,11 +88,9 @@ df_long <- df %>%
   ) %>%
   filter(method == "D Net") %>%
   group_by(campanha, rio, locality_name) %>%
-  mutate(
-    abundancia_total = sum(abundance),
-    abundancia_relativa = abundance / abundancia_total * 100
-  ) %>% 
+  mutate(abundancia_total = sum(abundance)) %>%
   ungroup() %>%
+  mutate(abundancia_relativa = abundance / abundancia_total * 100) %>%
   #Criação das etiquetas
   mutate(
     campanha = case_when(

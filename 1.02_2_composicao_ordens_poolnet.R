@@ -144,11 +144,9 @@ df_long <- df %>%
   drop_na(locality_name) %>%
   filter(method == "Pool Net") %>%
   group_by(campanha, rio, locality_name) %>%
-  mutate(
-    abundancia_total = sum(abundance),
-    abundancia_relativa = abundance / abundancia_total * 100
-  ) %>% 
+  mutate(abundancia_total = sum(abundance)) %>%
   ungroup() %>%
+  mutate(abundancia_relativa = abundance / abundancia_total * 100) %>%
   mutate(
     order = fct_relevel(
       order, 
