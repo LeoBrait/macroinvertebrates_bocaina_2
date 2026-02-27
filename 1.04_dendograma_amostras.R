@@ -44,9 +44,14 @@ df_limpo <- df %>%
       locality_name ==  "RioCarrapicho-P2" ~ "P2",
       locality_name ==  "RioCarrapicho-P3" ~ "P3"
     ),
+    method = case_when(
+      method == "D Net" ~ " ■",
+      method == "Pool Net" ~ " ▲",
+      method == "Sieve" ~ " ●"
+    ),
     etiqueta = paste(rio, locality_name, campanha, method,  sep = "")
   ) %>%
-  ungroup() 
+  ungroup()
 
 df_numeric <- df[5:length(df)]
 
