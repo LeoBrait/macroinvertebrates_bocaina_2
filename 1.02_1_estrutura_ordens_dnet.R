@@ -5,7 +5,7 @@ library(tidyverse)
 library(ggpubr)
 
 # Pasta de figuras
-pasta_figuras <- "figuras/composicao/"
+pasta_figuras <- "figuras/estrutura/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
@@ -236,13 +236,13 @@ merged_plot <- ggarrange(
 
 
 ggsave(
-  paste0(pasta_figuras, "composicao_ordens_por_campanha_e_rio_DNET.png"),  
+  paste0(pasta_figuras, "estrutura_ordens_por_campanha_e_rio_DNET.png"),  
   plot = merged_plot,
   width = 12, height = 20, dpi = 300
 )
 
 ggsave(
-  paste0(pasta_figuras, "composicao_ordens_por_campanha_e_rio_DNET.svg"),  
+  paste0(pasta_figuras, "estrutura_ordens_por_campanha_e_rio_DNET.svg"),  
   plot = merged_plot,
   width = 12, height = 20, dpi = 300
 )
