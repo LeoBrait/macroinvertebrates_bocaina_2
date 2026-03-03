@@ -1,5 +1,6 @@
 library(vegan)
 library(tidyverse)
+library(dendextend)
 
 df <- read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
 
@@ -55,10 +56,10 @@ df_limpo <- df %>%
 
 df_numeric <- df[5:length(df)]
 
-dist_bc <- vegdist(df_numeric, method = "bray")
+dist_bc <- vegdist(df_numeric, method = "jaccard")
 clust <- hclust(dist_bc, method = "average")
 
-library(dendextend)
+
 
 # converter para dendrograma
 dend <- as.dendrogram(clust)
@@ -91,8 +92,8 @@ dend <- set(dend, "labels_cex", 0.7)
 
 # plot
 
-png("dendrograma_amostras.png", width = 1800, height = 1600)
-plot(dend, ylab = "Distância (Jaccard)", horiz = TRUE) 
+png("dendrograma_composicao_ordens.png", width = 1800, height = 1600)
+plot(dend, ylab = "Distância Jaccard (Composição)", horiz = TRUE) 
 dev.off()
 
 
