@@ -2,6 +2,14 @@ library(vegan)
 library(tidyverse)
 library(dendextend)
 
+# Pasta de figuras
+pasta_figuras <- "figuras/dendogramas/"
+if (!dir.exists(pasta_figuras)) {
+  dir.create(pasta_figuras, recursive = TRUE)
+}
+
+
+################################### Dados ######################################
 df <- read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
 
 ############################## Preprocessamento ################################
@@ -54,27 +62,27 @@ df_limpo <- df %>%
   ) %>%
   ungroup()
 
-df_numeric <- df[5:length(df)]
-
-dist_bc <- vegdist(df_numeric, method = "jaccard")
-clust <- hclust(dist_bc, method = "average")
-
-
-
-# converter para dendrograma
-dend <- as.dendrogram(clust)
-
-# garantir que os labels do dendrograma sejam suas etiquetas
-labels(dend) <- df_limpo$etiqueta
-
-# vetor com rio de cada amostra
 rios <- df_limpo$rio
 names(rios) <- df_limpo$etiqueta
+############################## Matrizes de distância ###########################
+df_numeric <- df[5:length(df)]
 
-# ordem real das folhas no dendrograma
-ordem_labels <- labels(dend)
+# distância e clustering de estrutura
+dist_bray <- vegdist(df_numeric, method = "bray")
+clust_bray <- hclust(dist_bray, method = "average")
 
-# rios na mesma ordem do dendrograma
+# distância e clustering de composição
+dist_jaccard <- vegdist(df_numeric, method = "jaccard")
+clust_jaccard <- hclust(dist_jaccard, method = "average")
+
+
+################################## Plot ########################################
+
+
+#--------------------------------- Jaccard -------------------------------------
+dendograma_jaccard <- as.dendrogram(clust_jaccard)
+labels(dendograma_jaccard) <- df_limpo$etiqueta
+ordem_labels <- labels(dendograma_jaccard)
 rios_ord <- rios[ordem_labels]
 
 # paleta de cores para rios
@@ -87,32 +95,38 @@ cores_rios <- c(
 )
 
 # aplicar cores nas labels
-dend <- set(dend, "labels_col", cores_rios[rios_ord])
-dend <- set(dend, "labels_cex", 0.7)
+dendograma_jaccard <- set(dendograma_jaccard, "labels_col", cores_rios[rios_ord])
+dendograma_jaccard <- set(dendograma_jaccard, "labels_cex", 0.7)
 
-# plot
-
-png("dendrograma_composicao_ordens.png", width = 1800, height = 1600)
-plot(dend, ylab = "Distância Jaccard (Composição)", horiz = TRUE) 
+png(
+  paste0(pasta_figuras, "dendrograma_composicao_ordens.png"),
+  width = 1800, height = 1600
+)
+plot(
+  dendograma_jaccard,
+  ylab = "Distância Entre Ordens Jaccard (Composição)",
+  horiz = TRUE
+)
 dev.off()
 
-
-
-
-
-
-legend(
-  "topright",
-  legend = names(cores_rios),
-  fill = cores_rios,
-  border = NA,
-  cex = 0.8
+# ----------------------------------- Estrutura --------------------------------
+dendograma_bray <- as.dendrogram(clust_bray)
+labels(dendograma_bray) <- df_limpo$etiqueta
+ordem_labels_bray <- labels(dendograma_bray)
+rios_ord_bray <- rios[ordem_labels_bray]
+# aplicar cores nas labels
+dendograma_bray <- set(dendograma_bray, "labels_col", cores_rios[rios_ord_bray])
+dendograma_bray <- set(dendograma_bray, "labels_cex", 0.7)
+png(
+  paste0(pasta_figuras, "dendrograma_estrutura_ordens.png"),
+  width = 1800, height = 1600
 )
-
-
-
-
-
+plot(
+  dendograma_bray,
+  ylab = "Distância Entre Ordens Bray-Curtis (Estrutura)",
+  horiz = TRUE
+)
+dev.off()
 
 
 
