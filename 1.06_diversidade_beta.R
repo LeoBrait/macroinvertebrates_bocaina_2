@@ -12,10 +12,10 @@ library(wesanderson)
 library(reshape2)
 
 # Carregar caminho
-setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
+#setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
 
 # Carregar dados
-dados_df <- read.csv(file = "dados/processado/matriz_certo_familias_imaturos_largo.csv", sep = ",")
+dados_df <- read.csv(file = "dados/processado/matriz_comunidades_familias_imaturos_largo.csv", sep = ",")
 
 ### Pre processamento###########################################################
 processado <- dados_df %>%
@@ -99,6 +99,12 @@ g <- ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
   ggtitle("Componentes da beta diversidade entre localidades")
 g
 
+ggsave(
+  "figuras/beta_diversidade/beta_diversidade_familias_total.png",
+  g,
+  width = 10,
+  height = 8
+)
 
 
 
