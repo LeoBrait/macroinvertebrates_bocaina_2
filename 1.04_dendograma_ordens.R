@@ -107,6 +107,13 @@ plot(
   ylab = "Distância Entre Ordens Jaccard (Composição)",
   horiz = TRUE
 )
+legend(
+  "topright",
+  legend = c("D Net", "Pool Net", "Sieve"),
+  pch = c(15, 17, 16),  # quadrado, triângulo, círculo
+  bty = "n",
+  pt.cex = 1.5
+)
 dev.off()
 
 # ----------------------------------- Estrutura --------------------------------
@@ -125,6 +132,13 @@ plot(
   dendograma_bray,
   ylab = "Distância Entre Ordens Bray-Curtis (Estrutura)",
   horiz = TRUE
+)
+legend(
+  "topright",
+  legend = c("D Net", "Pool Net", "Sieve"),
+  pch = c(15, 17, 16),  # quadrado, triângulo, círculo
+  bty = "n",
+  pt.cex = 1.5
 )
 dev.off()
 
