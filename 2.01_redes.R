@@ -37,18 +37,25 @@ vetor_respostas <- indices_df_raw %>%
 
 indices_df <- indices_df_raw %>%
   filter(method %in% metodos_de_amostragem) %>%
-  mutate("coluna_id" = paste0(rio, "_", locality_name, "_", campanha)) %>%
-  filter(!coletor_recolhedor_proporcao > 0.4)
+  mutate("coluna_id" = paste0(rio, "_", locality_name, "_", campanha)) #%>%
+  #filter(!coletor_recolhedor_proporcao > 0.4)
 
 ################################ Processamento #################################
 list_of_plots <- list()
+i <- "aspt"
 for (i in vetor_respostas) {
   print(paste("Analisando redes para índice:", i))
-
+  
+  # Remover outliers apenas no caso de coletor recolhedor
+  if (i == "coletor_recolhedor_proporcao") {
+    indices_df <- indices_df %>%
+      filter(!coletor_recolhedor_proporcao > 0.4)
+  }
+  
   dados_filtrados <- indices_df %>%
     select(coluna_id, method, i) %>%
     pivot_wider(names_from = method, values_from = i) %>%
-    filter(`D Net` >= 0 & `Pool Net` >= 0 & `Sieve` >= 0)
+    filter(if_all(c(`D Net`, `Pool Net`, `Sieve`), is.finite))
   
   dados_filtrados_long <- dados_filtrados %>%
     pivot_longer(
@@ -92,11 +99,15 @@ for (i in vetor_respostas) {
 
 for (i in vetor_respostas) {
   print(paste("Analisando redes (post-hoc) para índice:", i))
+
+  if (i == "coletor_recolhedor_proporcao") {
+    indices_df <- indices_df %>%
+      filter(!coletor_recolhedor_proporcao > 0.4)
+  }
   
   dados_filtrados <- indices_df %>%
     select(coluna_id, method, i) %>%
-    pivot_wider(names_from = method, values_from = i) %>%
-    filter(`D Net` >= 0 & `Pool Net` >= 0 & `Sieve` >= 0)
+    pivot_wider(names_from = method, values_from = i)
   
   dados_filtrados_long <- dados_filtrados %>%
     pivot_longer(
