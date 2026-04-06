@@ -5,32 +5,24 @@ dados <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv")
 
 
 
-modelo <- glmer(
-    riqueza_familias ~ rio * method + (1 | locality_name),
-    data = dados,
-    family = poisson
-)
-summary(modelo)
-
-
-m1 <- glmer(
-  riqueza_familias ~ rio * method + (1 | locality_name),
+modelo_com_interacao <- glmer(
+  riqueza_familias ~ method * rio * campanha + (1 | locality_name),
   data = dados,
   family = poisson
 )
 
-m0 <- glmer(
-  riqueza_familias ~ rio + (1 | locality_name),
+modelo_sem_interacao <- glmer(
+  riqueza_familias ~ method + rio + campanha + (1 | locality_name),
   data = dados,
   family = poisson
 )
 
-anova(m0, m1, test = "Chisq")
+summary(modelo_com_interacao)
+summary(modelo_sem_interacao)
+anova(modelo_sem_interacao, modelo_com_interacao, test = "Chisq")
 
-m2 <- glmer(
-  riqueza_familias ~ rio + method + (1 | locality_name),
-  data = dados,
-  family = poisson
-)
 
-anova(m2, m1, test = "Chisq")
+drop1(modelo_sem_interacao, test = "Chisq")
+drop1(modelo_com_interacao, test = "Chisq")
+
+
