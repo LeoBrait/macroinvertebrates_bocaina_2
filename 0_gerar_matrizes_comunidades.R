@@ -13,17 +13,17 @@ dados_df <- read.csv(file = "dados/imaturos_piata _22_08_2025.csv", sep = ",")
 campanha1_vetor <- c(
   "23.V.2024", "24.V.2024", "25.V.2024",
   "26.V.2024", "27.V.2024"
-)
+) # seco
 
-campanha2_vetor <- c("26.VIII.2024", "27.VIII.2024", "28.VIII.2024") 
+campanha2_vetor <- c("26.VIII.2024", "27.VIII.2024", "28.VIII.2024") # seco
 
 campanha3_vetor <- c(
   "12.II.2025", "13.II.2025", "15.II.2025", "19.II.2025", "20.II.2025"
-)
+) # chuvoso
 
-campanha4_vetor <- c("09.VII.2025", "12.VII.2025", "08.VII.2025")
+campanha4_vetor <- c("09.VII.2025", "12.VII.2025", "08.VII.2025") # seco
 
-riobebedouro_vetor <- c (
+riobebedouro_vetor <- c(
   "RioBebedouro-P1", "RioBebedouro-P2", "RioBebedouro-P3"
 )
 
