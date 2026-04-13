@@ -114,7 +114,7 @@ AIC(m00, m0)
 
 ### Dredge
 global <- glmer(
-  total_macroinvertebrados ~ periodo + method + rio + barramento + campanha + (1 | id_tempo_espaço),
+  riqueza_familias ~ periodo + method + rio + barramento + campanha + (1 | id_tempo_espaço),
   data = dados,
   family = poisson
 )

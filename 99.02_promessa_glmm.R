@@ -56,15 +56,14 @@ categorias <- indices_df %>%
 
 ################################ Processamento #################################
 list_of_plots <- list()
-i <- "riqueza_ordens"
+i <- "riqueza_familias"
 for (i in vetor_respostas) {
   print(paste("Analisando redes para índice:", i))
 
   
   dados_filtrados <- indices_df %>%
     select(coluna_id, method, i) %>%
-    pivot_wider(names_from = method, values_from = i) %>%
-    filter(if_all(c(`D Net`, `Pool Net`, `Sieve`), is.finite))
+    pivot_wider(names_from = method, values_from = i)
   
   dados_filtrados_long <- dados_filtrados %>%
     pivot_longer(
@@ -85,7 +84,7 @@ for (i in vetor_respostas) {
 
 
   plot <- ggplot(
-    dados_filtrados_long_categorias,
+    indices_df,
     aes(x = method, y = !!sym(i))
   ) +
     theme_minimal() +
@@ -99,13 +98,7 @@ for (i in vetor_respostas) {
         size = 10,
         alpha = 0.7,
         stroke = 2) +
-    scale_shape_manual(values = c(4, 21)) +
-    labs(
-      title = i,
-      subtitle = paste0(
-        "Friedman test p-value: ", round(friedman_test_result$p.value, 4)
-      )
-    ) 
+    scale_shape_manual(values = c(4, 21))
   
   ggsave(
     filename = paste0(pasta_figuras, i, ".png"),
