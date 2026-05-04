@@ -13,9 +13,10 @@ library(reshape2)
 
 # Carregar caminho
 #setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
-
+rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 # Carregar dados
-dados_df <- read.csv(file = "dados/processado/matriz_comunidades_familias_imaturos_largo.csv", sep = ",")
+dados_df <- read.csv(file = "dados/processado/matriz_comunidades_familias_imaturos_largo.csv", sep = ",") %>%
+  filter(rio %in% rios)
 
 ### Pre processamento###########################################################
 processado <- dados_df %>%
