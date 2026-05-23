@@ -3,7 +3,7 @@ library(ggpubr)
 
 
 
-#configuracoes
+############################### configuracoes ##################################
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 metodos <- c("D Net", "Pool Net", "Sieve")
 colunas <- c(
@@ -11,11 +11,68 @@ colunas <- c(
     "total_macroinvertebrados", "riqueza_ordens", "riqueza_familias"
 )
 
+amostras_descartadas_vetor <- c("RiodaBarra-P1")
+
+
+################################## funcoes #####################################
+
+desenhar_barras <- function(df, metodo) {
+  sumario <- df %>%
+    filter(method == metodo) %>%
+    group_by(rio, locality_name, categoria_da_resposta) %>%
+    summarise(
+      media = mean(valor),
+      desvio_padrao = sd(valor),
+      n = n(),
+      se =  desvio_padrao / sqrt(n)
+    ) %>%
+    ungroup()
+
+  plot <- 
+    ggplot(
+      sumario,
+      aes(y = media, x = locality_name, fill = categoria_da_resposta)
+    ) +
+    theme_minimal() +
+    geom_errorbar(
+      aes(
+        ymin = 1,
+        ymax = media + se
+      ),
+      width = 0.2,
+      position = position_dodge(width = 0.9)
+    ) +
+    geom_bar(
+      stat = "identity",
+      position = position_dodge(width = 0.9)
+    ) +
+    geom_point(
+      data = df %>% filter(method == metodo), 
+      aes(y = valor, x = locality_name),
+      position = position_dodge(
+        width = 0.9
+      )
+    ) +
+    facet_wrap(~ rio, scales = "free_x", ncol = 1) +
+    labs(x = "Localidade", y = "Valor", fill = "Categoria da Resposta") +
+    theme(
+      axis.text.x = element_text(angle = 0, hjust = 0, size = 15),
+      axis.title.x = element_blank(),
+      legend.position = "bottom",
+      strip.text = element_text(size = 12, face = "bold")
+    ) +
+    scale_y_continuous( limits = c(0, 25)) 
+
+    return(plot)
+}
+
 
 #carregar dados
 df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
   filter(rio %in% rios) %>%
   filter(method %in% metodos) %>%
+  filter(!locality_name %in% amostras_descartadas_vetor) %>%
+  mutate(total_macroinvertebrados = total_macroinvertebrados * 0.1) %>%
   select(colunas) %>%
   pivot_longer(
     cols = c("total_macroinvertebrados", "riqueza_ordens", "riqueza_familias"),
@@ -23,134 +80,42 @@ df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
     values_to =  "valor"
   )
 
-
-sumario <- df %>%
-  group_by(rio, locality_name, method, categoria_da_resposta) %>%
-  summarise(
-    media = mean(valor),
-    desvio_padrao = sd(valor),
-    n = n(),
-    se =  desvio_padrao / sqrt(n)
-  ) %>%
-  ungroup()
-
-sumario_rede_d <- sumario %>% filter(method == "D Net")
-sumario_piscina <- sumario %>% filter(method == "Pool Net")
-sumario_peneira <- sumario %>% filter(method == "Sieve")
-
-
-#plotar
-plot_rede_d <-
-  ggplot(
-    sumario_rede_d, #ATENÇÃO
-    aes(y = media, x = locality_name, fill = categoria_da_resposta)
-  ) +
-  theme_minimal() +
-  geom_errorbar(
-    aes(
-      ymin = 0.2,
-      ymax = media + se
+  # Melhorar estetica
+  df <- df %>%
+  mutate(
+    locality_name = case_when(
+      str_detect(locality_name, "P1") ~ "P1",
+      str_detect(locality_name, "P2") ~ "P2",
+      str_detect(locality_name, "P3") ~ "P3",
+      str_detect(locality_name, "P1/2") ~ "P1+",
     ),
-    width = 0.2,
-    position = position_dodge(width = 0.9)
-  ) +
-  geom_bar(
-    stat = "identity",
-    position = position_dodge(width = 0.9)
-  ) +
-#   geom_jitter(
-#    data = df %>% filter(method == "D Net"), 
-#    aes(y = valor, x = locality_name),
-#    position = position_jitterdodge(
-#       jitter.width = 0.2,
-#       dodge.width = 0.9
-#     )
-#   ) +
-  facet_wrap(~ rio, scales = "free_x", ncol = 1) +
-  scale_y_continuous( limits = c(0, 125)) 
+    rio = case_when(
+      rio == "rio_bebedouro" ~ "Bebedouro",
+      rio == "rio_da_barra" ~ "Barra",
+      rio == "rio_mutuca" ~ "Mutuca"
+    )
+  )
 
-dev.off()
+plot_rede_d <- desenhar_barras(df, "D Net")
+plot_piscina <- desenhar_barras(df, "Pool Net")
+plot_peneira <- desenhar_barras(df, "Sieve")
 
-plot_piscina <-
-  ggplot(
-    sumario_piscina, #ATENÇÃO
-    aes(y = media, x = locality_name, fill = categoria_da_resposta)
-  ) +
-  theme_minimal() +
-  geom_errorbar(
-    aes(
-      ymin = 0.2,
-      ymax = media + se
-    ),
-    width = 0.2,
-    position = position_dodge(width = 0.9)
-  ) +
-  geom_bar(
-    stat = "identity",
-    position = position_dodge(width = 0.9)
-  ) +
-#   geom_jitter(
-#    data = df %>% filter(method == "D Net"), 
-#    aes(y = valor, x = locality_name),
-#    position = position_jitterdodge(
-#       jitter.width = 0.2,
-#       dodge.width = 0.9
-#     )
-#   ) +
-  facet_wrap(~ rio, scales = "free_x", ncol = 1) +
-  scale_y_continuous( limits = c(0, 125)) 
-
-dev.off()
-
-plot_peneira <-
-  ggplot(
-    sumario_peneira, #ATENÇÃO
-    aes(y = media, x = locality_name, fill = categoria_da_resposta)
-  ) +
-  theme_minimal() +
-  geom_errorbar(
-    aes(
-      ymin = 0.2,
-      ymax = media + se
-    ),
-    width = 0.2,
-    position = position_dodge(width = 0.9)
-  ) +
-  geom_bar(
-    stat = "identity",
-    position = position_dodge(width = 0.9)
-  ) +
-#   geom_jitter(
-#    data = df %>% filter(method == "D Net"), 
-#    aes(y = valor, x = locality_name),
-#    position = position_jitterdodge(
-#       jitter.width = 0.2,
-#       dodge.width = 0.9
-#     )
-#   ) +
-  facet_wrap(~ rio, scales = "free_x", ncol = 1) +
-  scale_y_continuous( limits = c(0, 125)) 
-
-dev.off()
-
-merged_plot <- ggarrange(
+painel <- ggarrange(
     plot_rede_d,
     plot_piscina,
     plot_peneira,
     common.legend = TRUE,
-    legend = "right",
+    legend = "bottom",
     ncol = 3,
     labels = c("REDE D", "PISCINA", "PENEIRA"),
     font.label = list(size = 16, face = "bold")
 )
 
 ggsave(
-    "barras.png",
-    width = 20,
-    height = 30,
+    "barras.svg",
+    painel,
+    width = 16,
+    height = 12,
     dpi = 300
 )
 
-
-    
-dev.off()
