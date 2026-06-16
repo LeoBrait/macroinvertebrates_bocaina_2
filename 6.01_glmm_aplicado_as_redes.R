@@ -1,6 +1,8 @@
 library(tidyverse)
 library(lme4)
 library(MuMIn)
+library(DHARMa)
+library(glmmTMB)
 
 
 options(na.action = "na.fail")  # obrigatório para dredge
@@ -13,7 +15,6 @@ dados_espaciais <- read_csv("dados/dados_satelite_bocaina.csv")
 # Com ou sem method no id_tempo_espaço?
 dados <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
   mutate(
-    id_tempo_espaço = paste0(campanha, rio, locality_name),
     periodo = case_when(
       campanha %in% c("campanha_1", "campanha_2", "campanha_4") ~ "seco",
       campanha %in% c("campanha_3") ~ "chuvoso",
@@ -28,28 +29,73 @@ dados <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
   filter(rio %in% rios)
 
 
-histograma <- ggplot(dados, aes(x = total_macroinvertebrados)) +
-  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
-  labs(title = "Histograma da Riqueza de Ordens",
-       x = "Riqueza de Ordens",
-       y = "Frequência")
 
 
+################################### Riqueza ####################################
+
+# Familias ---------------------------------------------------------------------
+global <- glmmTMB(
+  riqueza_familias ~
+  campanha + method + rio + (1 | rio:locality_name),
+  data = dados,
+  family = nbinom2
+)
 
 
-### Dredge
+ranking_modelos <- dredge(global)
+m1_selecionado <- get.models(ranking_modelos, subset = 1)[[1]]
+m2_selecionado <- get.models(ranking_modelos, subset = 3)[[1]]
+
+# qualidade do ajuste do modelo 1
+residuals_m1 <- simulateResiduals(m1_selecionado)
+plot(residuals_m1)
+testDispersion(residuals_m1)
+testZeroInflation(residuals_m1)  # verificar excesso de zeros
+testUniformity(residuals_m1)
+
+# qualidade do ajuste do modelo 2
+residuals_m2 <- simulateResiduals(m2_selecionado)
+plot(residuals_m2)
+testDispersion(residuals_m2)
+testZeroInflation(residuals_m2)  # verificar excesso de zeros
+testUniformity(residuals_m2)
+
+summary(m1_selecionado)
+summary(m2_selecionado)
+
+# Ordens -----------------------------------------------------------------------
 global <- glmer(
-  total_macroinvertebrados ~
-  periodo + method + rio + barramento + (1 | id_tempo_espaço),
+  riqueza_ordens ~
+  campanha + method + rio + (1 | rio:locality_name),
   data = dados,
   family = poisson
 )
 
-
-
 ranking_modelos <- dredge(global)
-modelo_selecionado <- get.models(ranking_modelos, subset = 5)[[1]]
-summary(modelo_selecionado)
+m1_selecionado <- get.models(ranking_modelos, subset = 2)[[1]]
+m2_selecionado <- get.models(ranking_modelos, subset = 4)[[1]]
+
+
+# qualidade do ajuste do modelo 1
+residuals_m1 <- simulateResiduals(m1_selecionado)
+plot(residuals_m1)
+testDispersion(residuals_m1)
+testZeroInflation(residuals_m1)  # verificar excesso de zeros
+testUniformity(residuals_m1)
+
+# qualidade do ajuste do modelo 2
+residuals_m2 <- simulateResiduals(m2_selecionado)
+plot(residuals_m2)
+testDispersion(residuals_m2)
+testZeroInflation(residuals_m2)  # verificar excesso de zeros
+testUniformity(residuals_m2)
+
+
+summary(m1_selecionado)
+summary(m2_selecionado)
+
+anova(m1_selecionado, m2_selecionado, test = "Chisq")
+
 
 
 
