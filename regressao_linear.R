@@ -1,6 +1,5 @@
 library(tidyverse)
 library(patchwork)
-install.packages("patchwork")
 ################################## Configurações ###############################
 
 set.seed(1994)
@@ -31,6 +30,7 @@ nomes_metricas <- c(
 )
 
 nota_maxima <- length(vetor_respostas) * 5
+nota_minima <- length(vetor_respostas)
 
 pasta_figuras <- "figuras/indice_multimetrico"
 if (!dir.exists(pasta_figuras)) {
@@ -44,7 +44,6 @@ if (!dir.exists(pasta_tabelas)) {
 
 ################################## Carregar dados ##############################
 
-setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
 
 indices_df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv")
 
@@ -119,6 +118,8 @@ indices_rebalanceados_df <- indices_df %>%
   )
 
 ############################### Cálculo do IMM completo ########################
+IMM_min <- 7
+IMM_max <- 35
 
 giovanas_index <- indices_rebalanceados_df %>%
   group_by(campanha, rio, locality_name) %>%
@@ -127,7 +128,7 @@ giovanas_index <- indices_rebalanceados_df %>%
     .groups = "drop"
   ) %>%
   mutate(
-    IMM_percentual = IMM / nota_maxima * 100
+    IMM_percentual = (IMM - nota_minima) / (nota_maxima - nota_minima) * 100
   )
 
 write_csv(
@@ -142,7 +143,7 @@ dados_regressao <- indices_df %>%
   select(campanha, rio, locality_name, method, all_of(vetor_respostas)) %>%
   left_join(
     giovanas_index %>%
-      select(campanha, rio, locality_name, IMM_percentual),
+      select(campanha, rio, locality_name, IMM, IMM_percentual),
     by = c("campanha", "rio", "locality_name")
   ) %>%
   drop_na(IMM_percentual)
@@ -154,7 +155,7 @@ resultados_regressao <- data.frame()
 for (i in vetor_respostas) {
   
   modelo <- lm(
-    as.formula(paste("IMM_percentual ~", i)),
+    as.formula(paste("IMM ~", i)),
     data = dados_regressao
   )
   

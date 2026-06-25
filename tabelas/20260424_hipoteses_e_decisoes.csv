@@ -1,0 +1,12 @@
+metrica,expectativa_relativa_ao_impacto,observado_relativo_ao_impacto,sensibilidade,p_valor,metricas_redundantes,decisao,justificativa,data
+aspt,diminuir,diminuiu,3,0.0297,nao tem,manter,passou em tudo,
+bmwp,diminuir,diminuiu,3,0.0021,ept_riqueza;  riqueza trichoptera,manter,As métricas redundantes a ele foram removidas.,
+ept_riqueza,diminuir,diminuiu,3,0.002,Bmwp; riqueza familias trichoptera,descarte,Redundante com bmwp e de certa forma est´´a incluso na proporção ept/chiro,
+Filtrador_proporcao,diminuir,diminuiu,3,0.007, %trichoptera,descarte,redundante,
+Raspadores_proposrcao,diminuir,diminuiu,3,0.0167, %trichoptera; riqueza familias trichoptera;,descarte,redundante,
+Razao_ept_chironomidae,diminuir,diminuiu,3,0.0529,nenhum,manter,passou em tudo,
+relativo_odonata ,váriavel,diminuiu,3,0.004,nenhum,manter,passou em tudo,
+relativo_trichoptera,diminuir,diminuiu,3,0.0061,"riqueza_familias_trichoptera; %filtrador, % raspador",manter,passou em tudo,
+riqueza_familias_ephemeroptera,diminuir,diminuiu,3,0.0447,nenhum,manter,"Apesar da baixa variabilidade, nao foi redundante com nenhuma outra métrica e pode ser considerado um bioindicador binário.",
+riqueza_familias_trichoptera,diminuir,diminuiu,3,0.0063,bmwp; ept riqueza; % raspadores; %trichoptera,descarte,"O mais redundante de todos, e com baixa variabilidade, apenas duas famílias, talvez possa ser melhor descrito pela porcentagem de trichoptera.",
+shannon_famílias,diminuir,diminuiu,3,0.0111,Nenhum,manter,passou em tudo,
