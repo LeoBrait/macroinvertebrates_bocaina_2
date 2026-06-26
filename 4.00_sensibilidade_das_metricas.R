@@ -6,6 +6,7 @@ library(corrplot)
 set.seed(1994)
 pontos_referencia <- c("RiodaBarra-P1/2", "RioMutuca-P1")
 pontos_impactado <- c("RiodaBarra-P2", "RioMutuca-P3")
+rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 
 metodos_de_amostragem <- c("D Net")
 
@@ -97,37 +98,37 @@ indices_df <- indices_df %>%
   ) 
 
 # Filtrar dados para análise baseado em rede-D.
-dados_filtrados <- indices_df %>%
+dados_filtrados_wilcox <- indices_df %>%
   filter(impacto != "desconsiderado") %>%
   filter(method %in% metodos_de_amostragem) %>%
   mutate(impacto = as.factor(impacto), method = as.factor(method))
 
-str(dados_filtrados)
+str(dados_filtrados_wilcox)
 
 ############################# Testes de Mann-Whitney ###########################
 plot_list <- list()
 for (i in vetor_respostas) {
   print(paste("Analisando índice:", i))
   
-  test <- dados_filtrados %>%
+  test <- dados_filtrados_wilcox %>%
     select(c("impacto", i))
 
 
   # Teste de Mann-Whitney
   teste <- wilcox.test(
     formula = as.formula(paste(i, "~ impacto")),
-    data = dados_filtrados
+    data = dados_filtrados_wilcox
   )
  
   p_value = teste$p.value
   w <- teste$statistic
 
   # Tamanhos das amostras
-  n1 <- dados_filtrados %>%
-    filter(impacto == levels(dados_filtrados$impacto)[1]) %>% 
+  n1 <- dados_filtrados_wilcox %>%
+    filter(impacto == levels(dados_filtrados_wilcox$impacto)[1]) %>% 
     nrow()
-  n2 <- dados_filtrados %>% 
-    filter(impacto == levels(dados_filtrados$impacto)[2]) %>% 
+  n2 <- dados_filtrados_wilcox %>% 
+    filter(impacto == levels(dados_filtrados_wilcox$impacto)[2]) %>% 
     nrow()
 
   # Cálculo do U
@@ -138,7 +139,7 @@ for (i in vetor_respostas) {
   nome_indice <- vetor_estetica_indice[[i]]
 
   plot <- ggplot(
-    dados_filtrados,
+    dados_filtrados_wilcox,
     aes_string(
       x = "impacto",
       y = i
@@ -185,23 +186,26 @@ variaveis_selecionadas <- c(
 
 # Tratar dados numéricos, removendo valores infinitos, NA e dados com baixa ----
 # Variabilidade ----------------------------------------------------------------
-dados_filtrados_numerico <- dados_filtrados %>%
+analise_redundancia_df <- indices_df %>%
+  filter(method %in% metodos_de_amostragem) %>%
+  filter(rio %in% rios) %>%
   select(all_of(variaveis_selecionadas))
 
+
 # colocar NA para valores infinitos
-dados_filtrados_numerico_finitos <- dados_filtrados_numerico %>%
+analise_redundancia_df_finitos <- analise_redundancia_df %>%
   mutate(across(everything(), ~ ifelse(is.finite(.x), .x, NA)))
 
 # Filtrar variáveis com baixa variação
-colunas_sd_zero <- sapply(dados_filtrados_numerico_finitos, function(x) {
+colunas_sd_zero <- sapply(analise_redundancia_df_finitos, function(x) {
   sd(x, na.rm = TRUE) == 0
 })
 
 nomes_colunas_problema <- names(colunas_sd_zero[colunas_sd_zero])
 print(nomes_colunas_problema)
 
-dados_filtrados_numerico_limpo <- 
-  dados_filtrados_numerico_finitos[, !colunas_sd_zero]
+analise_redundancia_df_limpo <- 
+  analise_redundancia_df_finitos[, !colunas_sd_zero]
 
 
 # Função para calcular p-valores. ----------------------------------------------
@@ -234,16 +238,16 @@ pval_spearman_clean <- function(df) {
 # Executar spearman e p-valores ------------------------------------------------
 
 correlations <- cor(
-  dados_filtrados_numerico_limpo, 
+  analise_redundancia_df_limpo, 
   method = "spearman", 
   use = "pairwise.complete.obs"
 )
 correlations_squared <- correlations^2
-p_values <- pval_spearman_clean(dados_filtrados_numerico_limpo)
+p_values <- pval_spearman_clean(analise_redundancia_df_limpo)
 
 
 # Visualizar a matriz de correlação
-svg(file.path(pasta_figuras, "correlacao_indices_imaturos_piata.svg"), 
+png(file.path(pasta_figuras, "correlacao_indices_imaturos_piata.png"), 
     width = 800, height = 800)  # Aumentei a resolução geral
 
 corrplot(
@@ -296,12 +300,12 @@ if(nrow(pares_significativos) > 0) {
       width = 10, height = 8)
   
   for(i in 1:nrow(pares_significativos)) {
-    var1 <- colnames(dados_filtrados_numerico_limpo)[pares_significativos[i,1]]
-    var2 <- colnames(dados_filtrados_numerico_limpo)[pares_significativos[i,2]]
+    var1 <- colnames(analise_redundancia_df_limpo)[pares_significativos[i,1]]
+    var2 <- colnames(analise_redundancia_df_limpo)[pares_significativos[i,2]]
     
     # Extrair valores
-    x <- dados_filtrados_numerico_limpo[[var1]]
-    y <- dados_filtrados_numerico_limpo[[var2]]
+    x <- analise_redundancia_df_limpo[[var1]]
+    y <- analise_redundancia_df_limpo[[var2]]
     
     # Remover NAs
     validos <- complete.cases(x, y)
@@ -377,34 +381,38 @@ if(nrow(pares_significativos) > 0) {
 
 
 painel_vetor <- c(
-  "aspt", "bmwp", "ept_riqueza", "filtrador_proporcao",
-  "raspadores_proporcao", "razao_ept_chironomidae", 
-  "relativo_odonata", "relativo_trichoptera", "riqueza_familias_ephemeroptera",
-  "riqueza_familias_trichoptera", "shannon_ordens"
+ "aspt", 
+  "bmwp", 
+  #"filtrador_proporcao",
+  #"raspadores_proporcao",
+  "razao_ept_chironomidae",
+  "relativo_odonata",
+  "relativo_trichoptera",
+  "shannon_familias"
 )
 
 painel_plots <- list()
 for (i in painel_vetor) {
   print(paste("Analisando índice:", i))
   
-  test <- dados_filtrados %>%
+  test <- dados_filtrados_wilcox %>%
     select(c("impacto", i))
 
   # Teste de Mann-Whitney
   teste <- wilcox.test(
     formula = as.formula(paste(i, "~ impacto")),
-    data = dados_filtrados
+    data = dados_filtrados_wilcox
   )
  
   p_value = teste$p.value
   w <- teste$statistic
 
   # Tamanhos das amostras
-  n1 <- dados_filtrados %>%
-    filter(impacto == levels(dados_filtrados$impacto)[1]) %>% 
+  n1 <- dados_filtrados_wilcox %>%
+    filter(impacto == levels(dados_filtrados_wilcox$impacto)[1]) %>% 
     nrow()
-  n2 <- dados_filtrados %>% 
-    filter(impacto == levels(dados_filtrados$impacto)[2]) %>% 
+  n2 <- dados_filtrados_wilcox %>% 
+    filter(impacto == levels(dados_filtrados_wilcox$impacto)[2]) %>% 
     nrow()
 
   # Cálculo do U
@@ -415,7 +423,7 @@ for (i in painel_vetor) {
   nome_indice <- vetor_estetica_indice[[i]]
 
   plot <- ggplot(
-    dados_filtrados,
+    dados_filtrados_wilcox,
     aes_string(
       x = "impacto",
       y = i,
@@ -428,7 +436,7 @@ for (i in painel_vetor) {
     scale_x_discrete(labels = vetor_estetica_impacto) +
     theme(
       text = element_text(size = unit(18, "pt"), face = "bold"),
-      axis.title = element_blank(),
+      #axis.title = element_blank(),
       plot.title = element_blank(),
       axis.text.x = element_blank(),
       plot.subtitle = element_text(size = unit(18, "pt"), face = "bold", hjust = 0.5)
@@ -450,7 +458,7 @@ for (i in painel_vetor) {
 painel <- ggarrange(
   plotlist = painel_plots,
   ncol = 3,
-  nrow = 4,
+  nrow = 2,
   labels = "AUTO",
   common.legend = TRUE,
   legend = "bottom"

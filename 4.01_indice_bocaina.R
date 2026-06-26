@@ -10,10 +10,11 @@ metodos_de_amostragem <- c("D Net")
 vetor_respostas <- c(
   "aspt", 
   "bmwp", 
-  "razao_ept_chironomidae", 
-  "relativo_odonata", 
-  "relativo_trichoptera", 
-  "riqueza_familias_ephemeroptera", 
+  #"filtrador_proporcao",
+  #"raspadores_proporcao",
+  "razao_ept_chironomidae",
+  "relativo_odonata",
+  "relativo_trichoptera",
   "shannon_familias")
 
 nota_maxima <- length(vetor_respostas) * 5
@@ -111,6 +112,9 @@ indices_rebalanceados_df <- indices_df %>%
     )
   ) 
 
+  
+
+
 
 giovanas_index <- indices_rebalanceados_df %>%
   group_by(campanha, rio, locality_name) %>%
@@ -122,6 +126,17 @@ giovanas_index <- indices_rebalanceados_df %>%
   )
 
 
+tabela_IMM <- giovanas_index %>%
+  select(campanha, rio, locality_name, giovanas_index, giovanas_index_relative)
+
+tabela_indices <- indices_df %>%
+  select(campanha, rio, locality_name, all_of(vetor_respostas)) %>%
+  left_join(tabela_IMM, by = c("campanha", "rio", "locality_name"))
+
+write_csv(
+  tabela_indices,
+  file.path(pasta_tabelas, "indice_bocaina_imaturos_piata.csv")
+)
 
 
 ################## Plot indice multimetrico ####################################
@@ -204,7 +219,124 @@ ggsave(
 )
 
 
+############################# plotar correlação entre métricas e IMM ###########
+# Identificar colunas numéricas (excluindo giovanas_index_relative e giovanas_index)
+colunas_numericas <- names(tabela_indices)[sapply(tabela_indices, is.numeric)]
+colunas_para_plotar <- setdiff(colunas_numericas, c("giovanas_index_relative", "giovanas_index"))
 
+# Criar gráficos de dispersão para giovanas_index_relative vs outras variáveis numéricas
+if(length(colunas_para_plotar) > 0) {
+  # Criar um arquivo PDF com todos os gráficos
+  pdf(file.path(pasta_figuras, "graficos_giovanas_index_relative.pdf"),
+      width = 10, height = 8)
+  
+  for(var in colunas_para_plotar) {
+    # Extrair valores
+    x <- tabela_indices[["giovanas_index_relative"]]
+    y <- tabela_indices[[var]]
+    
+    # Remover NAs
+    validos <- complete.cases(x, y)
+    x_clean <- x[validos]
+    y_clean <- y[validos]
+    
+    # Pular se não houver dados suficientes
+    if(length(x_clean) < 3) next
+    
+    # Calcular correlação
+    r <- cor(x_clean, y_clean, method = "pearson")
+    r2 <- r^2
+    
+    # Teste de correlação
+    cor_test <- cor.test(x_clean, y_clean, method = "pearson")
+    p_val <- cor_test$p.value
+    
+    # Ajustar modelo de regressão linear
+    modelo_linear <- lm(y_clean ~ x_clean)
+    
+    # Extrair coeficientes da regressão
+    intercepto <- coef(modelo_linear)[1]
+    inclinacao <- coef(modelo_linear)[2]
+    
+    # Criar o gráfico
+    par(mar = c(5, 5, 4, 2))
+    plot(x_clean, y_clean,
+         xlab = "Giovana's Index Relative",
+         ylab = var,
+         main = paste("Regressão Linear\nGiovana's Index Relative vs", var),
+         pch = 19,
+         col = rgb(0, 0, 0, 0.5),
+         cex.main = 0.9)
+    
+    # Adicionar linha de regressão linear
+    abline(modelo_linear, col = "red", lwd = 2)
+    
+    # Adicionar intervalo de confiança da regressão
+    if(length(x_clean) > 10) {  # Só adiciona intervalo se houver dados suficientes
+      x_ordenado <- seq(min(x_clean), max(x_clean), length.out = 100)
+      intervalo_conf <- predict(modelo_linear, 
+                               newdata = data.frame(x_clean = x_ordenado), 
+                               interval = "confidence")
+      
+      # Adicionar banda de confiança
+      polygon(c(x_ordenado, rev(x_ordenado)),
+              c(intervalo_conf[,2], rev(intervalo_conf[,3])),
+              col = rgb(1, 0, 0, 0.1), border = NA)
+    }
+    
+    # Adicionar equação da reta e estatísticas
+    equacao <- paste0("y = ", round(intercepto, 3), 
+                     ifelse(inclinacao >= 0, " + ", " - "), 
+                     round(abs(inclinacao), 3), "x")
+    
+    legend("topright",
+           legend = c(
+             equacao,
+             paste("r =", round(r, 3)),
+             paste("r² =", round(r2, 3)),
+             paste("p =", format(p_val, scientific = TRUE, digits = 3))
+           ),
+           bty = "n",
+           cex = 0.8,
+           text.col = c("red", "blue", "blue", "blue"))
+    
+    # Adicionar grid
+    grid()
+  }
+  
+  dev.off()
+  
+  cat("Gráficos de regressão linear salvos em: graficos_giovanas_index_relative.pdf\n")
+  
+  # Também criar uma tabela resumo das correlações
+  resultado_correlacoes <- data.frame(
+    Variavel = colunas_para_plotar,
+    Correlacao_r = NA,
+    R_quadrado = NA,
+    P_valor = NA,
+    Significativo_005 = NA
+  )
+  
+  for(i in 1:length(colunas_para_plotar)) {
+    var <- colunas_para_plotar[i]
+    validos <- complete.cases(tabela_indices[["giovanas_index_relative"]], 
+                             tabela_indices[[var]])
+    
+    if(sum(validos) >= 3) {
+      cor_test <- cor.test(tabela_indices[["giovanas_index_relative"]][validos], 
+                          tabela_indices[[var]][validos])
+      resultado_correlacoes$Correlacao_r[i] <- round(cor_test$estimate, 3)
+      resultado_correlacoes$R_quadrado[i] <- round(cor_test$estimate^2, 3)
+      resultado_correlacoes$P_valor[i] <- format(cor_test$p.value, scientific = TRUE, digits = 3)
+      resultado_correlacoes$Significativo_005[i] <- cor_test$p.value < 0.05
+    }
+  }
+  
+  # Mostrar e salvar resultados
+  print(resultado_correlacoes)
+  write.csv(resultado_correlacoes, file.path(pasta_tabelas, "correlacoes_giovanas_index_relative.csv"), row.names = FALSE)
+  
+}
 
 ############################## INACABADO INACABADO #############################
 ############################### Análise Leave-One-Out ##########################
