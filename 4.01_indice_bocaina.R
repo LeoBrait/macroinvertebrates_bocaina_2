@@ -141,6 +141,7 @@ write_csv(
 
 ################## Plot indice multimetrico ####################################
 metricas_contribuicao <- indices_rebalanceados_df %>%
+  left_join(giovanas_index, by = c("campanha", "rio", "locality_name")) %>%
   mutate(
     metrica_label = case_when(
       metrica == "aspt" ~ "ASPT",
@@ -151,8 +152,32 @@ metricas_contribuicao <- indices_rebalanceados_df %>%
       metrica == "riqueza_familias_ephemeroptera" ~ "Presença Ephemeroptera",
       metrica == "shannon_familias" ~ "Shannon Famílias",
       TRUE ~ metrica
+    ),
+    campanha = case_when(
+      campanha == "campanha_1" ~ "Mai(2024)",
+      campanha == "campanha_2" ~ "Ago(2024)",
+      campanha == "campanha_3" ~ "Fev(2025)",
+      campanha == "campanha_4" ~ "Jul(2025)",
+      TRUE ~ campanha
+    ),
+    campanha = factor(
+      campanha, 
+      levels = c("Mai(2024)", "Ago(2024)", "Fev(2025)", "Jul(2025)")
+    ),
+    locality_name = case_when(
+      locality_name == "RioBebedouro-P1" ~ "Rio Bebedouro P1",
+      locality_name == "RioBebedouro-P2" ~ "Rio Bebedouro P2",
+      locality_name == "RioBebedouro-P3" ~ "Rio Bebedouro P3",
+      locality_name == "RiodaBarra-P1/2" ~ "Rio da Barra P1",
+      locality_name == "RiodaBarra-P2" ~ "Rio da Barra P2",
+      locality_name == "RiodaBarra-P3" ~ "Rio da Barra P3",
+      locality_name == "RioMutuca-P1" ~ "Rio Mutuca P1",
+      locality_name == "RioMutuca-P2" ~ "Rio Mutuca P2",
+      locality_name == "RioMutuca-P3" ~ "Rio Mutuca P3",
+      TRUE ~ locality_name
     )
-  )
+  ) 
+
 
 plot <- ggplot() +
   # Barras empilhadas com os valores brutos das notas
@@ -169,28 +194,27 @@ plot <- ggplot() +
     data = metricas_contribuicao,
     aes(x = campanha, y = nota, fill = metrica_label, label = nota),
     position = position_stack(vjust = 0.5),
-    size = 3,
-    color = "black",
-    fontface = "bold"
+    size = 5,
+    color = "black"
   ) +
   # Linha do índice total
   geom_line(
-    data = giovanas_index,
-    aes(x = campanha, y = giovanas_index_relative / 100 * nota_maxima, group = 1),
+    data = metricas_contribuicao,
+    aes(x = campanha, y = giovanas_index, group = 1),
     color = "black",
     size = 1.2
   ) +
   # Pontos do índice total
   geom_point(
-    data = giovanas_index,
-    aes(x = campanha, y = giovanas_index_relative / 100 * nota_maxima),
+    data = metricas_contribuicao,
+    aes(x = campanha, y = giovanas_index),
     color = "black",
     size = 3,
     shape = 21,
     fill = "white",
     stroke = 1.5
   ) +
-  facet_wrap(~ interaction(rio, locality_name), scales = "free_x", ncol = 3) +
+  facet_wrap(~  locality_name, scales = "free_x", ncol = 3) +
   labs(
     x = "Campanha",
     y = "Nota (Soma das Métricas)",
@@ -200,9 +224,14 @@ plot <- ggplot() +
   scale_fill_brewer(palette = "Set3") +
   theme_bw() +
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text = element_text(angle = 0, hjust = 0.5, size = 17),
     legend.position = "bottom",
-    panel.grid.minor = element_blank()
+    panel.grid.minor = element_blank(),
+    strip.text = element_text(size = 17, face = "bold"),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 17, face = "bold"),
+    legend.title = element_text(size = 17, face = "bold")
+    
   ) +
   scale_y_continuous(
     limits = c(0, nota_maxima + 5),
