@@ -253,7 +253,7 @@ df_total <- df_total %>%
 ibvol_df <- df_total %>%
   left_join(ibvol_dicionario_df, by = "order") %>%
   mutate(score = ifelse(is.na(score), 0, score)) %>%
-  group_by(rio, campanha, locality_name, method, family) %>%
+  group_by(rio, campanha, locality_name, method, order) %>%
   summarise(ibvol_found = mean(score)) %>%
   group_by(rio, campanha, locality_name, method) %>%
   summarise(ibvol = sum(ibvol_found))

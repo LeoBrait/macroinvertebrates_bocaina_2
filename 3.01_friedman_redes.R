@@ -46,7 +46,6 @@ indices_df <- indices_df_raw %>%
 
 ################################ Processamento #################################
 list_of_plots <- list()
-i <- "aspt"
 for (i in vetor_respostas) {
   print(paste("Analisando redes para índice:", i))
   
