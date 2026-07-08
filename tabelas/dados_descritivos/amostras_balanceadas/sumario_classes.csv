@@ -1,0 +1,7 @@
+class,abundancia_classe,riqueza_ordens,riqueza_familias,abundancia_total,abundancia_relativa
+Bivalvia,29,1,1,3027,0.00958044268252395
+Crustacea,126,1,1,3027,0.04162537165510406
+Gastropoda,100,3,4,3027,0.03303600925008259
+Insecta,2722,9,41,3027,0.8992401717872481
+Oligochaeta,37,1,1,3027,0.012223323422530559
+Turbellaria,13,1,1,3027,0.004294681202510736
