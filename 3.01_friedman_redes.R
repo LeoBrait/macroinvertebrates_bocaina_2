@@ -3,6 +3,8 @@ library(tidyverse)
 ################################## Configurações ###############################
 set.seed(1994)
 metodos_de_amostragem <- c("D Net", "Pool Net", "Sieve")
+rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
+amostras_descartadas <- c("RiodaBarra-P1")
 
 
 
@@ -36,6 +38,8 @@ vetor_respostas <- indices_df_raw %>%
   names()
 
 indices_df <- indices_df_raw %>%
+  filter(rio %in% rios) %>%
+  filter(!locality_name %in% amostras_descartadas) %>%
   filter(method %in% metodos_de_amostragem) %>%
   mutate("coluna_id" = paste0(rio, "_", locality_name, "_", campanha)) #%>%
   #filter(!coletor_recolhedor_proporcao > 0.4)
