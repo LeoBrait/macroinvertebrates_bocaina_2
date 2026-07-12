@@ -7,6 +7,11 @@ rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 amostras_descartadas <- c("RiodaBarra-P1")
 
 
+# Renomear os índices
+nomes_indices <- c(
+  total_macroinvertebrados = "Abundância",
+  riqueza_familias = "S' famílias"
+)
 
 if (length(metodos_de_amostragem) == 3) {
   pasta_figuras <- "figuras/redes/comparacao_3_redes/"
@@ -85,9 +90,14 @@ for (i in vetor_respostas) {
     labs(
       title = i,
       subtitle = paste0(
-        "Friedman test p-value: ", round(friedman_test_result$p.value, 4)
+        "Friedman test p-value: ", round(friedman_test_result$p.value, 4),
+        "\n",
+        "χ² = ", round(friedman_test_result$statistic, 4),
+        "\n",
+        "N = ", nrow(dados_filtrados_long)
+        
       )
-    ) 
+    )
   
   ggsave(
     filename = paste0(pasta_figuras, i, ".png"),
