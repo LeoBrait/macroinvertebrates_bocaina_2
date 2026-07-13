@@ -12,7 +12,6 @@ metodos_de_amostragem <- c("D Net", "Pool Net", "Sieve")
 descarte <- c("RiodaBarra-P1")
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 ################################### Dados ######################################
-dados_espaciais <- read_csv("dados/dados_satelite_bocaina.csv")
 
 # Com ou sem method no id_tempo_espaço?
 dados <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
@@ -147,6 +146,7 @@ summary(m2_selecionado)
 
 ############################ Indices de qualidade da água ######################
 
+# bmwp -------------------------------------------------------------------------
 global <- glmmTMB(
   bmwp ~
   campanha + method + rio + (1 | rio:locality_name),
@@ -176,3 +176,15 @@ contrastes_campanhas <- pairs(medias_campanhas)
 # comparacoes metodos
 medias_metodos <- emmeans(m1_selecionado, ~ method)
 contrastes_metodos <- pairs(medias_metodos)
+
+# IBVOL -----------------------------------------------------------------------
+
+global <- glmmTMB(
+  ibvol ~
+  campanha + method + rio + (1 | rio:locality_name),
+  data = dados,
+  family = gaussian
+)
+
+ranking_modelos <- dredge(global)
+m1_selecionado <- get.models(ranking_modelos, subset = 1)[[1]]
