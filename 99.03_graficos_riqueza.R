@@ -20,7 +20,6 @@ df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
   filter(rio %in% rios) %>%
   filter(method %in% metodos) %>%
   filter(!locality_name %in% amostras_descartadas_vetor) %>%
-  mutate(total_macroinvertebrados = total_macroinvertebrados * 0.1) %>%
   select(colunas) %>%
   pivot_longer(
     cols = c("total_macroinvertebrados", "riqueza_ordens", "riqueza_familias"),
@@ -44,22 +43,42 @@ df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
     )
   )
 
+  sumario <- df %>%
+    group_by(rio, locality_name, method, categoria_da_resposta) %>%
+    summarise(
+      media = mean(valor),
+      desvio_padrao = sd(valor),
+      n = n(),
+      se =  desvio_padrao / sqrt(n)
+    ) %>%
+    ungroup()
 
 
-grafico <- df %>%
-  ggplot(aes(x = locality_name, y = valor, fill = method)) +
+write_csv(sumario, "teste.csv")
+grafico <- 
+  ggplot(sumario, aes(x = locality_name, y = media, fill = method)) +
+  
+  geom_errorbar(
+    aes(ymin = media - se, ymax = media + se),
+    width = 0.2,
+    position = position_dodge(width = 0.9)
+  ) +
   geom_bar(stat = "identity", position = "dodge") +
   geom_point(
+    data = df,
     aes(y = valor, x = locality_name),
     position = position_dodge(width = 0.9),
-    size = 1,
-    color = "black"
+    size = 1
   ) +
   facet_grid(categoria_da_resposta ~ rio, scales = "free_y") +
   labs(
     x = "Pontos de amostragem",
     y = "Valor do índice",
     fill = "Método de amostragem"
+  ) +
+  theme_bw() +
+  theme(
+    color = "black"
   ) +
   theme_bw() +
   theme(
