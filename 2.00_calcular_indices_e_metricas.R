@@ -242,16 +242,17 @@ bmwp_df <- df_total %>%
 
 df_total <- df_total %>%
   mutate(
-    order = case_when(
+    ibvol_factor = case_when(
       class == "Insecta" ~ order,
       class == "Oligochaeta" ~ "Oligochaeta",
       class == "Crustacea" ~ "Crustacea",
       class == "Gastropoda" ~ "Gastropoda",
+      class == "Turbellaria" ~ "Turbellaria",
       TRUE ~ order  # para outros casos, mantém o valor existente
     )
   )
 ibvol_df <- df_total %>%
-  left_join(ibvol_dicionario_df, by = "order") %>%
+  left_join(ibvol_dicionario_df, by = c("ibvol_factor" = "order") ) %>%
   mutate(score = ifelse(is.na(score), 0, score)) %>%
   group_by(rio, campanha, locality_name, method, order) %>%
   summarise(ibvol_found = mean(score)) %>%
