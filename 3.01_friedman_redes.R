@@ -16,13 +16,7 @@ nomes_indices <- c(
 if (length(metodos_de_amostragem) == 3) {
   pasta_figuras <- "figuras/redes/comparacao_3_redes/"
   pasta_tabelas <- "tabelas/redes/3_redes/"
-} else if (length(metodos_de_amostragem) == 2) {
-  pasta_figuras <- "figuras/redes/comparacao_2_redes/"
-  pasta_tabelas <- "tabelas/redes/2_redes/"
-} else {
-  pasta_figuras <- "figuras/redes/rede_unica/"
-  pasta_tabelas <- "tabelas/redes/rede_unica/"
-}
+} 
 
 # Pastas de figuras
 if (!dir.exists(pasta_figuras)) {
@@ -54,11 +48,6 @@ list_of_plots <- list()
 for (i in vetor_respostas) {
   print(paste("Analisando redes para índice:", i))
   
-  # Remover outliers apenas no caso de coletor recolhedor
-  if (i == "coletor_recolhedor_proporcao") {
-    indices_df <- indices_df %>%
-      filter(!coletor_recolhedor_proporcao > 0.4)
-  }
   
   dados_filtrados <- indices_df %>%
     select(coluna_id, method, i) %>%
@@ -94,7 +83,7 @@ for (i in vetor_respostas) {
         "\n",
         "χ² = ", round(friedman_test_result$statistic, 4),
         "\n",
-        "N = ", nrow(dados_filtrados_long)
+        "Blocks = ", nrow(dados_filtrados)
         
       )
     )
