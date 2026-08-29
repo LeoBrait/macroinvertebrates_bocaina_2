@@ -264,5 +264,6 @@ ggsave(
 ggsave(
   paste0(pasta_figuras, "estrutura_ordens_por_campanha_e_rio_GERAL.svg"),  
   plot = merged_plot,
-  width = 12, height = 20, dpi = 300
+  width = 12, height = 20, dpi = 300, device = svglite
 )
+
