@@ -20,6 +20,9 @@ df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
   filter(rio %in% rios) %>%
   filter(method %in% metodos) %>%
   filter(!locality_name %in% amostras_descartadas_vetor) %>%
+  group_by(campanha, rio, locality_name) %>%
+  filter(all(metodos %in% method)) %>%
+  ungroup() %>%
   select(colunas) %>%
   pivot_longer(
     cols = c("total_macroinvertebrados", "riqueza_ordens", "riqueza_familias"),
@@ -68,7 +71,8 @@ grafico <-
     data = df,
     aes(y = valor, x = locality_name),
     position = position_dodge(width = 0.9),
-    size = 1
+    size = 1,
+    shape = 1
   ) +
   facet_grid(categoria_da_resposta ~ rio, scales = "free_y") +
   labs(
