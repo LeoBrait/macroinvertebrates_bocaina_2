@@ -16,6 +16,10 @@ df_ordens <-
 df_familias <-
   read_csv("dados/processado/matriz_comunidades_familias_imaturos_largo.csv")
 
+# IBVOL
+ibvol_dicionario_df <-
+  read_csv("dados/notas_ibvol.csv")
+
 # Bmwp
 bmwp_dicionario_df <-
   read_csv("dados/20250406_referencia_bmwp.csv")
@@ -236,7 +240,28 @@ bmwp_df <- df_total %>%
   group_by(rio, campanha, locality_name, method) %>%
   summarise(bmwp = sum(bmwp_found))
 
+df_parcial <- df_total %>%
+  mutate(
+    ibvol_factor = case_when(
+      class == "Insecta" ~ order,
+      class == "Oligochaeta" ~ "Oligochaeta",
+      class == "Crustacea" ~ "Crustacea",
+      class == "Gastropoda" ~ "Gastropoda",
+      class == "Turbellaria" ~ "Turbellaria",
+      TRUE ~ order  # para outros casos, mantém o valor existente
+    )
+  )
+ibvol_df <- df_parcial %>%
+  left_join(ibvol_dicionario_df, by = c("ibvol_factor" = "order") ) %>%
+  mutate(score = ifelse(is.na(score), 0, score)) %>%
+  group_by(rio, campanha, locality_name, method, order) %>%
+  summarise(ibvol_found = mean(score)) %>%
+  group_by(rio, campanha, locality_name, method) %>%
+  summarise(ibvol = sum(ibvol_found))
+
 matriz_total <- merge(matriz_total, bmwp_df)
+matriz_total <- merge(matriz_total, ibvol_df)
+
 matriz_total <- matriz_total %>%
   mutate(
     aspt = bmwp / riqueza_familias

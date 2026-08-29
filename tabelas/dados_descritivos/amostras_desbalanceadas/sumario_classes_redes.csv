@@ -1,0 +1,19 @@
+"","method","class","abundancia_classe_na_rede","riqueza_ordens_da_classe_por_rede","riqueza_familias_da_classe_por_rede"
+"1","D Net","Bivalvia",12,1,1
+"2","D Net","Crustacea",57,1,1
+"3","D Net","Gastropoda",46,1,2
+"4","D Net","Insecta",825,9,35
+"5","D Net","Oligochaeta",21,1,1
+"6","D Net","Turbellaria",1,1,1
+"7","Pool Net","Bivalvia",13,1,1
+"8","Pool Net","Crustacea",54,1,1
+"9","Pool Net","Gastropoda",54,2,3
+"10","Pool Net","Insecta",1393,8,34
+"11","Pool Net","Oligochaeta",3,1,1
+"12","Pool Net","Turbellaria",7,1,1
+"13","Sieve","Bivalvia",9,1,1
+"14","Sieve","Crustacea",37,1,1
+"15","Sieve","Gastropoda",22,3,4
+"16","Sieve","Insecta",629,8,34
+"17","Sieve","Oligochaeta",14,1,1
+"18","Sieve","Turbellaria",5,1,1

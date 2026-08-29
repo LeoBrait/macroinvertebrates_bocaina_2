@@ -3,19 +3,20 @@ library(tidyverse)
 ################################## Configurações ###############################
 set.seed(1994)
 metodos_de_amostragem <- c("D Net", "Pool Net", "Sieve")
+rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
+amostras_descartadas <- c("RiodaBarra-P1")
 
 
+# Renomear os índices
+nomes_indices <- c(
+  total_macroinvertebrados = "Abundância",
+  riqueza_familias = "S' famílias"
+)
 
 if (length(metodos_de_amostragem) == 3) {
   pasta_figuras <- "figuras/redes/comparacao_3_redes/"
   pasta_tabelas <- "tabelas/redes/3_redes/"
-} else if (length(metodos_de_amostragem) == 2) {
-  pasta_figuras <- "figuras/redes/comparacao_2_redes/"
-  pasta_tabelas <- "tabelas/redes/2_redes/"
-} else {
-  pasta_figuras <- "figuras/redes/rede_unica/"
-  pasta_tabelas <- "tabelas/redes/rede_unica/"
-}
+} 
 
 # Pastas de figuras
 if (!dir.exists(pasta_figuras)) {
@@ -36,21 +37,17 @@ vetor_respostas <- indices_df_raw %>%
   names()
 
 indices_df <- indices_df_raw %>%
+  filter(rio %in% rios) %>%
+  filter(!locality_name %in% amostras_descartadas) %>%
   filter(method %in% metodos_de_amostragem) %>%
   mutate("coluna_id" = paste0(rio, "_", locality_name, "_", campanha)) #%>%
   #filter(!coletor_recolhedor_proporcao > 0.4)
 
 ################################ Processamento #################################
 list_of_plots <- list()
-i <- "aspt"
 for (i in vetor_respostas) {
   print(paste("Analisando redes para índice:", i))
   
-  # Remover outliers apenas no caso de coletor recolhedor
-  if (i == "coletor_recolhedor_proporcao") {
-    indices_df <- indices_df %>%
-      filter(!coletor_recolhedor_proporcao > 0.4)
-  }
   
   dados_filtrados <- indices_df %>%
     select(coluna_id, method, i) %>%
@@ -82,9 +79,14 @@ for (i in vetor_respostas) {
     labs(
       title = i,
       subtitle = paste0(
-        "Friedman test p-value: ", round(friedman_test_result$p.value, 4)
+        "Friedman test p-value: ", round(friedman_test_result$p.value, 4),
+        "\n",
+        "χ² = ", round(friedman_test_result$statistic, 4),
+        "\n",
+        "Blocks = ", nrow(dados_filtrados)
+        
       )
-    ) 
+    )
   
   ggsave(
     filename = paste0(pasta_figuras, i, ".png"),

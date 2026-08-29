@@ -6,11 +6,14 @@ library(tidyverse)
 set.seed(1994)
 metodos_de_amostragem <- c("D Net")
 vetor_respostas <- c(
-  "aspt", "bmwp", "razao_ept_chironomidae", "relativo_odonata", 
-  "relativo_trichoptera", 
-  "riqueza_familias_ephemeroptera", 
-  "riqueza_familias_trichoptera",
-  "giovanas_index")
+ "aspt", 
+  "bmwp", 
+  #"filtrador_proporcao",
+  #"raspadores_proporcao",
+  "razao_ept_chironomidae",
+  "relativo_odonata",
+  "relativo_trichoptera",
+  "shannon_familias")
 vetor_variaveis_ambiente <- c(
 "ocupacao_margens",
 "largura_mata_ciliar",
@@ -27,20 +30,30 @@ vetor_variaveis_ambiente <- c(
 "pontuacao_total"
 )
 
+# Pastas de figuras
+pasta_figuras <- "figuras/indice_multimetrico/rede_unica"
+if (!dir.exists(pasta_figuras)) {
+  dir.create(pasta_figuras, recursive = TRUE)
+}
+
+# Pasta de tabelas
+pasta_tabelas <- "tabelas/indice_multimetrico/rede_unica"
+if (!dir.exists(pasta_tabelas)) {
+  dir.create(pasta_tabelas, recursive = TRUE)
+}
+
 ################################## Carregar dados ##############################
-satelite_df <- read_csv("dados/dados_analise_entorno_bocaina.csv")
+analise_entorno_df <- read_csv("dados/dados_analise_entorno_bocaina.csv")
 
 
-indices_df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
-  filter(method %in% metodos_de_amostragem) %>%
-  select(-method)
-bocainas_indexes <- read_csv("tabelas/indice_multimetrico/indice_bocaina_imaturos_piata.csv") 
+bocainas_indexes <- read_csv("tabelas/indice_multimetrico/rede_unica/indice_bocaina_imaturos_piata.csv")
+
+
 
 
 # Unir dados de índices com dados ambientais
-merged_df <- indices_df %>%
-  left_join(satelite_df, by = c("rio", "locality_name")) %>%
-  inner_join(bocainas_indexes, by = c("campanha", "rio", "locality_name"))
+merged_df <- bocainas_indexes %>%
+  left_join(analise_entorno_df, by = c("rio", "locality_name"))
 
 
 ################################## Remover SD = 0 ##############################
@@ -73,6 +86,7 @@ for (ambiental in vetor_variaveis_ambiente) {
           variavel_ambiental = ambiental,
           resposta = resposta,
           correlacao = cor_test$estimate,
+          r_quadrado = cor_test$estimate^2,
           p_value = cor_test$p.value
         )
       )
@@ -81,5 +95,5 @@ for (ambiental in vetor_variaveis_ambiente) {
 
 write_csv(
   response_df,
-  file.path("tabelas/correlacao_indices_vs_formulario.csv")
+  file.path(pasta_tabelas, "correlacao_indices_vs_formulario.csv")
 )

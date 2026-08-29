@@ -1,0 +1,122 @@
+"","method","family","order","abundancia_familia_na_rede","total_rede","abundancia_relativa_familia_na_rede"
+"1","D Net","Aeshnidae","Odonata",7,815,0.858895705521472
+"2","D Net","Amphipoda","Amphipoda",35,815,4.29447852760736
+"3","D Net","Baetidae","Ephemeroptera",9,815,1.10429447852761
+"4","D Net","Belostomatidae","Hemiptera",17,815,2.08588957055215
+"5","D Net","Caenidae","Ephemeroptera",3,815,0.368098159509202
+"6","D Net","Calamoceratidae","Trichoptera",38,815,4.66257668711656
+"7","D Net","Calopterygidae","Odonata",6,815,0.736196319018405
+"8","D Net","Chaoboridae","Diptera",15,815,1.84049079754601
+"9","D Net","Chironomidae","Diptera",84,815,10.3067484662577
+"10","D Net","Coenagrionidae","Odonata",43,815,5.2760736196319
+"11","D Net","Corydalidae","Megaloptera",1,815,0.122699386503067
+"12","D Net","Culicidae","Diptera",1,815,0.122699386503067
+"13","D Net","Desc. F. Oligochaeta","Desc. O. Classe Oligochaeta",20,815,2.45398773006135
+"14","D Net","Dryopidae","Coleoptera",100,815,12.2699386503067
+"15","D Net","Dysticidae","Coleoptera",79,815,9.69325153374233
+"16","D Net","Elmidae","Coleoptera",6,815,0.736196319018405
+"17","D Net","Gerridae","Hemiptera",5,815,0.613496932515337
+"18","D Net","Gomphidae","Odonata",29,815,3.55828220858896
+"19","D Net","Helycopsichidae","Trichoptera",2,815,0.245398773006135
+"20","D Net","Hydrophilidae","Coleoptera",9,815,1.10429447852761
+"21","D Net","Hydropsychidae","Trichoptera",9,815,1.10429447852761
+"22","D Net","Leptoceridae","Trichoptera",29,815,3.55828220858896
+"23","D Net","Leptophlebiidae","Ephemeroptera",39,815,4.78527607361963
+"24","D Net","Libellulidae","Odonata",103,815,12.638036809816
+"25","D Net","Naucoridae","Hemiptera",28,815,3.43558282208589
+"26","D Net","Noteridae","Coleoptera",2,815,0.245398773006135
+"27","D Net","Notonectidae","Hemiptera",6,815,0.736196319018405
+"28","D Net","Odontoceridae","Trichoptera",1,815,0.122699386503067
+"29","D Net","Perlidae","Plecoptera",31,815,3.80368098159509
+"30","D Net","Philopotamidae","Trichoptera",1,815,0.122699386503067
+"31","D Net","Physidae","Basommatophora",6,815,0.736196319018405
+"32","D Net","Planorbidae","Basommatophora",18,815,2.20858895705521
+"33","D Net","Polycentropodidae","Trichoptera",14,815,1.71779141104294
+"34","D Net","Pyralidae","Lepidoptera",1,815,0.122699386503067
+"35","D Net","Sphaeridae","Veneirodea",7,815,0.858895705521472
+"36","D Net","Tipulidae","Diptera",5,815,0.613496932515337
+"37","D Net","Tricladida","Tricladida",1,815,0.122699386503067
+"38","D Net","Veliidae","Hemiptera",5,815,0.613496932515337
+"39","Pool Net","Aeshnidae","Odonata",46,1524,3.01837270341207
+"40","Pool Net","Amphipoda","Amphipoda",54,1524,3.54330708661417
+"41","Pool Net","Baetidae","Ephemeroptera",40,1524,2.6246719160105
+"42","Pool Net","Belostomatidae","Hemiptera",35,1524,2.29658792650919
+"43","Pool Net","Caenidae","Ephemeroptera",1,1524,0.0656167979002625
+"44","Pool Net","Calamoceratidae","Trichoptera",43,1524,2.82152230971129
+"45","Pool Net","Calopterygidae","Odonata",17,1524,1.11548556430446
+"46","Pool Net","Chaoboridae","Diptera",30,1524,1.96850393700787
+"47","Pool Net","Chironomidae","Diptera",259,1524,16.994750656168
+"48","Pool Net","Coenagrionidae","Odonata",32,1524,2.0997375328084
+"49","Pool Net","Culicidae","Diptera",3,1524,0.196850393700787
+"50","Pool Net","Desc. F. Oligochaeta","Desc. O. Classe Oligochaeta",3,1524,0.196850393700787
+"51","Pool Net","Dixidae","Diptera",2,1524,0.131233595800525
+"52","Pool Net","Dryopidae","Coleoptera",94,1524,6.16797900262467
+"53","Pool Net","Dysticidae","Coleoptera",223,1524,14.6325459317585
+"54","Pool Net","Elmidae","Coleoptera",7,1524,0.459317585301837
+"55","Pool Net","Gerridae","Hemiptera",13,1524,0.853018372703412
+"56","Pool Net","Gomphidae","Odonata",79,1524,5.18372703412073
+"57","Pool Net","Hydrobiidae","Littorinimorpha",1,1524,0.0656167979002625
+"58","Pool Net","Hydrochidae","Coleoptera",1,1524,0.0656167979002625
+"59","Pool Net","Hydrophilidae","Coleoptera",50,1524,3.28083989501312
+"60","Pool Net","Hydropsychidae","Trichoptera",36,1524,2.36220472440945
+"61","Pool Net","Leptoceridae","Trichoptera",28,1524,1.83727034120735
+"62","Pool Net","Leptophlebiidae","Ephemeroptera",19,1524,1.24671916010499
+"63","Pool Net","Libellulidae","Odonata",177,1524,11.6141732283465
+"64","Pool Net","Mesoveliidae","Hemiptera",3,1524,0.196850393700787
+"65","Pool Net","Naucoridae","Hemiptera",43,1524,2.82152230971129
+"66","Pool Net","Noteridae","Coleoptera",15,1524,0.984251968503937
+"67","Pool Net","Notonectidae","Hemiptera",32,1524,2.0997375328084
+"68","Pool Net","Odontoceridae","Trichoptera",1,1524,0.0656167979002625
+"69","Pool Net","Perlidae","Plecoptera",14,1524,0.918635170603675
+"70","Pool Net","Philopotamidae","Trichoptera",2,1524,0.131233595800525
+"71","Pool Net","Physidae","Basommatophora",13,1524,0.853018372703412
+"72","Pool Net","Planorbidae","Basommatophora",40,1524,2.6246719160105
+"73","Pool Net","Polycentropodidae","Trichoptera",24,1524,1.5748031496063
+"74","Pool Net","Pyralidae","Lepidoptera",4,1524,0.26246719160105
+"75","Pool Net","Simuliidae","Diptera",7,1524,0.459317585301837
+"76","Pool Net","Sphaeridae","Veneirodea",13,1524,0.853018372703412
+"77","Pool Net","Tipulidae","Diptera",4,1524,0.26246719160105
+"78","Pool Net","Tricladida","Tricladida",7,1524,0.459317585301837
+"79","Pool Net","Veliidae","Hemiptera",9,1524,0.590551181102362
+"80","Sieve","Aeshnidae","Odonata",9,688,1.30813953488372
+"81","Sieve","Amphipoda","Amphipoda",37,688,5.37790697674419
+"82","Sieve","Ampullariidae","Architaenioglossa",1,688,0.145348837209302
+"83","Sieve","Baetidae","Ephemeroptera",3,688,0.436046511627907
+"84","Sieve","Belostomatidae","Hemiptera",16,688,2.32558139534884
+"85","Sieve","Caenidae","Ephemeroptera",3,688,0.436046511627907
+"86","Sieve","Calamoceratidae","Trichoptera",15,688,2.18023255813953
+"87","Sieve","Calopterygidae","Odonata",10,688,1.45348837209302
+"88","Sieve","Chaoboridae","Diptera",8,688,1.16279069767442
+"89","Sieve","Chironomidae","Diptera",58,688,8.43023255813953
+"90","Sieve","Coenagrionidae","Odonata",17,688,2.47093023255814
+"91","Sieve","Culicidae","Diptera",6,688,0.872093023255814
+"92","Sieve","Desc. F. Oligochaeta","Desc. O. Classe Oligochaeta",14,688,2.03488372093023
+"93","Sieve","Dryopidae","Coleoptera",45,688,6.54069767441861
+"94","Sieve","Dysticidae","Coleoptera",73,688,10.6104651162791
+"95","Sieve","Elmidae","Coleoptera",5,688,0.726744186046512
+"96","Sieve","Glossosomatidae","Trichoptera",1,688,0.145348837209302
+"97","Sieve","Gomphidae","Odonata",95,688,13.8081395348837
+"98","Sieve","Hydrobiidae","Littorinimorpha",5,688,0.726744186046512
+"99","Sieve","Hydrochidae","Coleoptera",4,688,0.581395348837209
+"100","Sieve","Hydrophilidae","Coleoptera",29,688,4.21511627906977
+"101","Sieve","Hydropsychidae","Trichoptera",5,688,0.726744186046512
+"102","Sieve","Hydroptilidae","Trichoptera",1,688,0.145348837209302
+"103","Sieve","Hydroscaphidae","Coleoptera",2,688,0.290697674418605
+"104","Sieve","Leptoceridae","Trichoptera",23,688,3.34302325581395
+"105","Sieve","Leptophlebiidae","Ephemeroptera",25,688,3.63372093023256
+"106","Sieve","Libellulidae","Odonata",104,688,15.1162790697674
+"107","Sieve","Naucoridae","Hemiptera",7,688,1.01744186046512
+"108","Sieve","Noteridae","Coleoptera",2,688,0.290697674418605
+"109","Sieve","Notonectidae","Hemiptera",5,688,0.726744186046512
+"110","Sieve","Odontoceridae","Trichoptera",2,688,0.290697674418605
+"111","Sieve","Perlidae","Plecoptera",7,688,1.01744186046512
+"112","Sieve","Philopotamidae","Trichoptera",1,688,0.145348837209302
+"113","Sieve","Physidae","Basommatophora",3,688,0.436046511627907
+"114","Sieve","Planorbidae","Basommatophora",13,688,1.88953488372093
+"115","Sieve","Polycentropodidae","Trichoptera",12,688,1.74418604651163
+"116","Sieve","Pyralidae","Lepidoptera",1,688,0.145348837209302
+"117","Sieve","Sciomyzidae","Diptera",1,688,0.145348837209302
+"118","Sieve","Sphaeridae","Veneirodea",9,688,1.30813953488372
+"119","Sieve","Tabanidae","Diptera",2,688,0.290697674418605
+"120","Sieve","Tricladida","Tricladida",5,688,0.726744186046512
+"121","Sieve","Veliidae","Hemiptera",4,688,0.581395348837209

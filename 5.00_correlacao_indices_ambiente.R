@@ -6,11 +6,14 @@ library(tidyverse)
 set.seed(1994)
 metodos_de_amostragem <- c("D Net")
 vetor_respostas <- c(
-  "aspt", "bmwp", "razao_ept_chironomidae", "relativo_odonata", 
-  "relativo_trichoptera", 
-  "riqueza_familias_ephemeroptera", 
-  "riqueza_familias_trichoptera",
-  "giovanas_index")
+ "aspt", 
+  "bmwp", 
+  #"filtrador_proporcao",
+  #"raspadores_proporcao",
+  "razao_ept_chironomidae",
+  "relativo_odonata",
+  "relativo_trichoptera",
+  "shannon_familias")
 vetor_variaveis_ambiente <- c(
   "ph", "tds", "condutividade", "o2_total", "o2_porcentagem", "temperatura"
 )
@@ -25,15 +28,10 @@ sonda_df <- read_csv("dados/dados_sonda_bocaina.csv") %>%
 
 
 
-indices_df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
-  filter(method %in% metodos_de_amostragem) %>%
-  select(-method)
-bocainas_indexes <- read_csv("tabelas/indice_multimetrico/indice_bocaina_imaturos_piata.csv") 
-
+bocainas_indexes <- read_csv("tabelas/indice_multimetrico/rede_unica/indice_bocaina_imaturos_piata.csv")
 
 # Unir dados de índices com dados ambientais
-merged_df <- indices_df %>%
-  inner_join(sonda_df, by = c("campanha", "rio", "locality_name")) %>%
+merged_df <- sonda_df %>%
   inner_join(bocainas_indexes, by = c("campanha", "rio", "locality_name"))
 # spearman correlation ph e riqueza ephemeroptera
 
@@ -85,7 +83,8 @@ for (ambiental in vetor_variaveis_ambiente) {
           variavel_ambiental = ambiental,
           resposta = resposta,
           correlacao = cor_test$estimate,
-          p_value = cor_test$p.value
+          p_value = cor_test$p.value,
+          r_quadrado = cor_test$estimate^2
         )
       )
     }
