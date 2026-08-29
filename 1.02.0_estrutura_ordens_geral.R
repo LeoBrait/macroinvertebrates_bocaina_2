@@ -21,7 +21,7 @@ cores <- c(
   "Oligochaeta" = "#bd0467", # Rosa choque
   "Plecoptera" = "#7e7575", # Cinza escuro
   "Amphipoda" = "#17795a", # Verde-água forte
-  "Megaloptera" = "#792301", # Laranja avermelhado
+  "Megaloptera" = "#17ff8b", # Laranja avermelhado
   "Architaenioglossa" = "#607199", # Azul lavanda
   "Lepidoptera" = "#de7fba", # Rosa magenta
   "Littorinimorpha" = "#2d2e2b", # Verde limão forte
@@ -43,9 +43,13 @@ draw_stacked_bar <- function(data) {
         fill = order
     )
     ) +
-    geom_bar(stat = "identity", position = "stack", width = 0.9) +
+    geom_bar(
+      stat = "identity", 
+      position = position_fill(),
+      width = 0.9
+      ) +
     facet_wrap(
-      ~interaction(rio, locality_name),  
+      ~interaction(rio, locality_name, sep = " "),  
       scales = "free_x", 
       space = "free_x"
     ) +
@@ -70,7 +74,21 @@ draw_stacked_bar <- function(data) {
 
 #################################### Dados #####################################
 
-df <- read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
+df_cru <- 
+  read.csv("dados/processado/matriz_comunidades_ordens_imaturos_largo.csv")
+
+# vetores de limpeza
+rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
+amostras_descartadas <- c("RiodaBarra-P1")
+metodos <- c("D Net", "Pool Net", "Sieve")
+
+df <- df_cru %>%
+  filter(rio %in% rios) %>%
+  filter(!locality_name %in% amostras_descartadas) %>%
+  filter(method %in% metodos) %>%
+  group_by(campanha, rio, locality_name) %>%
+  filter(all(metodos %in% method)) %>%
+  ungroup()
 
 ############################## Prepr`ocessamento ################################
 
@@ -114,7 +132,7 @@ df_long <- df %>%
       locality_name == "RioBebedouro-P2" ~ "P2",
       locality_name == "RioBebedouro-P3" ~ "P3",
       locality_name == "RiodaBarra-P1/2" ~ "P1",
-      locality_name == "RiodaBarra-P1" ~ "P4",
+    # locality_name == "RiodaBarra-P1" ~ "P4",
       locality_name == "RiodaBarra-P2" ~ "P2",
       locality_name == "RiodaBarra-P3" ~ "P3",
       locality_name == "RioMutuca-P1" ~ "P1",
@@ -162,9 +180,7 @@ df_long <- df %>%
      c(
        "Rio da Barra",
        "Rio Bebedouro",
-       "Rio Mutuca",
-       "Rio Carrapicho",
-       "Rio da Serra"
+       "Rio Mutuca"
      )
    ),
    locality_name = fct_relevel(
@@ -172,8 +188,7 @@ df_long <- df %>%
      c(
        "P1",
        "P2",
-       "P3",
-       "P4"
+       "P3"
      )
    )
   ) 
@@ -182,36 +197,40 @@ df_long <- df %>%
 
 niveis_campanha <- c("C1", "C2", "C3", "C4")
 
+# remove all zero abundance rows
 df_long <- df_long %>%
-  mutate(campanha = factor(campanha, levels = niveis_campanha)) %>%
-    complete(
-    campanha,
-    rio,
-    locality_name,
-    order,
-    fill = list(
-      abundance = 0,
-      abundancia_relativa = 0
-    )
-  ) %>%
-  drop_na(locality_name)
+  filter(abundancia_relativa > 0)
+
+# df_long <- df_long %>%
+#   mutate(campanha = factor(campanha, levels = niveis_campanha)) %>%
+#     complete(
+#     campanha,
+#     rio,
+#     locality_name,
+#     order,
+#     fill = list(
+#       abundance = 0,
+#       abundancia_relativa = 0
+#     )
+#   ) %>%
+#   drop_na(locality_name)
 
 
 ############################ Separar Tabelas por rio ###########################
 
-rio_da_barra <- df_long %>% 
+rio_da_barra <- df_long %>%
   filter(rio == "Rio da Barra")
 
-rio_bebedouro <- df_long %>% 
+rio_bebedouro <- df_long %>%
   filter(rio == "Rio Bebedouro")
 
-rio_mutuca <- df_long %>% 
+rio_mutuca <- df_long %>%
   filter(rio == "Rio Mutuca")
 
-rio_carrapicho <- df_long %>% 
+rio_carrapicho <- df_long %>%
   filter(rio == "Rio Carrapicho")
 
-rio_da_serra <- df_long %>% 
+rio_da_serra <- df_long %>%
   filter(rio == "Rio da Serra")
 
 
@@ -220,15 +239,13 @@ rio_da_serra <- df_long %>%
 plot_barra <- draw_stacked_bar(rio_da_barra)
 plot_bebedouro <- draw_stacked_bar(rio_bebedouro)
 plot_mutuca <- draw_stacked_bar(rio_mutuca)
-plot_carrapicho <- draw_stacked_bar(rio_carrapicho)
-plot_serra <- draw_stacked_bar(rio_da_serra)
+#plot_carrapicho <- draw_stacked_bar(rio_carrapicho)
+#plot_serra <- draw_stacked_bar(rio_da_serra)
 
 merged_plot <- ggarrange(
   plot_barra, 
   plot_bebedouro, 
   plot_mutuca, 
-  plot_carrapicho, 
-  plot_serra, 
   ncol = 1, 
   common.legend = TRUE, 
   legend = "right",
