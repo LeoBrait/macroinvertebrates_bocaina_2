@@ -13,6 +13,11 @@ colunas <- c(
 
 amostras_descartadas_vetor <- c("RiodaBarra-P1")
 
+# Pasta de figuras
+pasta_figuras <- "figuras/riqueza/"
+if (!dir.exists(pasta_figuras)) {
+  dir.create(pasta_figuras, recursive = TRUE)
+}
 
 
 #carregar dados
@@ -40,9 +45,29 @@ df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
       str_detect(locality_name, "P1/2") ~ "P1+",
     ),
     rio = case_when(
-      rio == "rio_bebedouro" ~ "Bebedouro",
-      rio == "rio_da_barra" ~ "Barra",
-      rio == "rio_mutuca" ~ "Mutuca"
+      rio == "rio_bebedouro" ~ "Rio Bebedouro",
+      rio == "rio_da_barra" ~ "Rio da Barra",
+      rio == "rio_mutuca" ~ "Rio Mutuca"
+    )
+  ) %>%
+  mutate(
+    categoria_da_resposta = case_when(
+      categoria_da_resposta == "total_macroinvertebrados" ~ "Abundância",
+      categoria_da_resposta == "riqueza_ordens" ~ "Riqueza de ordens",
+      categoria_da_resposta == "riqueza_familias" ~ "Riqueza de famílias"
+    ),
+    campanha = case_when(
+      campanha == "campanha_1" ~ "Campanha 1",
+      campanha == "campanha_2" ~ "Campanha 2",
+      campanha == "campanha_3" ~ "Campanha 3",
+      campanha == "campanha_4" ~ "Campanha 4"
+    )
+  ) %>%
+  mutate(
+    method = case_when(
+      method == "D Net" ~ "Rede D",
+      method == "Pool Net" ~ "Rede de Piscina",
+      method == "Sieve" ~ "Peneira"
     )
   )
 
@@ -58,6 +83,10 @@ df <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
 
 
 write_csv(sumario, "teste.csv")
+
+
+
+
 grafico <- 
   ggplot(sumario, aes(x = locality_name, y = media, fill = method)) +
   
@@ -69,16 +98,16 @@ grafico <-
   geom_bar(stat = "identity", position = "dodge") +
   geom_point(
     data = df,
-    aes(y = valor, x = locality_name),
+    aes(y = valor, x = locality_name, shape = as.factor(campanha), group = method),
     position = position_dodge(width = 0.9),
-    size = 1,
-    shape = 1
+    size = 2
   ) +
   facet_grid(categoria_da_resposta ~ rio, scales = "free_y") +
   labs(
     x = "Pontos de amostragem",
     y = "Valor do índice",
-    fill = "Método de amostragem"
+    fill = "Método de amostragem",
+    shape = "Campanha"
   ) +
   theme_bw() +
   theme(
@@ -94,10 +123,15 @@ grafico <-
     axis.title.y = element_text(size = 12, face = "bold"),
     legend.title = element_text(size = 12, face = "bold"),
     legend.text = element_text(size = 10)
+  ) +
+  scale_shape_manual(
+    values = c(1, 0, 2, 3),
+    labels = c("Campanha 1", "Campanha 2", "Campanha 3", "Campanha 4"),
+    name = "Campanha"
   )
 
 ggsave(
-  filename = "teste.png",
+  filename = paste0(pasta_figuras, "painel_riqueza_abundancia.png"),
   plot = grafico,
   width = 12,
   height = 8,

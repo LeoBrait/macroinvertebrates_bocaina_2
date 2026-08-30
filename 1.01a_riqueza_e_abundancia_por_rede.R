@@ -21,9 +21,6 @@ amostras_descartadas <- c("RiodaBarra-P1")
 metodos <- c("D Net", "Pool Net", "Sieve")
 
 
-
-
-
 ############################## Processamento ###################################
 
 df_cru <- read_csv("dados/processado/imaturos_piata_limpo.csv")

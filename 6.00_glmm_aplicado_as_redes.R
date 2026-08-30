@@ -14,7 +14,8 @@ rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 ################################### Dados ######################################
 
 # Com ou sem method no id_tempo_espaço?
-dados <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
+dados_completos <-
+  read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
   mutate(
     periodo = case_when(
       campanha %in% c("campanha_1", "campanha_2", "campanha_4") ~ "seco",
@@ -31,8 +32,10 @@ dados <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
   filter(!locality_name %in% descarte)
 
 
-
-
+dados <- dados_completos %>%
+  group_by(campanha, rio, locality_name) %>%
+  filter(all(metodos_de_amostragem %in% method)) %>%
+  ungroup()
 
 
 ################################### Riqueza ####################################
@@ -40,7 +43,7 @@ dados <- read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
 # Familias ---------------------------------------------------------------------
 global <- glmmTMB(
   riqueza_familias ~
-  campanha + method + rio + (1 | rio:locality_name),
+    campanha + method + rio + (1 | rio:locality_name),
   data = dados,
   family = nbinom2
 )
@@ -156,6 +159,7 @@ global <- glmmTMB(
 
 ranking_modelos <- dredge(global)
 m1_selecionado <- get.models(ranking_modelos, subset = 1)[[1]]
+m2_selecionado <- get.models(ranking_modelos, subset = 2)[[1]]
 
 # qualidade do ajuste do modelo 1
 residuals_m1 <- simulateResiduals(m1_selecionado)
@@ -177,6 +181,7 @@ contrastes_campanhas <- pairs(medias_campanhas)
 medias_metodos <- emmeans(m1_selecionado, ~ method)
 contrastes_metodos <- pairs(medias_metodos)
 
+summary(m2_selecionado)
 # IBVOL -----------------------------------------------------------------------
 
 global <- glmmTMB(
@@ -188,3 +193,21 @@ global <- glmmTMB(
 
 ranking_modelos <- dredge(global)
 m1_selecionado <- get.models(ranking_modelos, subset = 1)[[1]]
+
+
+
+################################### Garbage ####################################
+# criar uma tabela apenas com as linhas de dados_completos que nao estão em dados
+# dados_nao_incluidos <- anti_join(dados_completos, dados, by = c("campanha", "rio", "locality_name", "method")) %>%
+#   select(campanha, rio, locality_name, method, riqueza_familias)
+
+
+
+# dados %>% 
+#   group_by(method) %>% 
+#   summarise(media_razao = mean(riqueza_familias, na.rm = TRUE))
+
+# # Agora compare usando os 85 dados
+# dados_completos %>% 
+#   group_by(method) %>% 
+#   summarise(media_razao = mean(riqueza_familias, na.rm = TRUE))
