@@ -3,6 +3,7 @@
 
 library(tidyverse)
 library(ggpubr)
+library(ggrastr)
 
 # Pasta de figuras
 pasta_figuras <- "figuras/estrutura/"
@@ -21,7 +22,7 @@ cores <- c(
   "Oligochaeta" = "#bd0467", # Rosa choque
   "Plecoptera" = "#7e7575", # Cinza escuro
   "Amphipoda" = "#17795a", # Verde-água forte
-  "Megaloptera" = "#17ff8b", # Laranja avermelhado
+  "Megaloptera" = "#030303", # preto
   "Architaenioglossa" = "#607199", # Azul lavanda
   "Lepidoptera" = "#de7fba", # Rosa magenta
   "Littorinimorpha" = "#2d2e2b", # Verde limão forte
@@ -43,11 +44,7 @@ draw_stacked_bar <- function(data) {
         fill = order
     )
     ) +
-    geom_bar(
-      stat = "identity", 
-      position = position_fill(),
-      width = 0.9
-      ) +
+    rasterize(geom_col(position = "stack", width = 0.9, colour = NA), dpi = 600) +
     facet_wrap(
       ~interaction(rio, locality_name, sep = " "),  
       scales = "free_x", 
@@ -157,6 +154,7 @@ df_long <- df %>%
     order = fct_relevel(
       order, 
       c(
+        "Sorbeoconcha",
         "Littorinimorpha",
         "Lepidoptera",
         "Architaenioglossa",
@@ -233,12 +231,22 @@ rio_carrapicho <- df_long %>%
 rio_da_serra <- df_long %>%
   filter(rio == "Rio da Serra")
 
+legenda <- get_legend(
+  draw_stacked_bar(df_long) +
+    theme(legend.position = "right")
+)
 
 ########################### Plotagem da composição por ordem ###################
 
 plot_barra <- draw_stacked_bar(rio_da_barra)
 plot_bebedouro <- draw_stacked_bar(rio_bebedouro)
 plot_mutuca <- draw_stacked_bar(rio_mutuca)
+
+plot_mutuca <- 
+   plot_mutuca + 
+   theme(axis.title.x = element_text(face = "bold", size = 16)) +
+   labs(x = "Campanhas")
+
 #plot_carrapicho <- draw_stacked_bar(rio_carrapicho)
 #plot_serra <- draw_stacked_bar(rio_da_serra)
 
@@ -248,6 +256,7 @@ merged_plot <- ggarrange(
   plot_mutuca, 
   ncol = 1, 
   common.legend = TRUE, 
+  legend.grob = legenda,
   legend = "right",
   labels = c("A", "B", "C", "D", "E"),
   font.label = list(size = 16, face = "bold")
@@ -264,6 +273,6 @@ ggsave(
 ggsave(
   paste0(pasta_figuras, "estrutura_ordens_por_campanha_e_rio_GERAL.svg"),  
   plot = merged_plot,
-  width = 12, height = 20, dpi = 300, device = svglite
+  width = 12, height = 20, dpi = 300
 )
 
