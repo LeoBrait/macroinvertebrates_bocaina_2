@@ -6,7 +6,7 @@ library(ggpubr)
 library(ggrastr)
 
 # Pasta de figuras
-pasta_figuras <- "figuras/estrutura/"
+pasta_figuras <- "figuras/cap1/comparacao_redes/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
@@ -87,7 +87,7 @@ df <- df_cru %>%
   filter(all(metodos %in% method)) %>%
   ungroup()
 
-############################## Prepr`ocessamento ################################
+############################## Preprocessamento ################################
 
 
 # Nome dos táxons

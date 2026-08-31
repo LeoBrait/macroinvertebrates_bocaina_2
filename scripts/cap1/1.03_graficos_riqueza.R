@@ -14,7 +14,7 @@ colunas <- c(
 amostras_descartadas_vetor <- c("RiodaBarra-P1")
 
 # Pasta de figuras
-pasta_figuras <- "figuras/riqueza/"
+pasta_figuras <- "figuras/cap1/dados_descritivos/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
@@ -89,7 +89,6 @@ write_csv(sumario, "teste.csv")
 
 grafico <- 
   ggplot(sumario, aes(x = locality_name, y = media, fill = method)) +
-  
   geom_errorbar(
     aes(ymin = media - se, ymax = media + se),
     width = 0.2,
@@ -98,7 +97,10 @@ grafico <-
   geom_bar(stat = "identity", position = "dodge") +
   geom_point(
     data = df,
-    aes(y = valor, x = locality_name, shape = as.factor(campanha), group = method),
+    aes(
+      y = valor, x = locality_name, 
+      shape = as.factor(campanha), group = method
+    ),
     position = position_dodge(width = 0.9),
     size = 2
   ) +
