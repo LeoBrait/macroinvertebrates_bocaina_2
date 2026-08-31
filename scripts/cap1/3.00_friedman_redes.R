@@ -13,17 +13,13 @@ nomes_indices <- c(
   riqueza_familias = "S' famílias"
 )
 
-if (length(metodos_de_amostragem) == 3) {
-  pasta_figuras <- "figuras/redes/comparacao_3_redes/"
-  pasta_tabelas <- "tabelas/redes/3_redes/"
-} 
 
-# Pastas de figuras
+pasta_figuras <- "figuras/cap1/comparacao_redes/friedman_wilcoxon/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
 
-# Pasta de tabelas
+pasta_tabelas <- "figuras/cap1/comparacao_redes/friedman_wilcoxon/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }

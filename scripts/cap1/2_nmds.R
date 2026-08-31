@@ -1,5 +1,6 @@
 library(tidyverse)
 library(vegan)
+library(ggpubr)
 
 ################################### Carregar dados #############################
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
@@ -12,7 +13,7 @@ colunas <- c(
 amostras_descartadas_vetor <- c("RiodaBarra-P1")
 
 # Pasta de figuras
-pasta_figuras <- "figuras/multivariadas/"
+pasta_figuras <- "figuras/cap1/comparacao_redes/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
@@ -263,7 +264,7 @@ plot_familias_bray <-
       shape = df_familias$method
     )
   ) + 
-  geom_point(size = 3) +
+  geom_point(size = 3, alpha = 0.6) +
   stat_ellipse(aes(color = rio, group = rio), level = 0.95) + 
   theme_minimal() +
   labs(
@@ -303,177 +304,195 @@ ggsave(
     height = 6
 )
 
-
-
-
-
-plot_ordens_canberra <- ggplot(
-    pontos_ordens_canberra, 
-        aes(
-            x = MDS1,  y = MDS2, 
-            color = df_ordens$rio, 
-            shape = df_ordens$method
-        )    
-    ) +
-    geom_point(size = 3) +
-    theme_minimal() +
-    labs(
-        title = "NMDS Canberra - Ordens ",
-        subtitle = paste("Stress:", round(stress_ordens_canberra, 3)),
-        x = "MDS1",
-        y = "MDS2",
-        color = "Rio",
-        shape = "Método"
-    ) +
-    theme(
-        plot.title = element_text(hjust = 0.5),
-        legend.position = "right"
-    )
-
-ggsave(
-    plot_ordens_canberra,
-    filename = paste0(pasta_figuras, "nmds_ordens_canberra.png"),
-    width = 8,
-    height = 6
-)
-
-
-
-
-
-
-
-
-plot_familias_canberra <- ggplot(
-    pontos_familias_canberra,
-        aes(
-            x = MDS1,  y = MDS2, 
-            color = df_familias$rio, 
-            shape = df_familias$method
-        )    
-    ) +
-    geom_point(size = 3) +
-    theme_minimal() +
-    labs(
-        title = "NMDS Canberra - Famílias ",
-        subtitle = paste("Stress:", round(stress_familias_canberra, 3)),
-        x = "MDS1",
-        y = "MDS2",
-        color = "Rio",
-        shape = "Método"
-    ) +
-    theme(
-        plot.title = element_text(hjust = 0.5),
-        legend.position = "right"
-    )
-
-
-ggsave(
-    plot_familias_canberra,
-    filename = paste0(pasta_figuras, "nmds_familias_canberra.png"),
-    width = 8,
-    height = 6
-)
-
-
-plot_ordens_jaccard <- ggplot(
-    pontos_ordens_jaccard,
-        aes(
-            x = MDS1,  y = MDS2, 
-            color = df_ordens$rio, 
-            shape = df_ordens$method
-        )    
-    ) +
-    geom_point(size = 3) +
-    theme_minimal() +
-    labs(
-        title = "NMDS Jaccard - Ordens ",
-        subtitle = paste("Stress:", round(stress_ordens_jaccard, 3)),
-        x = "MDS1",
-        y = "MDS2",
-        color = "Rio",
-        shape = "Método"
-    ) +
-    theme(
-        plot.title = element_text(hjust = 0.5),
-        legend.position = "right"
-    )
-
-
-ggsave(
-    plot_ordens_jaccard,
-    filename = paste0(pasta_figuras, "nmds_ordens_jaccard.png"),
-    width = 8,
-    height = 6
-)
-
-
-
-plot_familias_jaccard <- ggplot(
-    pontos_familias_jaccard,
-        aes(
-            x = MDS1,  y = MDS2, 
-            color = df_familias$rio, 
-            shape = df_familias$method
-        )    
-    ) +
-    geom_point(size = 3) +
-    theme_minimal() +
-    labs(
-        title = "NMDS Jaccard - Famílias ",
-        subtitle = paste("Stress:", round(stress_familias_jaccard, 3)),
-        x = "MDS1",
-        y = "MDS2",
-        color = "Rio",
-        shape = "Método"
-    ) +
-    theme(
-        plot.title = element_text(hjust = 0.5),
-        legend.position = "right"
-    )
-
-ggsave(
-    plot_familias_jaccard,
-    filename = paste0(pasta_figuras, "nmds_familias_jaccard.png"),
-    width = 8,
-    height = 6
-)
-#################################### Salvar ####################################
-# Salvar 
-ggsave(
-    plot_ordens_bray,
-    filename = "figuras/nmds/nmds_ordens_bray.png",
-    width = 8,
-    height = 6
-)
-ggsave(
-    plot_ordens_canberra,
-    filename = "figuras/nmds/nmds_ordens_canberra.png",
-    width = 8,
-    height = 6
-)
-ggsave(
-    plot_familias_bray,
-    filename = "figuras/nmds/nmds_familias_bray.png",
-    width = 8,
-    height = 6
-)
-ggsave(
-    plot_familias_canberra,
-    filename = "figuras/nmds/nmds_familias_canberra.png",
-    width = 8,
-    height = 6
+painel <- ggarrange(
+    plot_ordens_bray, 
+    plot_familias_bray, 
+    ncol = 2, 
+    common.legend = TRUE, 
+    legend = "right",
+    labels = c("A", "B"),
+    font.label = list(size = 16, face = "bold"),
+    widths = c(1, 1)
 )
 
 ggsave(
-    plot_ordens_jaccard,
-    filename = "figuras/nmds/nmds_ordens_jaccard.png",
-    width = 8,
-    height = 6
+    painel,
+    filename = paste0(pasta_figuras, "nmds_ordens_familias_bray.svg"),
+    width = 15,
+    height = 7
 )
-ggsave(
-    plot_familias_jaccard,
-    filename = "figuras/nmds/nmds_familias_jaccard.png",
-    width = 8,
-    height = 6
-)
+
+
+#################################### Desuso ####################################
+
+
+# plot_ordens_canberra <- ggplot(
+#     pontos_ordens_canberra, 
+#         aes(
+#             x = MDS1,  y = MDS2, 
+#             color = df_ordens$rio, 
+#             shape = df_ordens$method
+#         )    
+#     ) +
+#     geom_point(size = 3) +
+#     theme_minimal() +
+#     labs(
+#         title = "NMDS Canberra - Ordens ",
+#         subtitle = paste("Stress:", round(stress_ordens_canberra, 3)),
+#         x = "MDS1",
+#         y = "MDS2",
+#         color = "Rio",
+#         shape = "Método"
+#     ) +
+#     theme(
+#         plot.title = element_text(hjust = 0.5),
+#         legend.position = "right"
+#     )
+
+# ggsave(
+#     plot_ordens_canberra,
+#     filename = paste0(pasta_figuras, "nmds_ordens_canberra.png"),
+#     width = 8,
+#     height = 6
+# )
+
+
+
+
+
+
+
+
+# plot_familias_canberra <- ggplot(
+#     pontos_familias_canberra,
+#         aes(
+#             x = MDS1,  y = MDS2, 
+#             color = df_familias$rio, 
+#             shape = df_familias$method
+#         )    
+#     ) +
+#     geom_point(size = 3) +
+#     theme_minimal() +
+#     labs(
+#         title = "NMDS Canberra - Famílias ",
+#         subtitle = paste("Stress:", round(stress_familias_canberra, 3)),
+#         x = "MDS1",
+#         y = "MDS2",
+#         color = "Rio",
+#         shape = "Método"
+#     ) +
+#     theme(
+#         plot.title = element_text(hjust = 0.5),
+#         legend.position = "right"
+#     )
+
+
+# ggsave(
+#     plot_familias_canberra,
+#     filename = paste0(pasta_figuras, "nmds_familias_canberra.png"),
+#     width = 8,
+#     height = 6
+# )
+
+
+# plot_ordens_jaccard <- ggplot(
+#     pontos_ordens_jaccard,
+#         aes(
+#             x = MDS1,  y = MDS2, 
+#             color = df_ordens$rio, 
+#             shape = df_ordens$method
+#         )    
+#     ) +
+#     geom_point(size = 3) +
+#     theme_minimal() +
+#     labs(
+#         title = "NMDS Jaccard - Ordens ",
+#         subtitle = paste("Stress:", round(stress_ordens_jaccard, 3)),
+#         x = "MDS1",
+#         y = "MDS2",
+#         color = "Rio",
+#         shape = "Método"
+#     ) +
+#     theme(
+#         plot.title = element_text(hjust = 0.5),
+#         legend.position = "right"
+#     )
+
+
+# ggsave(
+#     plot_ordens_jaccard,
+#     filename = paste0(pasta_figuras, "nmds_ordens_jaccard.png"),
+#     width = 8,
+#     height = 6
+# )
+
+
+
+# plot_familias_jaccard <- ggplot(
+#     pontos_familias_jaccard,
+#         aes(
+#             x = MDS1,  y = MDS2, 
+#             color = df_familias$rio, 
+#             shape = df_familias$method
+#         )    
+#     ) +
+#     geom_point(size = 3) +
+#     theme_minimal() +
+#     labs(
+#         title = "NMDS Jaccard - Famílias ",
+#         subtitle = paste("Stress:", round(stress_familias_jaccard, 3)),
+#         x = "MDS1",
+#         y = "MDS2",
+#         color = "Rio",
+#         shape = "Método"
+#     ) +
+#     theme(
+#         plot.title = element_text(hjust = 0.5),
+#         legend.position = "right"
+#     )
+
+# ggsave(
+#     plot_familias_jaccard,
+#     filename = paste0(pasta_figuras, "nmds_familias_jaccard.png"),
+#     width = 8,
+#     height = 6
+# )
+# #################################### Salvar ##################################
+# # Salvar 
+# ggsave(
+#     plot_ordens_bray,
+#     filename = "figuras/nmds/nmds_ordens_bray.png",
+#     width = 8,
+#     height = 6
+# )
+# ggsave(
+#     plot_ordens_canberra,
+#     filename = "figuras/nmds/nmds_ordens_canberra.png",
+#     width = 8,
+#     height = 6
+# )
+# ggsave(
+#     plot_familias_bray,
+#     filename = "figuras/nmds/nmds_familias_bray.png",
+#     width = 8,
+#     height = 6
+# )
+# ggsave(
+#     plot_familias_canberra,
+#     filename = "figuras/nmds/nmds_familias_canberra.png",
+#     width = 8,
+#     height = 6
+# )
+
+# ggsave(
+#     plot_ordens_jaccard,
+#     filename = "figuras/nmds/nmds_ordens_jaccard.png",
+#     width = 8,
+#     height = 6
+# )
+# ggsave(
+#     plot_familias_jaccard,
+#     filename = "figuras/nmds/nmds_familias_jaccard.png",
+#     width = 8,
+#     height = 6
+# )
