@@ -127,7 +127,7 @@ plot_riqueza_ordens <-
   labs(x = NULL, y = NULL, fill = "Campanha") +
   geom_text(
     aes(label = paste0(round(riqueza_relativa_a_campanha, 2) * 100, "%")),
-    position = position_stack(vjust = 0.5), 
+    position = position_stack(vjust = 0.5),
     size = 3
   ) +
   theme_minimal() +
@@ -268,4 +268,35 @@ write_csv(
 )
 
 
-# ------------------------------- Rio Local e Campanha -------------------------
+# --------------------------- Rio Local e Campanha -----------------------------
+sumario_ordens_rio_local_campanha <- df %>%
+  group_by(rio, locality_name, campanha, order) %>%
+  summarise(abundancia_ordem = sum(abundance)) %>%
+  ungroup() %>%
+  group_by(rio, locality_name, campanha) %>%
+  mutate(abundancia_total_macroinvertebrados = sum(abundancia_ordem)) %>%
+  ungroup() %>%
+  mutate(
+    abundancia_relativa_ordem = abundancia_ordem /
+    abundancia_total_macroinvertebrados
+  )
+write_csv(
+  sumario_ordens_rio_local_campanha,
+  file.path(pasta_tabelas, "campanha_ponto_rio_sumario_abundancia_ordens.csv")
+)
+
+sumario_familias_rio_local_campanha <- df %>%
+  group_by(rio, locality_name, campanha, family) %>%
+  summarise(abundancia_familia = sum(abundance)) %>%
+  ungroup() %>%
+  group_by(rio, locality_name, campanha) %>%
+  mutate(abundancia_total_macroinvertebrados = sum(abundancia_familia)) %>%
+  ungroup() %>%
+  mutate(
+    abundancia_relativa_familia = abundancia_familia /
+    abundancia_total_macroinvertebrados
+  )
+write_csv(
+  sumario_familias_rio_local_campanha,
+  file.path(pasta_tabelas, "campanha_ponto_rio_sumario_abundancia_familias.csv")
+)
