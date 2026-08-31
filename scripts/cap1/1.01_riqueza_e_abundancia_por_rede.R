@@ -6,13 +6,19 @@
 ############################### Ambiente #######################################
 library(tidyverse)
 library(forcats)
+library(ggpubr)
 # setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
 
 
 # Pasta de tabelas
-pasta_tabelas <- "tabelas/dados_descritivos/cap1/"
+pasta_tabelas <- "tabelas/cap1/dados_descritivos/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
+}
+
+pasta_figuras <- "figuras/cap1/descritivos/"
+if (!dir.exists(pasta_figuras)) {
+  dir.create(pasta_figuras, recursive = TRUE)
 }
 
 ######################## Carregar e Limpar Dados ###############################
@@ -33,7 +39,7 @@ df <- df_cru %>%
 ########################## Processamento e Análise #############################
 
 # Redes -----------------------------
-sumario_redes <- df %>%
+sumario_redes_riqueza <- df %>%
   group_by(method) %>%
   summarise(
     abundancia_total = sum(abundance),
@@ -41,50 +47,28 @@ sumario_redes <- df %>%
     riqueza_ordens = n_distinct(order),
     riqueza_familias = n_distinct(family)
   )
-
 write.csv(
-  sumario_redes,
-  file.path(pasta_tabelas, "sumario_redes.csv")
+  sumario_redes_riqueza,
+  file.path(pasta_tabelas, "bacia_sumario_redes_riqueza.csv")
 )
 
 
-# Classes ------------------------------
-# sumario_classes <- df %>% 
-#   group_by(class) %>%
-#   summarise(
-#     abundancia_classe = sum(abundance),
-#     riqueza_ordens = n_distinct(order),
-#     riqueza_familias = n_distinct(family)
-#     ) %>%
-#   ungroup() %>%
-#   mutate(abundancia_total = sum(abundancia_classe)) %>%
-#   mutate(abundancia_relativa = abundancia_classe / abundancia_total)
-
 sumario_classes_redes <- df %>%
+  group_by(method) %>%
+  mutate(
+    abundancia_total = sum(abundance)
+  ) %>%
   group_by(method, class) %>%
   summarise(
     abundancia_classe_na_rede = sum(abundance),
-    riqueza_ordens_da_classe_por_rede = n_distinct(order),
-    riqueza_familias_da_classe_por_rede = n_distinct(family)
+    abundancia_relativa_classe_na_rede = 
+      (abundancia_classe_na_rede / first(abundancia_total)) * 100,
   )
-
-# write_csv(
-#   sumario_classes,
-#   file.path(pasta_tabelas, "sumario_classes.csv")
-# )
-
 write.csv(
   sumario_classes_redes,
-  file.path(pasta_tabelas, "sumario_classes_redes.csv")
+  file.path(pasta_tabelas, "bacia_sumario_classes_redes.csv")
 )
 
-# Ordens -------------------------------
-# sumario_ordens_total <- df %>% 
-#   group_by(order) %>%
-#   summarise(
-#     abundancia_ordem_bacia = sum(abundance),
-#     riqueza_familias_por_ordem = n_distinct(family)
-#   )
 
 sumario_ordens_redes <- df %>%
   group_by(method, order) %>%
@@ -99,24 +83,11 @@ sumario_ordens_redes <- df %>%
     abundancia_relativa_ordem_na_rede = 
     (abundancia_ordem_na_rede / total_rede) * 100
   )
-
-
-write.csv(
-  sumario_ordens_total,
-  file.path(pasta_tabelas, "sumario_ordens_total.csv")
-)
-
 write.csv(
   sumario_ordens_redes,
-  file.path(pasta_tabelas, "sumario_ordens_redes.csv")
+  file.path(pasta_tabelas, "bacia_sumario_ordens_redes.csv")
 )
 
-# Familias -----------------------------
-# sumario_familias_total <- df %>% 
-#   group_by(family) %>%
-#   summarise(
-#     abundancia_familia_bacia = sum(abundance)
-#   )
 
 sumario_familias_redes <- df %>%
   group_by(method, family) %>%
@@ -129,17 +100,11 @@ sumario_familias_redes <- df %>%
   mutate(
     total_rede = sum(abundancia_familia_na_rede),
     abundancia_relativa_familia_na_rede = 
-    (abundancia_familia_na_rede / total_rede) * 100
+      (abundancia_familia_na_rede / total_rede) * 100
   )
-
-write.csv(
-  sumario_familias_total,
-  file.path(pasta_tabelas, "sumario_familias_total.csv")
-)
-
 write.csv(
   sumario_familias_redes,
-  file.path(pasta_tabelas, "sumario_familias_redes.csv")
+  file.path(pasta_tabelas, "bacia_sumario_familias_redes.csv")
 )
 
 ##################################### Plots ####################################
@@ -200,7 +165,7 @@ sumario_familias_redes <- sumario_familias_redes %>%
 
 
 # Plots ------------------------------------------------------------------------
-grafico_ordens <-
+grafico_ordens_relativo <-
   ggplot(
     sumario_ordens_redes,
     aes(
@@ -229,23 +194,19 @@ grafico_ordens <-
   theme_classic(base_size = 14) +
 
   theme(
-    axis.text.x = element_text(
-      angle = 45,
-      hjust = 1,
-      face = "italic"
-    ),
+    axis.title = element_text(face = "bold"),
+    axis.text.x = element_blank(),
+    axis.title.x = element_blank(),
+    axis.ticks.x = element_blank(),
     legend.position = "right"
   )
 
-dev.off()
-
-
-grafico_familia <-
+grafico_ordens_absoluto <-
   ggplot(
-    sumario_familias_redes,
+    sumario_ordens_redes,
     aes(
-      x = family,
-      y = abundancia_relativa_familia_na_rede,
+      x = order,
+      y = abundancia_ordem_na_rede,
       fill = method
     )
   ) +
@@ -261,14 +222,15 @@ grafico_familia <-
   #) +
 
   labs(
-    x = "Familias",
-    y = "Abundância relativa (%)",
+    x = "Ordens",
+    y = "Abundância absoluta",
     fill = "Método de coleta"
   ) +
 
   theme_classic(base_size = 14) +
 
   theme(
+    axis.title = element_text(face = "bold"),
     axis.text.x = element_text(
       angle = 45,
       hjust = 1,
@@ -277,4 +239,64 @@ grafico_familia <-
     legend.position = "right"
   )
 
-dev.off()
+merged_plot <- ggarrange(
+  grafico_ordens_relativo,
+  grafico_ordens_absoluto,
+  ncol = 1,
+  nrow = 2,
+  common.legend = TRUE,
+  legend = "right",
+  labels = c("A", "B"),
+  align = "v",
+  heights = c(0.85, 1)
+)
+
+ggsave(
+  filename = paste0(pasta_figuras, "ordens_rede_absoluto_relativo.png"),
+  plot = merged_plot,
+  width = 12,
+  height = 12,
+  dpi = 300
+)
+
+################################## Desuso ######################################
+
+
+# grafico_familia <-
+#   ggplot(
+#     sumario_familias_redes,
+#     aes(
+#       x = family,
+#       y = abundancia_relativa_familia_na_rede,
+#       fill = method
+#     )
+#   ) +
+
+#   geom_col(
+#     position = position_dodge(width = 0.8),
+#            width = 0.7) +
+
+#   #scale_y_continuous(
+#     #limits = c(0, 15),
+#     #breaks = seq(0, 15, 5),
+#     #expand = c(0, 0)
+#   #) +
+
+#   labs(
+#     x = "Familias",
+#     y = "Abundância relativa (%)",
+#     fill = "Método de coleta"
+#   ) +
+
+#   theme_classic(base_size = 14) +
+
+#   theme(
+#     axis.text.x = element_text(
+#       angle = 45,
+#       hjust = 1,
+#       face = "italic"
+#     ),
+#     legend.position = "right"
+#   )
+
+# dev.off()
