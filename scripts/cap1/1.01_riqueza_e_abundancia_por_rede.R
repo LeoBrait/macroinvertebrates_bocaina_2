@@ -15,16 +15,10 @@ if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
 
-############################## Configurações ###################################
+######################## Carregar e Limpar Dados ###############################
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 amostras_descartadas <- c("RiodaBarra-P1")
 metodos <- c("D Net", "Pool Net", "Sieve")
-
-
-
-
-
-############################## Processamento ###################################
 
 df_cru <- read_csv("dados/processado/imaturos_piata_limpo.csv")
 
@@ -36,18 +30,7 @@ df <- df_cru %>%
   filter(all(metodos %in% method)) %>%
   ungroup()
 
-
-
-# Geral -----------------------------
-# n_distinct(df$class)
-# unique(df$class)
-
-# n_distinct(df$order)
-# unique(df$order)
-
-# n_distinct(df$family)
-# unique(df$family)
-
+########################## Processamento e Análise #############################
 
 # Redes -----------------------------
 sumario_redes <- df %>%

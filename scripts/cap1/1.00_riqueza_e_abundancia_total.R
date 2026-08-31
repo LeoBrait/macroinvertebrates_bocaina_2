@@ -10,7 +10,7 @@ library(forcats)
 
 
 # Pasta de tabelas
-pasta_tabelas <- "tabelas/dados_descritivos/cap1/"
+pasta_tabelas <- "tabelas/cap1/dados_descritivos/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
