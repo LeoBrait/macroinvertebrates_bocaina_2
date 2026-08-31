@@ -31,7 +31,23 @@ cores <- c(
 
 
 ############################## Processamento ###################################
-df <- read_csv("dados/processado/imaturos_piata_limpo.csv")
+rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
+amostras_descartadas <- c("RiodaBarra-P1")
+metodos <- c("D Net", "Pool Net", "Sieve")
+
+
+
+
+
+df_cru <- read_csv("dados/processado/imaturos_piata_limpo.csv")
+
+df <- df_cru %>%
+  filter(rio %in% rios) %>%
+  filter(!locality_name %in% amostras_descartadas) %>%
+  filter(method %in% metodos) %>%
+  group_by(campanha, rio, locality_name) %>%
+  filter(all(metodos %in% method)) %>%
+  ungroup()
 
 
 #---------------------------------- Abundancia ---------------------------------
@@ -95,7 +111,7 @@ sumario_riqueza_ordens <- df %>%
   group_by(campanha) %>%
   mutate(riqueza_total_da_campanha = sum(riqueza_ordem)) %>%
   ungroup() %>%
-  mutate(riqueza_relativa_a_campanha = riqueza_ordem/ riqueza_total_da_campanha)
+  mutate(riqueza_relativa_a_campanha = riqueza_ordem / riqueza_total_da_campanha)
 
 write_csv(
   sumario_riqueza_ordens,
@@ -184,4 +200,36 @@ ggsave(
   height = 6
 )
 
+######################### Abundancia de taxons por rio e campanha ##############
+
+sumario_taxons <- df %>%
+  group_by(rio, campanha, locality_name, order, family) %>%
+  summarise(abundancia_taxon = sum(abundance)) %>%
+  ungroup() %>%
+  group_by(rio, locality_name, order, family) %>%
+  summarise(abundancia_total_taxon = sum(abundancia_taxon)) %>%
+  ungroup() %>%
+  group_by(rio, locality_name) %>%
+  mutate(
+    abundancia_total_localidade = sum(abundancia_total_taxon),
+    abundancia_relativa = (abundancia_total_taxon / abundancia_total_localidade) * 100
+  )
+
+write_csv(
+  sumario_taxons,
+  file.path(pasta_tabelas, "sumario_abundancia_taxons_POR_rio_local.csv")
+)
+
+sumario_taxons <- df %>%
+  group_by(rio, campanha, locality_name, order, family) %>%
+  summarise(abundancia_taxon = sum(abundance)) %>%
+  ungroup() %>%
+  group_by(rio, locality_name, order, family) %>%
+  summarise(abundancia_total_taxon = sum(abundancia_taxon)) %>%
+  ungroup() %>%
+  group_by(rio, order, family) %>%
+  summarise(
+    abundancia_total_rio = sum(abundancia_total_taxon),
+    abundancia_relativa_rio = (abundancia_total_taxon / sum(abundancia_total_rio)) * 100
+  )
 
