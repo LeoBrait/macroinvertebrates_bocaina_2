@@ -1,0 +1,16 @@
+Plecoptera
+Trichoptera
+Megaloptera
+Ephemeroptera
+Odonata
+Coleoptera
+Lepidoptera
+Hemiptera
+Basommatophora
+Desc. O. Classe Oligochaeta
+Veneirodea
+Littorinimorpha
+Tricladida
+Amphipoda
+Architaenioglossa
+Diptera

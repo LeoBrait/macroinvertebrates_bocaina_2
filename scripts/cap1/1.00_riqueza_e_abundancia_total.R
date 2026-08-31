@@ -10,114 +10,136 @@ library(forcats)
 
 
 # Pasta de tabelas
-pasta_tabelas <- "tabelas/dados_descritivos/"
+pasta_tabelas <- "tabelas/dados_descritivos/cap1/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
 
-############################## Configurações ###################################
+######################## Carregar e Limpar Dados ###############################
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 amostras_descartadas <- c("RiodaBarra-P1")
 metodos <- c("D Net", "Pool Net", "Sieve")
-
-
-
-
-
-############################## Processamento ###################################
 
 df_cru <- read_csv("dados/processado/imaturos_piata_limpo.csv")
 
 df <- df_cru %>%
   filter(rio %in% rios) %>%
   filter(!locality_name %in% amostras_descartadas) %>%
-  filter(method %in% metodos)
+  filter(method %in% metodos) %>%
+  group_by(campanha, rio, locality_name) %>%
+  filter(all(metodos %in% method)) %>%
+  ungroup()
 
 
+######################### Processamento e Análise ##############################
 
-# Geral -----------------------------
+
+# Grupos encontrados na bacia --------------------------------------------------
 n_distinct(df$class)
-unique(df$class)
+unique(df$class) %>%
+  writeLines(con = file.path(pasta_tabelas, "bacia_classes_coletadas.txt"))
 
 n_distinct(df$order)
-unique(df$order)
+unique(df$order) %>%
+  writeLines(con = file.path(pasta_tabelas, "bacia_ordens_coletadas.txt"))
 
 n_distinct(df$family)
-unique(df$family)
+unique(df$family) %>%
+  writeLines(con = file.path(pasta_tabelas, "bacia_familias_coletadas.txt"))
 
-# Classes --------------------------
-
-sumario_classes <- df %>% 
+# ---------------------------- Descritores por taxon ---------------------------
+sumario_classes <- df %>%
   group_by(class) %>%
   summarise(
     abundancia_classe = sum(abundance),
     riqueza_ordens = n_distinct(order),
     riqueza_familias = n_distinct(family)
-    ) %>%
+  ) %>%
   ungroup() %>%
   mutate(abundancia_total = sum(abundancia_classe)) %>%
   mutate(abundancia_relativa = abundancia_classe / abundancia_total)
-
-write_csv(
+write.csv(
   sumario_classes,
-  file.path(pasta_tabelas, "sumario_classes.csv")
+  file.path(pasta_tabelas, "bacia_sumario_classes.csv")
 )
 
-# abundancia por ordem ---------------------------------------------------------
-sumario_ordens <- df %>% 
+sumario_ordens <- df %>%
   group_by(order) %>%
-  mutate(
-
-    # Total de organismos coletados de cada ordem na bacia
-    abundancia_ordem_total_bacia = sum(abundance),
-  
-    # total de familias coletadas de cada ordem na bacia
+  summarise(
+    abundancia_ordem_bacia = sum(abundance),
     riqueza_familias_por_ordem = n_distinct(family)
   ) %>%
   ungroup() %>%
-  group_by(method) %>%
-  mutate(
-    abundancia_de_organismos_coletados_na_rede = sum(abundance),
-    riqueza_ordens_por_rede = n_distinct(order)
-  ) %>%
-  ungroup() %>%
-  group_by(method, order) %>%
-  mutate(
-
-    # Total de organismos coletados de cada ordem em cada rede
-    abundancia_ordem_na_rede = sum(abundance),
-
-    # Proporção de organimos coletados de cada ordem para o total daquela ordem
-    # coletada na rede (Dominância da ordem na rede)
-    abundancia_relativa_ordem_na_rede =
-      (abundancia_ordem_na_rede
-      / abundancia_de_organismos_coletados_na_rede) * 100,
-
-    # Proporção de organismos coletados de cada ordem em cada rede para o total
-    # daquela ordem coletada na bacia (Dominância da rede para a ordem)
-    indice_de_captura_da_rede =
-      (abundancia_ordem_na_rede / abundancia_ordem_total_bacia) * 100,
-
-    riqueza_familias_da_ordem_por_rede = n_distinct(family)
-  ) %>%
-  select(
-    method,
-    order,
-    family,
-    abundancia_ordem_total_bacia,
-    riqueza_familias_por_ordem,
-    abundancia_de_organismos_coletados_na_rede,
-    riqueza_ordens_por_rede,
-    abundancia_ordem_na_rede,
-    abundancia_relativa_ordem_na_rede,
-    indice_de_captura_da_rede,
-    riqueza_familias_da_ordem_por_rede
-  ) 
-
+  mutate(abundancia_total = sum(abundancia_ordem_bacia)) %>%
+  mutate(abundancia_relativa = abundancia_ordem_bacia / abundancia_total)
 write.csv(
   sumario_ordens,
-  file.path(pasta_tabelas, "sumario_ordens_redes.csv")
+  file.path(pasta_tabelas, "bacia_sumario_ordens.csv")
 )
+
+sumario_familias <- df %>%
+  group_by(family) %>%
+  summarise(
+    abundancia_familia_bacia = sum(abundance)
+  ) %>%
+  ungroup() %>%
+  mutate(abundancia_total = sum(abundancia_familia_bacia)) %>%
+  mutate(abundancia_relativa = abundancia_familia_bacia / abundancia_total)
+write.csv(
+  sumario_familias,
+  file.path(pasta_tabelas, "bacia_sumario_familias.csv")
+)
+
+# sumario_ordens <- df %>% 
+#   group_by(order) %>%
+#   mutate(
+
+#     # Total de organismos coletados de cada ordem na bacia
+#     abundancia_ordem_total_bacia = sum(abundance),
+  
+#     # total de familias coletadas de cada ordem na bacia
+#     riqueza_familias_por_ordem = n_distinct(family)
+#   ) %>%
+#   ungroup() %>%
+#   group_by(method) %>%
+#   mutate(
+#     abundancia_de_organismos_coletados_na_rede = sum(abundance),
+#     riqueza_ordens_por_rede = n_distinct(order)
+#   ) %>%
+#   ungroup() %>%
+#   group_by(method, order) %>%
+#   mutate(
+
+#     # Total de organismos coletados de cada ordem em cada rede
+#     abundancia_ordem_na_rede = sum(abundance),
+
+#     # Proporção de organimos coletados de cada ordem para o total daquela ordem
+#     # coletada na rede (Dominância da ordem na rede)
+#     abundancia_relativa_ordem_na_rede =
+#       (abundancia_ordem_na_rede
+#       / abundancia_de_organismos_coletados_na_rede) * 100,
+
+#     # Proporção de organismos coletados de cada ordem em cada rede para o total
+#     # daquela ordem coletada na bacia (Dominância da rede para a ordem)
+#     indice_de_captura_da_rede =
+#       (abundancia_ordem_na_rede / abundancia_ordem_total_bacia) * 100,
+
+#     riqueza_familias_da_ordem_por_rede = n_distinct(family)
+#   ) %>%
+#   select(
+#     method,
+#     order,
+#     family,
+#     abundancia_ordem_total_bacia,
+#     riqueza_familias_por_ordem,
+#     abundancia_de_organismos_coletados_na_rede,
+#     riqueza_ordens_por_rede,
+#     abundancia_ordem_na_rede,
+#     abundancia_relativa_ordem_na_rede,
+#     indice_de_captura_da_rede,
+#     riqueza_familias_da_ordem_por_rede
+#   ) 
+
 
 
 # Arrumando grafico para plotagem ----------------------------------------------
@@ -198,6 +220,13 @@ grafico_ordens <-
 dev.off()
 
 ############################ abundancia por familia ############################
+sumario_familias_total <- df %>% 
+  group_by(family) %>%
+  summarise(
+    abundancia_familia_bacia = sum(abundance)
+  )
+
+
 sumario_familia <- df %>% 
   group_by(family) %>%
   mutate(
