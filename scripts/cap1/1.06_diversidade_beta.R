@@ -11,12 +11,29 @@ library(betapart)
 library(wesanderson)
 library(reshape2)
 
+
 # Carregar caminho
 #setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 # Carregar dados
-dados_df <- read.csv(file = "dados/processado/matriz_comunidades_familias_imaturos_largo.csv", sep = ",") %>%
+df_cru <- read.csv(file = "dados/processado/matriz_comunidades_familias_imaturos_largo.csv", sep = ",") %>%
   filter(rio %in% rios)
+
+
+
+######################## Carregar e Limpar Dados ###############################
+rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
+amostras_descartadas <- c("RiodaBarra-P1")
+metodos <- c("D Net", "Pool Net", "Sieve")
+
+
+dados_df <- df_cru %>%
+  filter(rio %in% rios) %>%
+  filter(!locality_name %in% amostras_descartadas) %>%
+  filter(method %in% metodos) %>%
+  group_by(campanha, rio, locality_name) %>%
+  filter(all(metodos %in% method)) %>%
+  ungroup()  
 
 ### Pre processamento###########################################################
 processado <- dados_df %>%
@@ -101,7 +118,7 @@ g <- ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
 g
 
 ggsave(
-  "figuras/beta_diversidade/beta_diversidade_familias_total.png",
+  "figuras/cap1/beta_diversidade/beta_diversidade_familias_total.png",
   g,
   width = 10,
   height = 8
