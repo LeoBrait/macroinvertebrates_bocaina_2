@@ -10,13 +10,13 @@ library(ggpubr)
 # setwd("C:/Users/Giovana/Desktop/mestrado_giovana/")
 
 # Pasta de tabelas
-pasta_tabelas <- "tabelas/dados_descritivos/"
+pasta_tabelas <- "tabelas/cap1/dados_descritivos/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
 
 # Pasta de figuras
-pasta_figuras <- "figuras/dados_descritivos/"
+pasta_figuras <- "figuras/cap1/dados_descritivos/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
@@ -30,14 +30,10 @@ cores <- c(
 )
 
 
-############################## Processamento ###################################
+######################## Carregar e Limpar Dados ###############################
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 amostras_descartadas <- c("RiodaBarra-P1")
 metodos <- c("D Net", "Pool Net", "Sieve")
-
-
-
-
 
 df_cru <- read_csv("dados/processado/imaturos_piata_limpo.csv")
 
@@ -48,6 +44,8 @@ df <- df_cru %>%
   group_by(campanha, rio, locality_name) %>%
   filter(all(metodos %in% method)) %>%
   ungroup()
+
+####################### Particionamento das campanhas ##########################
 
 
 #---------------------------------- Abundancia ---------------------------------
@@ -65,7 +63,7 @@ sumario_especimes <- df %>%
 
 write_csv(
   sumario_especimes,
-  file.path(pasta_tabelas, "sumario_abundancia_POR_rio_campanha.csv")
+  file.path(pasta_tabelas, "rio_campanha_sumario_abundancia.csv")
 )
 
 
@@ -115,12 +113,12 @@ sumario_riqueza_ordens <- df %>%
 
 write_csv(
   sumario_riqueza_ordens,
-  file.path(pasta_tabelas, "sumario_riqueza_ordens_POR_rio_campanha.csv")
+  file.path(pasta_tabelas, "rio_campanha_sumario_riqueza_ordens.csv")
 )
 
-plot_riqueza_ordens <- 
+plot_riqueza_ordens <-
   ggplot(
-    sumario_riqueza_ordens, 
+    sumario_riqueza_ordens,
     aes(x = "", y = riqueza_relativa_a_campanha, fill = rio)
   ) +
   geom_bar(stat = "identity", width = 1) +
@@ -135,7 +133,7 @@ plot_riqueza_ordens <-
   theme_minimal() +
   scale_fill_manual(values = cores) +
   theme(legend.position = "right") +
-    theme(
+  theme(
     legend.position = "right",
     axis.text = element_blank(),
     axis.ticks = element_blank(),
@@ -165,7 +163,7 @@ sumario_riqueza_familia <- df %>%
 
 write_csv(
   sumario_riqueza_familia,
-  file.path(pasta_tabelas, "sumario_riqueza_familias_POR_rio_campanha.csv")
+  file.path(pasta_tabelas, "rio_campanha_sumario_riqueza_familias.csv")
 )
 
 
@@ -200,49 +198,74 @@ ggsave(
   height = 6
 )
 
-######################### Abundancia de taxons por rio e campanha ##############
-
-sumario_taxons <- df %>%
-  group_by(rio, campanha, locality_name, order, family) %>%
-  summarise(abundancia_taxon = sum(abundance)) %>%
-  ungroup() %>%
-  group_by(rio, locality_name) %>%
-  mutate(abundancia_total_macroinvertebrados = sum(abundancia_taxon)) %>%
-  group_by(rio, locality_name, order, family) %>%
-  summarise(
-    abundancia_taxon = sum(abundancia_taxon),
-    abundancia_total_macroinvertebrados = first(abundancia_total_macroinvertebrados)
-  ) %>%
-  group_by(rio, locality_name) %>%
-  mutate(
-    abundancia_relativa_taxon = abundancia_taxon /
-    abundancia_total_macroinvertebrados
-  )
-
-
-write_csv(
-  sumario_taxons,
-  file.path(pasta_tabelas, "sumario_abundancia_taxons_POR_rio_local.csv")
-)
-
-sumario_taxons_rio <- df %>%
-  group_by(rio, campanha, locality_name, order, family) %>%
-  summarise(abundancia_taxon = sum(abundance)) %>%
+############################### Analise dos Taxons #############################
+# ----------------------------------  Rio --------------------------------------
+sumario_ordens_rio <- df %>%
+  group_by(rio, order) %>%
+  summarise(abundancia_ordem = sum(abundance)) %>%
   ungroup() %>%
   group_by(rio) %>%
-  mutate(abundancia_total_macroinvertebrados = sum(abundancia_taxon)) %>%
-  group_by(rio, order, family) %>%
-  summarise(
-    abundancia_taxon = sum(abundancia_taxon),
-    abundancia_total_macroinvertebrados = first(abundancia_total_macroinvertebrados)
-  ) %>%
-  group_by(rio) %>%
+  mutate(abundancia_total_macroinvertebrados = sum(abundancia_ordem)) %>%
+  ungroup() %>%
   mutate(
-    abundancia_relativa_taxon = abundancia_taxon /
+    abundancia_relativa_ordem = abundancia_ordem /
+      abundancia_total_macroinvertebrados
+  )
+write_csv(
+  sumario_ordens_rio,
+  file.path(pasta_tabelas, "rio_sumario_abundancia_ordens.csv")
+)
+
+
+sumario_familias_rio <- df %>%
+  group_by(rio, family) %>%
+  summarise(abundancia_familia = sum(abundance)) %>%
+  ungroup() %>%
+  group_by(rio) %>%
+  mutate(abundancia_total_macroinvertebrados = sum(abundancia_familia)) %>%
+  ungroup() %>%
+  mutate(
+    abundancia_relativa_familia = abundancia_familia /
+      abundancia_total_macroinvertebrados
+  )
+write_csv(
+  sumario_familias_rio,
+  file.path(pasta_tabelas, "rio_sumario_abundancia_familias.csv")
+)
+
+
+# -------------------------------  Rio e Local ---------------------------------
+sumario_ordens_rio_local <- df %>%
+  group_by(rio, locality_name, order) %>%
+  summarise(abundancia_ordem = sum(abundance)) %>%
+  ungroup() %>%
+  group_by(rio, locality_name) %>%
+  mutate(abundancia_total_macroinvertebrados = sum(abundancia_ordem)) %>%
+  ungroup() %>%
+  mutate(
+    abundancia_relativa_ordem = abundancia_ordem /
     abundancia_total_macroinvertebrados
   )
-
 write_csv(
-  sumario_taxons_rio,
-  file.path(pasta_tabelas, "sumario_abundancia_taxons_POR_rio.csv")
+  sumario_ordens_rio_local,
+  file.path(pasta_tabelas, "ponto_rio_sumario_abundancia_ordens.csv")
 )
+
+sumario_familias_rio_local <- df %>%
+  group_by(rio, locality_name, family) %>%
+  summarise(abundancia_familia = sum(abundance)) %>%
+  ungroup() %>%
+  group_by(rio, locality_name) %>%
+  mutate(abundancia_total_macroinvertebrados = sum(abundancia_familia)) %>%
+  ungroup() %>%
+  mutate(
+    abundancia_relativa_familia = abundancia_familia /
+    abundancia_total_macroinvertebrados
+  )
+write_csv(
+  sumario_familias_rio_local,
+  file.path(pasta_tabelas, "ponto_rio_sumario_abundancia_familias.csv")
+)
+
+
+# ------------------------------- Rio Local e Campanha -------------------------

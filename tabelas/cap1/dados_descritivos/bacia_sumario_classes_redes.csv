@@ -1,0 +1,19 @@
+"","method","class","abundancia_classe_na_rede","abundancia_relativa_classe_na_rede"
+"1","D Net","Bivalvia",7,0.858895705521472
+"2","D Net","Crustacea",35,4.29447852760736
+"3","D Net","Gastropoda",24,2.94478527607362
+"4","D Net","Insecta",728,89.3251533742331
+"5","D Net","Oligochaeta",20,2.45398773006135
+"6","D Net","Turbellaria",1,0.122699386503067
+"7","Pool Net","Bivalvia",13,0.853018372703412
+"8","Pool Net","Crustacea",54,3.54330708661417
+"9","Pool Net","Gastropoda",54,3.54330708661417
+"10","Pool Net","Insecta",1393,91.4041994750656
+"11","Pool Net","Oligochaeta",3,0.196850393700787
+"12","Pool Net","Turbellaria",7,0.459317585301837
+"13","Sieve","Bivalvia",9,1.30813953488372
+"14","Sieve","Crustacea",37,5.37790697674419
+"15","Sieve","Gastropoda",22,3.19767441860465
+"16","Sieve","Insecta",601,87.3546511627907
+"17","Sieve","Oligochaeta",14,2.03488372093023
+"18","Sieve","Turbellaria",5,0.726744186046512

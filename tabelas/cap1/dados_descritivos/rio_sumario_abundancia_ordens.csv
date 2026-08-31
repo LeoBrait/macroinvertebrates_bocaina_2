@@ -1,0 +1,35 @@
+rio,order,abundancia_ordem,abundancia_total_macroinvertebrados,abundancia_relativa_ordem
+rio_bebedouro,Architaenioglossa,1,928,0.0010775862068965517
+rio_bebedouro,Basommatophora,22,928,0.023706896551724137
+rio_bebedouro,Coleoptera,495,928,0.5334051724137931
+rio_bebedouro,Desc. O. Classe Oligochaeta,22,928,0.023706896551724137
+rio_bebedouro,Diptera,35,928,0.03771551724137931
+rio_bebedouro,Ephemeroptera,46,928,0.04956896551724138
+rio_bebedouro,Hemiptera,75,928,0.08081896551724138
+rio_bebedouro,Littorinimorpha,6,928,0.00646551724137931
+rio_bebedouro,Odonata,165,928,0.17780172413793102
+rio_bebedouro,Trichoptera,35,928,0.03771551724137931
+rio_bebedouro,Tricladida,13,928,0.014008620689655173
+rio_bebedouro,Veneirodea,13,928,0.014008620689655173
+rio_da_barra,Basommatophora,68,945,0.07195767195767196
+rio_da_barra,Coleoptera,176,945,0.18624338624338624
+rio_da_barra,Desc. O. Classe Oligochaeta,6,945,0.006349206349206349
+rio_da_barra,Diptera,343,945,0.362962962962963
+rio_da_barra,Ephemeroptera,84,945,0.08888888888888889
+rio_da_barra,Hemiptera,79,945,0.0835978835978836
+rio_da_barra,Lepidoptera,3,945,0.0031746031746031746
+rio_da_barra,Megaloptera,1,945,0.0010582010582010583
+rio_da_barra,Odonata,111,945,0.11746031746031746
+rio_da_barra,Trichoptera,74,945,0.07830687830687831
+rio_mutuca,Amphipoda,126,1154,0.10918544194107452
+rio_mutuca,Basommatophora,3,1154,0.0025996533795493936
+rio_mutuca,Coleoptera,75,1154,0.06499133448873484
+rio_mutuca,Desc. O. Classe Oligochaeta,9,1154,0.00779896013864818
+rio_mutuca,Diptera,111,1154,0.09618717504332755
+rio_mutuca,Ephemeroptera,12,1154,0.010398613518197574
+rio_mutuca,Hemiptera,68,1154,0.058925476603119586
+rio_mutuca,Lepidoptera,3,1154,0.0025996533795493936
+rio_mutuca,Odonata,498,1154,0.43154246100519933
+rio_mutuca,Plecoptera,52,1154,0.045060658578856154
+rio_mutuca,Trichoptera,181,1154,0.15684575389948008
+rio_mutuca,Veneirodea,16,1154,0.01386481802426343
