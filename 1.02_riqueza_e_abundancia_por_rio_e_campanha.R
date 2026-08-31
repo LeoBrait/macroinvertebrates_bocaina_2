@@ -206,30 +206,43 @@ sumario_taxons <- df %>%
   group_by(rio, campanha, locality_name, order, family) %>%
   summarise(abundancia_taxon = sum(abundance)) %>%
   ungroup() %>%
+  group_by(rio, locality_name) %>%
+  mutate(abundancia_total_macroinvertebrados = sum(abundancia_taxon)) %>%
   group_by(rio, locality_name, order, family) %>%
-  summarise(abundancia_total_taxon = sum(abundancia_taxon)) %>%
-  ungroup() %>%
+  summarise(
+    abundancia_taxon = sum(abundancia_taxon),
+    abundancia_total_macroinvertebrados = first(abundancia_total_macroinvertebrados)
+  ) %>%
   group_by(rio, locality_name) %>%
   mutate(
-    abundancia_total_localidade = sum(abundancia_total_taxon),
-    abundancia_relativa = (abundancia_total_taxon / abundancia_total_localidade) * 100
+    abundancia_relativa_taxon = abundancia_taxon /
+    abundancia_total_macroinvertebrados
   )
+
 
 write_csv(
   sumario_taxons,
   file.path(pasta_tabelas, "sumario_abundancia_taxons_POR_rio_local.csv")
 )
 
-sumario_taxons <- df %>%
+sumario_taxons_rio <- df %>%
   group_by(rio, campanha, locality_name, order, family) %>%
   summarise(abundancia_taxon = sum(abundance)) %>%
   ungroup() %>%
-  group_by(rio, locality_name, order, family) %>%
-  summarise(abundancia_total_taxon = sum(abundancia_taxon)) %>%
-  ungroup() %>%
+  group_by(rio) %>%
+  mutate(abundancia_total_macroinvertebrados = sum(abundancia_taxon)) %>%
   group_by(rio, order, family) %>%
   summarise(
-    abundancia_total_rio = sum(abundancia_total_taxon),
-    abundancia_relativa_rio = (abundancia_total_taxon / sum(abundancia_total_rio)) * 100
+    abundancia_taxon = sum(abundancia_taxon),
+    abundancia_total_macroinvertebrados = first(abundancia_total_macroinvertebrados)
+  ) %>%
+  group_by(rio) %>%
+  mutate(
+    abundancia_relativa_taxon = abundancia_taxon /
+    abundancia_total_macroinvertebrados
   )
 
+write_csv(
+  sumario_taxons_rio,
+  file.path(pasta_tabelas, "sumario_abundancia_taxons_POR_rio.csv")
+)
