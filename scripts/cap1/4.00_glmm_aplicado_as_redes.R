@@ -85,7 +85,7 @@ contrastes_redes
 # Ordens -----------------------------------------------------------------------
 global <- glmer(
   riqueza_ordens ~
-  campanha + method + rio + (1 | rio:locality_name),
+    campanha + method + rio + (1 | rio:locality_name),
   data = dados,
   family = poisson
 )
@@ -122,7 +122,7 @@ anova(m1_selecionado, m2_selecionado, test = "Chisq")
 
 global <- glmmTMB(
   total_macroinvertebrados ~
-  campanha + method + rio + (1 | rio:locality_name),
+    campanha + method + rio + (1 | rio:locality_name),
   data = dados,
   family = nbinom2
 )
@@ -152,7 +152,7 @@ summary(m2_selecionado)
 # bmwp -------------------------------------------------------------------------
 global <- glmmTMB(
   bmwp ~
-  campanha + method + rio + (1 | rio:locality_name),
+    campanha + method + rio + (1 | rio:locality_name),
   data = dados,
   family = gaussian
 )
@@ -165,7 +165,7 @@ m2_selecionado <- get.models(ranking_modelos, subset = 2)[[1]]
 residuals_m1 <- simulateResiduals(m1_selecionado)
 plot(residuals_m1)
 testDispersion(residuals_m1)
-testZeroInflation(residuals_m1)  # verificar excesso de zeros
+testZeroInflation(residuals_m1)
 testUniformity(residuals_m1)
 summary(m1_selecionado)
 
@@ -186,14 +186,14 @@ summary(m2_selecionado)
 
 global <- glmmTMB(
   ibvol ~
-  campanha + method + rio + (1 | rio:locality_name),
+    campanha + method + rio + (1 | rio:locality_name),
   data = dados,
   family = gaussian
 )
 
 ranking_modelos <- dredge(global)
-m1_selecionado <- get.models(ranking_modelos, subset = 1)[[1]]
-
+m1_selecionado <- get.models(ranking_modelos, subset = 2)[[1]]
+summary(m1_selecionado)
 
 
 ################################### Garbage ####################################
