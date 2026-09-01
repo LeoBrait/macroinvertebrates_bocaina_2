@@ -1,0 +1,11 @@
+
+	Pairwise comparisons using permutation MANOVAs on a distance matrix 
+
+data:  matriz_bray_ordens by df_ordens$rio
+9999 permutations 
+
+             Rio Bebedouro Rio da Barra
+Rio da Barra 0.0405        -           
+Rio Mutuca   0.0003        0.0003      
+
+P value adjustment method: bonferroni 

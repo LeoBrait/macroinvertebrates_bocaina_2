@@ -1,6 +1,7 @@
 library(tidyverse)
 library(vegan)
 library(ggpubr)
+library(RVAideMemoire)
 
 ################################### Carregar dados #############################
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
@@ -18,9 +19,16 @@ if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
 
+pasta_tabelas <- "tabelas/cap1/comparacao_redes/permanova/"
+if (!dir.exists(pasta_tabelas)) {
+  dir.create(pasta_tabelas, recursive = TRUE)
+}
 
-df_ordens <- read_csv(
-  "dados/processado/matriz_comunidades_ordens_imaturos_largo.csv") %>%
+
+df_ordens <-
+  read_csv(
+    "dados/processado/matriz_comunidades_ordens_imaturos_largo.csv"
+  ) %>%
   filter(rio %in% rios) %>%
   filter(method %in% metodos) %>%
   filter(!locality_name %in% amostras_descartadas_vetor) %>%
@@ -55,7 +63,27 @@ df_familias <- read_csv(
   filter(!locality_name %in% amostras_descartadas_vetor) %>%
   group_by(campanha, rio, locality_name) %>%
   filter(all(metodos %in% method)) %>%
-  ungroup() 
+  ungroup() %>%
+  mutate(
+    campanha = case_when(
+      campanha == "campanha_1" ~ "C1",
+      campanha == "campanha_2" ~ "C2",
+      campanha == "campanha_3" ~ "C3",
+      campanha == "campanha_4" ~ "C4"
+    ),
+    rio = case_when(
+      rio == "rio_bebedouro" ~ "Rio Bebedouro",
+      rio == "rio_da_barra" ~ "Rio da Barra",
+      rio == "rio_mutuca" ~ "Rio Mutuca",
+      rio == "rio_da_serra" ~ "Rio da Serra",
+      rio == "rio_carrapicho" ~ "Rio Carrapicho"
+    ),
+    method = case_when(
+      method == "D Net" ~ "Rede D",
+      method == "Pool Net" ~ "Rede de Piscina",
+      method == "Sieve" ~ "Peneira"
+    )
+  )
 
 ################################### Pre-processamento ##########################
 matriz_relativa_ordens <- df_ordens %>%
@@ -67,43 +95,20 @@ matriz_relativa_ordens <- df_ordens %>%
     decostand(method = "total", na.rm = TRUE)
 
 matriz_relativa_familias <- df_familias %>%
-    select(-(campanha:method)) %>%  
-    as.data.frame() %>%
-    mutate(sample_id = row_number()) %>%
-    column_to_rownames(var = "sample_id") %>%
-    as.matrix() %>%
-    decostand(method = "total", na.rm = TRUE) 
-
-matriz_presenca_ordens <- df_ordens %>%
     select(-(campanha:method)) %>%
     as.data.frame() %>%
     mutate(sample_id = row_number()) %>%
     column_to_rownames(var = "sample_id") %>%
     as.matrix() %>%
-    decostand(method = "pa", na.rm = TRUE)
+    decostand(method = "total", na.rm = TRUE)
 
-matriz_presenca_familias <- df_familias %>%
-    select(-(campanha:method)) %>%
-    as.data.frame() %>%
-    mutate(sample_id = row_number()) %>%
-    column_to_rownames(var = "sample_id") %>%
-    as.matrix() %>%
-    decostand(method = "pa", na.rm = TRUE)
+matriz_bray_ordens <-
+  vegdist(matriz_relativa_ordens, method = "bray")
 
-matriz_bray_ordens <- 
-    vegdist(matriz_relativa_ordens, method = "bray")
-matriz_bray_familias <- 
-    vegdist(matriz_relativa_familias, method = "bray")
+matriz_bray_familias <-
+  vegdist(matriz_relativa_familias, method = "bray")
 
-matriz_canberra_ordens <- 
-    vegdist(matriz_relativa_ordens, method = "canberra")
-matriz_canberra_familias <- 
-    vegdist(matriz_relativa_familias, method = "canberra")
 
-matriz_jaccard_ordens <- 
-    vegdist(matriz_presenca_ordens, method = "jaccard")
-matriz_jaccard_familias <- 
-    vegdist(matriz_presenca_familias, method = "jaccard")
 
 #################################### NMDS ######################################
 
@@ -113,93 +118,108 @@ nmds_ordens_bray <-
     k = 2, try = 4999, trymax = 4999, parallel = 4
   )
 
-nmds_ordens_canberra <-
-  metaMDS(
-    matriz_canberra_ordens,
-    k = 2, try = 4999, trymax = 4999, parallel = 4
-  )
-
-nmds_ordens_jaccard <-
-  metaMDS(
-    matriz_jaccard_ordens,
-    k = 2, try = 4999, trymax = 4999, parallel = 4
-  )
-
 nmds_familias_bray <-
   metaMDS(
     matriz_bray_familias,
     k = 2, try = 4999, trymax = 4999, parallel = 4
   )
 
-nmds_familias_canberra <-
-  metaMDS(
-    matriz_canberra_familias,
-    k = 2, try = 4999, trymax = 4999, parallel = 4
-  )
-
-nmds_familias_jaccard <-
-  metaMDS(
-    matriz_jaccard_familias,
-    k = 2, try = 10000, trymax = 10000, parallel = 4
-  )
-
 
 ################################### Extract points ############################
 
-#----------------------------------- ordens ------------------------------------
-pontos_ordens_bray <- 
-    as.data.frame(scores(nmds_ordens_bray, display = "sites"))
+
+pontos_ordens_bray <-
+  as.data.frame(scores(nmds_ordens_bray, display = "sites"))
 stress_ordens_bray <- nmds_ordens_bray$stress
 pontos_ordens_bray$rio <- df_ordens$rio
 pontos_ordens_bray$method <- df_ordens$method
 
-pontos_ordens_canberra <- 
-    as.data.frame(scores(nmds_ordens_canberra, display = "sites"))
-stress_ordens_canberra <- nmds_ordens_canberra$stress
-pontos_ordens_canberra$rio <- df_ordens$rio
-pontos_ordens_canberra$method <- df_ordens$method
-
-pontos_ordens_jaccard <- 
-    as.data.frame(scores(nmds_ordens_jaccard, display = "sites"))
-stress_ordens_jaccard <- nmds_ordens_jaccard$stress
-pontos_ordens_jaccard$rio <- df_ordens$rio
-pontos_ordens_jaccard$method <- df_ordens$method
-
-# --------------------------------- famílias -----------------------------------
-pontos_familias_bray <- 
-    as.data.frame(scores(nmds_familias_bray, display = "sites"))
+pontos_familias_bray <-
+  as.data.frame(scores(nmds_familias_bray, display = "sites"))
 stress_familias_bray <- nmds_familias_bray$stress
 pontos_familias_bray$rio <- df_familias$rio
 pontos_familias_bray$method <- df_familias$method
 
-pontos_familias_canberra <- 
-    as.data.frame(scores(nmds_familias_canberra, display = "sites"))
-stress_familias_canberra <- nmds_familias_canberra$stress
-pontos_familias_canberra$rio <- df_familias$rio
-pontos_familias_canberra$method <- df_familias$method
-
-pontos_familias_jaccard <- 
-    as.data.frame(scores(nmds_familias_jaccard, display = "sites"))
-stress_familias_jaccard <- nmds_familias_jaccard$stress
-pontos_familias_jaccard$rio <- df_familias$rio
-pontos_familias_jaccard$method <- df_familias$method
 
 #################################### Permanova #################################
 permanova_ordens <- adonis2(
-    matriz_bray_ordens ~ rio + method + rio/locality_name,
-    data = df_ordens, 
-    permutations = 9999,
-    by = "terms"
+  matriz_bray_ordens ~ rio + method + rio / locality_name,
+  data = df_ordens, 
+  permutations = 9999,
+  by = "terms"
 )
 
 permanova_familias <- adonis2(
-    matriz_bray_familias ~ rio + method + rio/locality_name,
-    data = df_familias, 
-    permutations = 9999,
-    by = "terms"
+  matriz_bray_familias ~ rio + method + rio / locality_name,
+  data = df_familias,
+  permutations = 9999,
+  by = "terms"
+)
+
+capture.output(
+  permanova_ordens,
+  file = file.path(pasta_tabelas, "permanova_ordens_rios_metodos.txt")
+)
+
+capture.output(
+  permanova_familias,
+  file = file.path(pasta_tabelas, "permanova_familias_rios_metodos.txt")
+)
+
+# ----------------------------- post-hoc tests ---------------------------------
+# Para ORDENS - comparando os rios
+poshoc_ordens <- pairwise.perm.manova(
+  matriz_bray_ordens,
+  df_ordens$rio,
+  nperm = 9999,
+  p.method = "bonferroni"
+)
+capture.output(
+  poshoc_ordens, 
+  file = file.path(pasta_tabelas, "posthoc_permanova_ordens_rios.txt")
 )
 
 
+# Para FAMÍLIAS - comparando os rios
+poshoc_familias <- pairwise.perm.manova(
+  matriz_bray_familias,
+  df_familias$rio,
+  nperm = 9999,
+  p.method = "bonferroni"
+)
+capture.output(
+  poshoc_familias, 
+  file = file.path(pasta_tabelas, "posthoc_permanova_familias_rios.txt")
+)
+
+# --------------------------------- Homogeneidade ------------------------------
+dist_ordens <- vegdist(matriz_bray_ordens, method = "bray")
+betadisper_ordens <- betadisper(dist_ordens, group = df_ordens$rio)
+dispersao_ordens <- permutest(betadisper_ordens, permutations = 9999)
+capture.output(
+  dispersao_ordens, 
+  file = file.path(pasta_tabelas, "homogeneidade_ordens_rios.txt")
+)
+
+dist_familias <- vegdist(matriz_bray_familias, method = "bray")
+betadisper_familias <- betadisper(dist_familias, group = df_familias$rio)
+dispersao_familias <- permutest(betadisper_familias, permutations = 9999)
+capture.output(
+  dispersao_familias,
+  file = file.path(pasta_tabelas, "homogeneidade_familias_rios.txt")
+)
+
+# Para Ordens
+TukeyHSD(betadisper_ordens) %>%
+  capture.output(
+    file = file.path(pasta_tabelas, "posthoc_homogeneidade_ordens_rios.txt")
+  )
+
+# Para Famílias
+TukeyHSD(betadisper_familias) %>%
+  capture.output(
+    file = file.path(pasta_tabelas, "posthoc_homogeneidade_familias_rios.txt")
+  )
 
 #################################### Plots #####################################
 
@@ -496,3 +516,78 @@ ggsave(
 #     width = 8,
 #     height = 6
 # )
+
+pontos_familias_canberra <- 
+    as.data.frame(scores(nmds_familias_canberra, display = "sites"))
+stress_familias_canberra <- nmds_familias_canberra$stress
+pontos_familias_canberra$rio <- df_familias$rio
+pontos_familias_canberra$method <- df_familias$method
+
+pontos_familias_jaccard <- 
+    as.data.frame(scores(nmds_familias_jaccard, display = "sites"))
+stress_familias_jaccard <- nmds_familias_jaccard$stress
+pontos_familias_jaccard$rio <- df_familias$rio
+pontos_familias_jaccard$method <- df_familias$method
+
+
+matriz_presenca_ordens <- df_ordens %>%
+    select(-(campanha:method)) %>%
+    as.data.frame() %>%
+    mutate(sample_id = row_number()) %>%
+    column_to_rownames(var = "sample_id") %>%
+    as.matrix() %>%
+    decostand(method = "pa", na.rm = TRUE)
+
+matriz_presenca_familias <- df_familias %>%
+    select(-(campanha:method)) %>%
+    as.data.frame() %>%
+    mutate(sample_id = row_number()) %>%
+    column_to_rownames(var = "sample_id") %>%
+    as.matrix() %>%
+    decostand(method = "pa", na.rm = TRUE)
+
+matriz_canberra_ordens <- 
+    vegdist(matriz_relativa_ordens, method = "canberra")
+matriz_canberra_familias <- 
+    vegdist(matriz_relativa_familias, method = "canberra")
+
+matriz_jaccard_ordens <- 
+    vegdist(matriz_presenca_ordens, method = "jaccard")
+matriz_jaccard_familias <- 
+    vegdist(matriz_presenca_familias, method = "jaccard")
+
+nmds_ordens_canberra <-
+  metaMDS(
+    matriz_canberra_ordens,
+    k = 2, try = 4999, trymax = 4999, parallel = 4
+  )
+
+nmds_ordens_jaccard <-
+  metaMDS(
+    matriz_jaccard_ordens,
+    k = 2, try = 4999, trymax = 4999, parallel = 4
+  )
+
+
+nmds_familias_canberra <-
+  metaMDS(
+    matriz_canberra_familias,
+    k = 2, try = 4999, trymax = 4999, parallel = 4
+  )
+
+nmds_familias_jaccard <-
+  metaMDS(
+    matriz_jaccard_familias,
+    k = 2, try = 10000, trymax = 10000, parallel = 4
+  )
+pontos_ordens_canberra <- 
+    as.data.frame(scores(nmds_ordens_canberra, display = "sites"))
+stress_ordens_canberra <- nmds_ordens_canberra$stress
+pontos_ordens_canberra$rio <- df_ordens$rio
+pontos_ordens_canberra$method <- df_ordens$method
+
+pontos_ordens_jaccard <- 
+    as.data.frame(scores(nmds_ordens_jaccard, display = "sites"))
+stress_ordens_jaccard <- nmds_ordens_jaccard$stress
+pontos_ordens_jaccard$rio <- df_ordens$rio
+pontos_ordens_jaccard$method <- df_ordens$method

@@ -1,0 +1,11 @@
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = distances ~ group, data = df)
+
+$group
+                                   diff         lwr           upr     p adj
+Rio da Barra-Rio Bebedouro  0.002830193 -0.02760678  0.0332671694 0.9730817
+Rio Mutuca-Rio Bebedouro   -0.032266151 -0.06358554 -0.0009467609 0.0420024
+Rio Mutuca-Rio da Barra    -0.035096344 -0.06553332 -0.0046593682 0.0198361
+

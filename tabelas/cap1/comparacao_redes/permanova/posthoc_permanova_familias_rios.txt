@@ -1,0 +1,11 @@
+
+	Pairwise comparisons using permutation MANOVAs on a distance matrix 
+
+data:  matriz_bray_familias by df_familias$rio
+9999 permutations 
+
+             rio_bebedouro rio_da_barra
+rio_da_barra 0.0027        -           
+rio_mutuca   0.0003        0.0003      
+
+P value adjustment method: bonferroni 
