@@ -22,6 +22,8 @@ if (!dir.exists(pasta_figuras)) {
 pasta_tabelas <- "tabelas/cap1/comparacao_redes/simper/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
+  dir.create(file.path(pasta_tabelas, "method"), recursive = TRUE)
+  dir.create(file.path(pasta_tabelas, "rio"), recursive = TRUE)
 }
 
 
@@ -94,55 +96,118 @@ comunidade_ordens <- df_ordens %>%
 comunidade_familias <- df_familias %>%
   select(-c(campanha, rio, locality_name, method))
 
+
+# Analise dos rios -------------------------------------------------------------
 grupos <- df_ordens$rio
 
-simper_ordens <- simper(
+simper_ordens_rio <- simper(
   comunidade_ordens,
   grupos,
   permutations = 99999
 )
 
-simper_familias <- simper(
+simper_familias_rio <- simper(
   comunidade_familias,
   grupos,
   permutations = 99999
 )
 
-summary_simper_ordens <- summary(simper_ordens)
-summary_simper_familias <- summary(simper_familias)
+summary_simper_ordens_rio <- summary(simper_ordens_rio)
+summary_simper_familias_rio <- summary(simper_familias_rio)
 
-# salvar os resultados do SIMPER em arquivos CSV
-for (i in seq_along(summary_simper_ordens)) {
-  nome_arquivo <- paste0(
-    pasta_tabelas, "simper_ordens_", names(summary_simper_ordens)[i], ".csv"
+for (i in seq_along(summary_simper_ordens_rio)) {
+
+
+  nome_arquivo_ordens <- file.path(
+    pasta_tabelas,
+    "rio",
+    paste0("simper_ordens_", names(summary_simper_ordens_rio)[i], ".csv")
+  )
+
+  nome_arquivo_familias <- file.path(
+    pasta_tabelas,
+    "rio",
+    paste0("simper_familias_", names(summary_simper_familias_rio)[i], ".csv")
   )
 
   # converter rownames em uma coluna antes de salvar
-  summary_simper_ordens[[i]] <- summary_simper_ordens[[i]] %>%
+  summary_simper_ordens_rio[[i]] <- summary_simper_ordens_rio[[i]] %>%
     rownames_to_column(var = "ordem")
 
-  # calcular contribuição individual
-  summary_simper_ordens[[i]] <- summary_simper_ordens[[i]] %>%
-    mutate(contribuicao_individual = cumsum - lag(cumsum, default = 0))
-
-
-  write_csv(summary_simper_ordens[[i]], nome_arquivo)
-}
-
-for (i in seq_along(summary_simper_familias)) {
-
-  nome_arquivo <- paste0(
-    pasta_tabelas, "simper_familias_", names(summary_simper_familias)[i], ".csv"
-  )
-
-  # converter rownames em uma coluna antes de salvar
-  summary_simper_familias[[i]] <- summary_simper_familias[[i]] %>%
+  summary_simper_familias_rio[[i]] <- summary_simper_familias_rio[[i]] %>%
     rownames_to_column(var = "familia")
 
   # calcular contribuição individual
-  summary_simper_familias[[i]] <- summary_simper_familias[[i]] %>%
+  summary_simper_ordens_rio[[i]] <- summary_simper_ordens_rio[[i]] %>%
     mutate(contribuicao_individual = cumsum - lag(cumsum, default = 0))
 
-  write_csv(summary_simper_familias[[i]], nome_arquivo)
+  summary_simper_familias_rio[[i]] <- summary_simper_familias_rio[[i]] %>%
+    mutate(contribuicao_individual = cumsum - lag(cumsum, default = 0))
+
+  # Salvar
+  write_csv(summary_simper_ordens_rio[[i]], nome_arquivo_ordens)
+  write_csv(summary_simper_familias_rio[[i]], nome_arquivo_familias)
+
+
+
 }
+
+
+
+# Analise dos metodos ----------------------------------------------------------
+grupos <- df_ordens$method
+
+simper_ordens_metodo <- simper(
+  comunidade_ordens,
+  grupos,
+  permutations = 99999
+)
+
+simper_familias_metodo <- simper(
+  comunidade_familias,
+  grupos,
+  permutations = 99999
+)
+
+summary_simper_ordens_metodo <- summary(simper_ordens_metodo)
+summary_simper_familias_metodo <- summary(simper_familias_metodo)
+
+for (i in seq_along(summary_simper_ordens_metodo)) {
+  nome_arquivo_ordens <- file.path(
+    pasta_tabelas,
+    "method",
+    paste0("simper_ordens_", names(summary_simper_ordens_metodo)[i], ".csv")
+  )
+
+  nome_arquivo_familias <- file.path(
+    pasta_tabelas,
+    "method",
+    paste0("simper_familias_", names(summary_simper_familias_metodo)[i], ".csv")
+  )
+
+  # converter rownames em uma coluna antes de salvar
+  summary_simper_ordens_metodo[[i]] <- summary_simper_ordens_metodo[[i]] %>%
+    rownames_to_column(var = "ordem")
+
+  summary_simper_familias_metodo[[i]] <- summary_simper_familias_metodo[[i]] %>%
+    rownames_to_column(var = "familia")
+
+  # calcular contribuição individual
+  summary_simper_ordens_metodo[[i]] <- summary_simper_ordens_metodo[[i]] %>%
+    mutate(contribuicao_individual = cumsum - lag(cumsum, default = 0))
+
+  summary_simper_familias_metodo[[i]] <- summary_simper_familias_metodo[[i]] %>%
+    mutate(contribuicao_individual = cumsum - lag(cumsum, default = 0))
+
+  # Salvar
+  write_csv(summary_simper_ordens_metodo[[i]], nome_arquivo_ordens)
+  write_csv(summary_simper_familias_metodo[[i]], nome_arquivo_familias)
+}
+
+
+
+
+
+
+
 
