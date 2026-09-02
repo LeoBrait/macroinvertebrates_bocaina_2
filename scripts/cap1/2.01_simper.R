@@ -7,8 +7,8 @@ library(ggpubr)
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 metodos <- c("D Net", "Pool Net", "Sieve")
 colunas <- c(
-    "campanha", "rio", "locality_name", "method",
-    "total_macroinvertebrados", "riqueza_ordens", "riqueza_familias"
+  "campanha", "rio", "locality_name", "method",
+  "total_macroinvertebrados", "riqueza_ordens", "riqueza_familias"
 )
 
 amostras_descartadas_vetor <- c("RiodaBarra-P1")
@@ -120,7 +120,7 @@ for (i in seq_along(summary_simper_ordens)) {
   # converter rownames em uma coluna antes de salvar
   summary_simper_ordens[[i]] <- summary_simper_ordens[[i]] %>%
     rownames_to_column(var = "ordem")
-  
+
   # calcular contribuição individual
   summary_simper_ordens[[i]] <- summary_simper_ordens[[i]] %>%
     mutate(contribuicao_individual = cumsum - lag(cumsum, default = 0))
@@ -138,7 +138,7 @@ for (i in seq_along(summary_simper_familias)) {
   # converter rownames em uma coluna antes de salvar
   summary_simper_familias[[i]] <- summary_simper_familias[[i]] %>%
     rownames_to_column(var = "familia")
-  
+
   # calcular contribuição individual
   summary_simper_familias[[i]] <- summary_simper_familias[[i]] %>%
     mutate(contribuicao_individual = cumsum - lag(cumsum, default = 0))

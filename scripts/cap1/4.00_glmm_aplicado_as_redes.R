@@ -13,9 +13,11 @@ descarte <- c("RiodaBarra-P1")
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 ################################### Dados ######################################
 
-# Com ou sem method no id_tempo_espaço?
+
 dados_completos <-
   read_csv("dados/processado/matriz_indices_imaturos_piata.csv") %>%
+  # Coloquei essas distinções, mas terminei nao utilizando,
+  # Só dificultam a convergência dos modelos
   mutate(
     periodo = case_when(
       campanha %in% c("campanha_1", "campanha_2", "campanha_4") ~ "seco",
@@ -71,16 +73,32 @@ summary(m1_selecionado)
 summary(m2_selecionado)
 
 # comparacoes rios
-medias_rios <- emmeans(m2_selecionado, ~ rio)
+medias_rios <- emmeans(m2_selecionado, ~ rio, type = "response")
 contrastes_rios <- pairs(medias_rios)
 contrastes_rios
 
 # comparacoes redes
-medias_redes <- emmeans(m2_selecionado, ~ method)
+medias_redes <- emmeans(m2_selecionado, ~ method, type = "response")
 contrastes_redes <- pairs(medias_redes)
 contrastes_redes
 
+#******************************************************************************#
+#                               PARECER DA ANALISE                             #
+#******************************************************************************#
+# Reposta obtida: Os métodos de coleta são marginalmente significativos 
+# (p=0.06). Acho importente pontuar isso, porque essa diferneça se torna
+# significativa quando eliminamos alguns passos de filtragem. E o modelo com
+# método de Friedman para este parâmetro também dá como significativo.
 
+# Quando fazemos os testes de comparações múltiplas, vemos que a diferença entre
+# as redes D e Pool é significativa. (p = 0.02).
+
+# Há uma diferença detectada entre as campanhas, mas esse resultado nao vale
+# a pena porque campanha está confundida com rio. As campanhas 1, 2 e 3 foram
+# feitas nos rios barra e bebedouro, enquanto que o rio mutuca só foi amostrado
+# a partir da camapanha 2 e o único amostrado na campanha 4.
+
+#******************************************************************************#
 
 # Ordens -----------------------------------------------------------------------
 global <- glmer(
@@ -91,8 +109,8 @@ global <- glmer(
 )
 
 ranking_modelos <- dredge(global)
-m1_selecionado <- get.models(ranking_modelos, subset = 2)[[1]]
-m2_selecionado <- get.models(ranking_modelos, subset = 4)[[1]]
+m1_selecionado <- get.models(ranking_modelos, subset = 1)[[1]]
+m2_selecionado <- get.models(ranking_modelos, subset = 2)[[1]]
 
 
 # qualidade do ajuste do modelo 1
@@ -113,10 +131,13 @@ testUniformity(residuals_m2)
 summary(m1_selecionado)
 summary(m2_selecionado)
 
-anova(m1_selecionado, m2_selecionado, test = "Chisq")
-
-
-
+#******************************************************************************#
+#                               PARECER DA ANALISE                             #
+#******************************************************************************#
+# Modelo nulo é o melhor modelo, o modelo 2 tem problemas na verificação       #
+# de uniformidade dos resíduos.                                                #
+#                                                                              #
+#******************************************************************************#
 
 ################################## Abundancia ##################################
 
@@ -147,6 +168,14 @@ testZeroInflation(residuals_m2)  # verificar excesso de zeros
 testUniformity(residuals_m2)
 summary(m2_selecionado)
 
+#******************************************************************************#
+#                               PARECER DA ANALISE                             #
+#******************************************************************************#
+# Ambos os modelos 1 e 2 apontam para o mesmo resultado. A rede de piscina     #
+# coleta mais.                                                                 #
+#                                                                              #
+#******************************************************************************#
+
 ############################ Indices de qualidade da água ######################
 
 # bmwp -------------------------------------------------------------------------
@@ -169,19 +198,27 @@ testZeroInflation(residuals_m1)
 testUniformity(residuals_m1)
 summary(m1_selecionado)
 
+# qualidade do ajuste do modelo 2
+residuals_m2 <- simulateResiduals(m2_selecionado)
+plot(residuals_m2)
+testDispersion(residuals_m2)
+testZeroInflation(residuals_m2)
+testUniformity(residuals_m2)
+summary(m2_selecionado)
+
 # comparacoes rios
 medias_rios <- emmeans(m1_selecionado, ~ rio)
 contrastes_rios <- pairs(medias_rios)
 
-# comparacoes campanhas
-medias_campanhas <- emmeans(m1_selecionado, ~ campanha)
-contrastes_campanhas <- pairs(medias_campanhas)
+#******************************************************************************#
+#                               PARECER DA ANALISE                             #
+#******************************************************************************#
+# Ambos os modelos 1 e 2 apontam para o mesmo resultado. O Rio Mutuca tem      #
+# maior qualidade da agua que todos os outros rios                             #
+# O modelo 2 adiciona a variável método, mas não é significativo.              #
+#******************************************************************************#
 
-# comparacoes metodos
-medias_metodos <- emmeans(m1_selecionado, ~ method)
-contrastes_metodos <- pairs(medias_metodos)
 
-summary(m2_selecionado)
 # IBVOL -----------------------------------------------------------------------
 
 global <- glmmTMB(
