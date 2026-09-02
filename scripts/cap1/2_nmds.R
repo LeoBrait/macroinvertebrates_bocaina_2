@@ -4,6 +4,7 @@ library(ggpubr)
 library(RVAideMemoire)
 
 ################################### Carregar dados #############################
+set.seed(1994)
 rios <- c("rio_bebedouro", "rio_da_barra", "rio_mutuca")
 metodos <- c("D Net", "Pool Net", "Sieve")
 colunas <- c(
@@ -327,19 +328,18 @@ ggsave(
 painel <- ggarrange(
     plot_ordens_bray, 
     plot_familias_bray, 
-    ncol = 2, 
+    nrow = 2, 
     common.legend = TRUE, 
     legend = "right",
     labels = c("A", "B"),
-    font.label = list(size = 16, face = "bold"),
-    widths = c(1, 1)
+    font.label = list(size = 16, face = "bold")
 )
 
 ggsave(
     painel,
     filename = paste0(pasta_figuras, "nmds_ordens_familias_bray.svg"),
-    width = 15,
-    height = 7
+    width = 7,
+    height = 15
 )
 
 

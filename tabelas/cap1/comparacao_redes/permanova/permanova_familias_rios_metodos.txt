@@ -6,7 +6,7 @@ Number of permutations: 9999
 adonis2(formula = matriz_bray_familias ~ rio + method + rio/locality_name, data = df_familias, permutations = 9999, by = "terms")
                   Df SumOfSqs      R2      F Pr(>F)    
 rio                2   4.1740 0.16083 7.8673 0.0001 ***
-method             2   0.5234 0.02017 0.9864 0.4618    
+method             2   0.5234 0.02017 0.9864 0.4689    
 rio:locality_name  6   4.2773 0.16481 2.6873 0.0001 ***
 Residual          64  16.9776 0.65419                  
 Total             74  25.9522 1.00000                  
