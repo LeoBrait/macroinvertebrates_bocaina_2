@@ -1,13 +1,13 @@
 Permutation test for adonis under reduced model
 Terms added sequentially (first to last)
 Permutation: free
-Number of permutations: 9999
+Number of permutations: 99999
 
-adonis2(formula = matriz_bray_ordens ~ rio + method + rio/locality_name, data = df_ordens, permutations = 9999, by = "terms")
+adonis2(formula = matriz_bray_ordens ~ rio + method + rio/locality_name, data = df_ordens, permutations = 99999, by = "terms")
                   Df SumOfSqs      R2      F Pr(>F)    
-rio                2   3.0825 0.16755 8.7077 0.0001 ***
-method             2   0.1217 0.00662 0.3439 0.9841    
-rio:locality_name  6   3.8655 0.21011 3.6399 0.0001 ***
+rio                2   3.0825 0.16755 8.7077  1e-05 ***
+method             2   0.1217 0.00662 0.3439 0.9848    
+rio:locality_name  6   3.8655 0.21011 3.6399  1e-05 ***
 Residual          64  11.3280 0.61572                  
 Total             74  18.3978 1.00000                  
 ---

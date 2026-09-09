@@ -116,13 +116,13 @@ matriz_bray_familias <-
 nmds_ordens_bray <-
   metaMDS(
     matriz_bray_ordens,
-    k = 2, try = 4999, trymax = 4999, parallel = 4
+    k = 2, try = 99999, trymax = 99999, parallel = 4
   )
 
 nmds_familias_bray <-
   metaMDS(
     matriz_bray_familias,
-    k = 2, try = 4999, trymax = 4999, parallel = 4
+    k = 2, try = 99999, trymax = 99999, parallel = 4
   )
 
 
@@ -146,14 +146,14 @@ pontos_familias_bray$method <- df_familias$method
 permanova_ordens <- adonis2(
   matriz_bray_ordens ~ rio + method + rio / locality_name,
   data = df_ordens, 
-  permutations = 9999,
+  permutations = 99999,
   by = "terms"
 )
 
 permanova_familias <- adonis2(
   matriz_bray_familias ~ rio + method + rio / locality_name,
   data = df_familias,
-  permutations = 9999,
+  permutations = 99999,
   by = "terms"
 )
 
@@ -172,7 +172,7 @@ capture.output(
 poshoc_ordens <- pairwise.perm.manova(
   matriz_bray_ordens,
   df_ordens$rio,
-  nperm = 9999,
+  nperm = 99999,
   p.method = "bonferroni"
 )
 capture.output(
@@ -185,7 +185,7 @@ capture.output(
 poshoc_familias <- pairwise.perm.manova(
   matriz_bray_familias,
   df_familias$rio,
-  nperm = 9999,
+  nperm = 99999,
   p.method = "bonferroni"
 )
 capture.output(
