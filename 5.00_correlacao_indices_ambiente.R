@@ -28,7 +28,7 @@ sonda_df <- read_csv("dados/dados_sonda_bocaina.csv") %>%
 
 
 
-bocainas_indexes <- read_csv("tabelas/indice_multimetrico/rede_unica/indice_bocaina_imaturos_piata.csv")
+bocainas_indexes <- read_csv("tabelas/cap2/indice_multimetrico/rede_unica/indice_bocaina_imaturos_piata.csv")
 
 # Unir dados de índices com dados ambientais
 merged_df <- sonda_df %>%

@@ -23,13 +23,13 @@ nota_minima <- length(vetor_respostas)
 
 
 # Pastas de figuras
-pasta_figuras <- "figuras/cap2/indice_multimetrico/rede_unica"
+pasta_figuras <- "figuras/cap2/indice_multimetrico/indice_bocaina/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
 
 # Pasta de tabelas
-pasta_tabelas <- "tabelas/cap2/indice_multimetrico/rede_unica"
+pasta_tabelas <- "tabelas/cap2/indice_multimetrico/indice_bocaina/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
