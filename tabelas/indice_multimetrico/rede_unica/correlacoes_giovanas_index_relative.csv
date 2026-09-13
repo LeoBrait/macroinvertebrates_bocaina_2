@@ -1,7 +1,0 @@
-"Variavel","Correlacao_r","R_quadrado","P_valor","Significativo_005"
-"aspt",0.491,0.241,"1.59e-06",TRUE
-"bmwp",0.616,0.38,"2.64e-10",TRUE
-"razao_ept_chironomidae",0.461,0.213,"7.87e-06",TRUE
-"relativo_odonata",0.451,0.204,"1.29e-05",TRUE
-"relativo_trichoptera",0.324,0.105,"2.31e-03",TRUE
-"shannon_familias",0.555,0.308,"3e-08",TRUE

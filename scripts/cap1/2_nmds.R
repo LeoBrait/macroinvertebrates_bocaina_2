@@ -194,17 +194,17 @@ capture.output(
 )
 
 # --------------------------------- Homogeneidade ------------------------------
-dist_ordens <- vegdist(matriz_bray_ordens, method = "bray")
+dist_ordens <- matriz_bray_ordens
 betadisper_ordens <- betadisper(dist_ordens, group = df_ordens$rio)
-dispersao_ordens <- permutest(betadisper_ordens, permutations = 9999)
+dispersao_ordens <- permutest(betadisper_ordens, permutations = 99999)
 capture.output(
   dispersao_ordens, 
   file = file.path(pasta_tabelas, "homogeneidade_ordens_rios.txt")
 )
 
-dist_familias <- vegdist(matriz_bray_familias, method = "bray")
+dist_familias <- matriz_bray_familias
 betadisper_familias <- betadisper(dist_familias, group = df_familias$rio)
-dispersao_familias <- permutest(betadisper_familias, permutations = 9999)
+dispersao_familias <- permutest(betadisper_familias, permutations = 99999)
 capture.output(
   dispersao_familias,
   file = file.path(pasta_tabelas, "homogeneidade_familias_rios.txt")

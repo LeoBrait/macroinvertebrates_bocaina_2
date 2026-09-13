@@ -1,0 +1,6 @@
+"Variavel","Correlacao_r","R_quadrado","P_valor","Significativo_005"
+"aspt",0.473,0.224,"4.22e-06",TRUE
+"bmwp",0.553,0.306,"3.26e-08",TRUE
+"relativo_odonata",0.484,0.234,"2.41e-06",TRUE
+"relativo_trichoptera",0.303,0.092,"4.51e-03",TRUE
+"shannon_familias",0.507,0.257,"6.19e-07",TRUE
