@@ -19,7 +19,7 @@ if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
 
-pasta_tabelas <- "figuras/cap1/comparacao_redes/friedman_wilcoxon/"
+pasta_tabelas <- "tabelas/cap1/comparacao_redes/friedman_wilcoxon/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
