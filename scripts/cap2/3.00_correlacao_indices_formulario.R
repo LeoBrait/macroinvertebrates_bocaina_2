@@ -10,7 +10,7 @@ vetor_respostas <- c(
   "bmwp", 
   #"filtrador_proporcao",
   #"raspadores_proporcao",
-  "razao_ept_chironomidae",
+  #"razao_ept_chironomidae",
   "relativo_odonata",
   "relativo_trichoptera",
   "shannon_familias")
@@ -31,13 +31,13 @@ vetor_variaveis_ambiente <- c(
 )
 
 # Pastas de figuras
-pasta_figuras <- "figuras/indice_multimetrico/rede_unica"
+pasta_figuras <- "figuras/cap2/indice_multimetrico/indice_bocaina/"
 if (!dir.exists(pasta_figuras)) {
   dir.create(pasta_figuras, recursive = TRUE)
 }
 
 # Pasta de tabelas
-pasta_tabelas <- "tabelas/indice_multimetrico/rede_unica"
+pasta_tabelas <- "tabelas/cap2/indice_multimetrico/indice_bocaina/"
 if (!dir.exists(pasta_tabelas)) {
   dir.create(pasta_tabelas, recursive = TRUE)
 }
@@ -46,7 +46,7 @@ if (!dir.exists(pasta_tabelas)) {
 analise_entorno_df <- read_csv("dados/dados_analise_entorno_bocaina.csv")
 
 
-bocainas_indexes <- read_csv("tabelas/indice_multimetrico/rede_unica/indice_bocaina_imaturos_piata.csv")
+bocainas_indexes <- read_csv("tabelas/cap2/indice_multimetrico/indice_bocaina/indice_bocaina_imaturos_piata.csv")
 
 
 
