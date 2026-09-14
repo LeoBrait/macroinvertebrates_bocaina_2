@@ -10,7 +10,7 @@ vetor_respostas <- c(
   "bmwp", 
   #"filtrador_proporcao",
   #"raspadores_proporcao",
-  "razao_ept_chironomidae",
+  #"razao_ept_chironomidae",
   "relativo_odonata",
   "relativo_trichoptera",
   "shannon_familias")
@@ -51,19 +51,15 @@ for (variavel in vetor_variaveis_ambiente) {
         y = variavel
       ) +
       theme_minimal()
-  ggsave(filename = paste0("figuras/sonda/boxplot_", variavel, ".png"), width = 8, height = 6)
+  ggsave(filename = paste0("figuras/cap2/indice_multimetrico/sonda/boxplot_", variavel, ".png"), width = 8, height = 6)
 }
 
-# remover outliers
-merged_df <- merged_df %>%
-  filter(ph >= 5.7) %>%
-  filter(temperatura < 24) %>%
-  filter(condutividade < 250) %>%
-  filter(tds < 125)
 
-
-
-
+# merged_df <- merged_df %>%
+#   filter(ph >= 5.7) %>%
+#   filter(temperatura < 24) %>%
+#   filter(condutividade < 250) %>%
+#   filter(tds < 125)
 
 
 ################################ Análise de correlação #########################
@@ -92,5 +88,5 @@ for (ambiental in vetor_variaveis_ambiente) {
 
 write_csv(
   response_df,
-  file.path("tabelas/correlacao_indices_vs_sonda.csv")
+  file.path("tabelas/cap2/indice_multimetrico/correlacao_indices_vs_sonda.csv")
 )
