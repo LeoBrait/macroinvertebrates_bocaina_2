@@ -1,4 +1,5 @@
 library(tidyverse)
+library(ggpubr)
 
 ################################## Configurações ###############################
 set.seed(1994)
@@ -90,8 +91,32 @@ for (i in vetor_respostas) {
     width = 8,
     height = 6
   )
+  list_of_plots[[i]] <- plot
 
 }
+names(list_of_plots)
+plot_familias <- list_of_plots["riqueza_familias"]
+plot_abundancia <- list_of_plots["total_macroinvertebrados"]
+
+painel <- ggarrange(
+  plot_familias[[1]], 
+  plot_abundancia[[1]], 
+  ncol = 2, 
+  common.legend = TRUE, 
+  legend = "bottom",
+  labels = c("A", "B"),
+  font.label = list(size = 16, face = "bold")
+)
+
+ggsave(
+  painel,
+  filename = paste0(pasta_figuras, "painel_friedman_redes.svg"),
+  width = 10,
+  height = 5.5
+)
+
+
+
 
 ################################### Post roc ###################################
 

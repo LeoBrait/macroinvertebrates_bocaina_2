@@ -223,7 +223,9 @@ TukeyHSD(betadisper_familias) %>%
   )
 
 #################################### Plots #####################################
-
+save.image(
+  file = file.path("nmds_ordens_familias_bray.RData")
+)
 
 plot_ordens_bray <-
   ggplot(
@@ -266,7 +268,8 @@ plot_ordens_bray <-
   #scale_shape_manual(values = c(1, 0, 2)) +
   theme(
     plot.title = element_text(hjust = 0.5),
-    legend.position = "right"
+    legend.position = "right",
+    axis.title = element_text(face = "bold")
   )
 
 ggsave(
@@ -314,7 +317,8 @@ plot_familias_bray <-
   ) +
     theme(
         plot.title = element_text(hjust = 0.5),
-        legend.position = "right"
+        legend.position = "right",
+        axis.title = element_text(face = "bold")
     )
 
 
@@ -328,9 +332,9 @@ ggsave(
 painel <- ggarrange(
     plot_ordens_bray, 
     plot_familias_bray, 
-    nrow = 2, 
+    ncol = 2, 
     common.legend = TRUE, 
-    legend = "right",
+    legend = "bottom",
     labels = c("A", "B"),
     font.label = list(size = 16, face = "bold")
 )
@@ -338,8 +342,8 @@ painel <- ggarrange(
 ggsave(
     painel,
     filename = paste0(pasta_figuras, "nmds_ordens_familias_bray.svg"),
-    width = 7,
-    height = 15
+    width = 10,
+    height = 5.5
 )
 
 

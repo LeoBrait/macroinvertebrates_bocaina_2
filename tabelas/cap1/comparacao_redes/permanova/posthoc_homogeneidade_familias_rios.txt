@@ -4,8 +4,8 @@
 Fit: aov(formula = distances ~ group, data = df)
 
 $group
-                                   diff         lwr          upr     p adj
-Rio da Barra-Rio Bebedouro -0.010193290 -0.02313036  0.002743783 0.1502167
-Rio Mutuca-Rio Bebedouro   -0.019432158 -0.03274430 -0.006120019 0.0023376
-Rio Mutuca-Rio da Barra    -0.009238868 -0.02217594  0.003698205 0.2088145
+                                  diff         lwr         upr     p adj
+Rio da Barra-Rio Bebedouro  0.04982211 -0.03532733  0.13497155 0.3461622
+Rio Mutuca-Rio Bebedouro   -0.05319294 -0.14081099  0.03442511 0.3196688
+Rio Mutuca-Rio da Barra    -0.10301505 -0.18816449 -0.01786561 0.0137268
 
