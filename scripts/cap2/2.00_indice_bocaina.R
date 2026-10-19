@@ -113,7 +113,10 @@ indices_rebalanceados_df <- indices_df %>%
     )
   ) 
 
-  
+write_csv(
+  estatisticas_df,
+  file.path(pasta_tabelas, "poontuacao_intermediaria.csv")
+)
 
 
 
