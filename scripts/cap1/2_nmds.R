@@ -223,9 +223,13 @@ TukeyHSD(betadisper_familias) %>%
   )
 
 #################################### Plots #####################################
-save.image(
-  file = file.path("nmds_ordens_familias_bray.RData")
-)
+if (!file.exists("nmds_ordens_familias_bray.RData")) {
+  save.image(
+    file = file.path("nmds_ordens_familias_bray.RData")
+  )
+} else {
+  load("nmds_ordens_familias_bray.RData")
+}
 
 plot_ordens_bray <-
   ggplot(
@@ -247,6 +251,13 @@ plot_ordens_bray <-
     color = "Rio",
     shape = "Método"
   ) +
+  # modificar cores dos rios
+  scale_color_manual(values = c(
+    "Rio Bebedouro" = "#f500a3", 
+    "Rio da Barra" = "#0031f7", 
+    "Rio Mutuca" = "#ff6600")
+  ) +
+
   # permanova results rios
   annotate(
     "text", x = -2, y = 0,
@@ -269,12 +280,15 @@ plot_ordens_bray <-
   theme(
     plot.title = element_text(hjust = 0.5),
     legend.position = "right",
-    axis.title = element_text(face = "bold")
+    axis.title = element_text(face = "bold", size = 20),
+    legend.title = element_text(face = "bold", size = 16),
+    legend.text = element_text(size = 14),
+    legend.key.size = unit(20, "pt")
   )
 
 ggsave(
     plot_ordens_bray,
-    filename = paste0(pasta_figuras, "nmds_ordens_bray.png"),
+    filename = paste0(pasta_figuras, "nmds_ordens_bray.svg"),
     width = 8,
     height = 6
 )
@@ -299,6 +313,12 @@ plot_familias_bray <-
     color = "Rio",
     shape = "Método"
   ) +
+  # modificar cores dos rios
+  scale_color_manual(values = c(
+    "Rio Bebedouro" = "#f500a3", 
+    "Rio da Barra" = "#0031f7", 
+    "Rio Mutuca" = "#ff6600")
+  ) +
   annotate(
     "text", x = -2, y = 0,
     label = paste0(
@@ -318,13 +338,16 @@ plot_familias_bray <-
     theme(
         plot.title = element_text(hjust = 0.5),
         legend.position = "right",
-        axis.title = element_text(face = "bold")
+        axis.title = element_text(face = "bold", size = 20),
+        legend.title = element_text(face = "bold", size = 16),
+        legend.text = element_text(size = 14),
+        legend.key.size = unit(20, "pt")
     )
 
 
 ggsave(
     plot_familias_bray,
-    filename = paste0(pasta_figuras, "nmds_familias_bray.png"),
+    filename = paste0(pasta_figuras, "nmds_familias_bray.svg"),
     width = 8,
     height = 6
 )
