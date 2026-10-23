@@ -376,11 +376,13 @@ if(nrow(pares_significativos) > 0) {
 painel_vetor <- c(
  "aspt", 
   "bmwp", 
+  "ept_riqueza",
   #"filtrador_proporcao",
   #"raspadores_proporcao",
-  "razao_ept_chironomidae",
+  #"razao_ept_chironomidae",
   "relativo_odonata",
   "relativo_trichoptera",
+  "riqueza_familias_trichoptera",
   "shannon_familias"
 )
 
@@ -428,7 +430,7 @@ for (i in painel_vetor) {
     geom_jitter(width = 0.2, height = 0, alpha = 1) +
     scale_x_discrete(labels = vetor_estetica_impacto) +
     theme(
-      text = element_text(size = unit(18, "pt"), face = "bold"),
+      text = element_text(size = unit(25, "pt"), face = "bold"),
       #axis.title = element_blank(),
       plot.title = element_blank(),
       axis.text.x = element_blank(),
@@ -450,11 +452,11 @@ for (i in painel_vetor) {
 
 painel <- ggarrange(
   plotlist = painel_plots,
-  ncol = 3,
+  ncol = 4,
   nrow = 2,
   labels = "AUTO",
   common.legend = TRUE,
-  legend = "bottom"
+  legend = "right"
 )
 
 
@@ -467,7 +469,7 @@ for (fmt in formats) {
       paste0("painel_indices_imaturos_piata.", fmt)
     ),
     plot = painel,
-    width = 15,
-    height = 18
+    width = 20,
+    height = 11
   )
 }
